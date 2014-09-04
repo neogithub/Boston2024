@@ -18,6 +18,7 @@
 @synthesize blurView = _blurView;
 @synthesize canZoom;
 @synthesize delegate;
+@synthesize overView = _overView;
 
 - (id)initWithFrame:(CGRect)frame image:(UIImage*)thisImage overlay:(NSString*)secondImage shouldZoom:(BOOL)zoomable;
 {
@@ -34,10 +35,18 @@
 			_blurView.image = thisImage;
 			_firstImg = _blurView.image;
 			[_blurView setUserInteractionEnabled:YES];
+            
+            //Added another layer to add overlays on map.
+            _overView = [[UIImageView alloc] initWithFrame:self.bounds];
+            [_overView setContentMode:UIViewContentModeScaleAspectFit];
+            _overView.userInteractionEnabled = YES;
+//            _overView.backgroundColor = [UIColor redColor];
+//            _overView.alpha = 0.5;
 			
 			// Note here you should size the container view appropriately and layout backgroundImage and image accordingly.
 			_uiv_windowComparisonContainer = [[UIView alloc] initWithFrame:_blurView.bounds];
 			[_uiv_windowComparisonContainer addSubview:_blurView];
+            [_uiv_windowComparisonContainer insertSubview:_overView aboveSubview:_blurView];
 				
 			_scrollView.contentSize = _uiv_windowComparisonContainer.frame.size;
 			[_scrollView addSubview:_uiv_windowComparisonContainer];

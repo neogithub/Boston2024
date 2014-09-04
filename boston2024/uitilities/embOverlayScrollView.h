@@ -29,6 +29,7 @@
 @property (nonatomic, strong) NSString *overlay;
 @property (nonatomic, strong) UIImage *firstImg;
 @property (nonatomic, strong) UIImageView *blurView;
+@property (nonatomic, strong) UIImageView *overView;
 @property (assign) BOOL imageToggle;
 // define delegate property
 @property (nonatomic, assign) id  delegate;
