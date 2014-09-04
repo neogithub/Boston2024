@@ -43,6 +43,13 @@ static float kClosedMenu_W = 40.0;
 @property (nonatomic, strong) UIButton                      *uib_bos2024;
 @property (nonatomic, strong) UIButton                      *uib_bos2024Oly;
 
+@property (nonatomic, strong) UIView                        *uiv_textBoxContainer;
+@property (nonatomic, strong) UITextView                    *uitv_textBox;
+
+@property (nonatomic, strong) UIView                        *uiv_toggleContainer;
+@property (nonatomic, strong) UIButton                      *uib_normalTime;
+@property (nonatomic, strong) UIButton                      *uib_summerTime;
+
 @property (nonatomic, strong) UILabel                       *uil_cellName;
 
 @property (nonatomic, strong) UIView                        *uiv_leftBar;
@@ -202,13 +209,13 @@ static float kClosedMenu_W = 40.0;
 
 -(void)initVC
 {
-    isCity = NO;
-    NSLog(@"?????");
     if (!_uis_zoomingMap) {
         
         [self initZoomingMap];
         [self initCollapseView];
         [self initBottomMenu];
+        [self initTextBox];
+        [self initToggle];
         _contentTableView = [[contentTableViewController alloc] init];
         
     }
@@ -364,7 +371,7 @@ static float kClosedMenu_W = 40.0;
             _arr_cellName = [[NSMutableArray alloc] initWithObjects:@"ALIGNMENT", @"STATIONS", @"BRIDGES", @"TRACKS", @"38 AT GRADE CROSSINGS", @"PARKING", @"CULTURAL RESOURCES", @"WETLAND FILL", @"GALLERY", nil];
             theCollapseClick.CollapseClickDelegate = self;
             [theCollapseClick reloadCollapseClick];
-            [_uis_zoomingMap.blurView setImage: [UIImage imageNamed:@"mapBg.jpg"]];
+            [_uis_zoomingMap.blurView setImage: [UIImage imageNamed:@"mapBG.jpg"]];
             break;
         }
         case 11:{
@@ -373,10 +380,10 @@ static float kClosedMenu_W = 40.0;
             [theCollapseClick closeCollapseClickCellsWithIndexes:_arr_cellName animated:NO];
             [theCollapseClick closeCellResize];
             [_arr_cellName removeAllObjects];
-            _arr_cellName = [[NSMutableArray alloc] initWithObjects:@"PUBLIC TRANSIT", @"COLLEGES / UNIVERSITIES", nil];
+            _arr_cellName = [[NSMutableArray alloc] initWithObjects:@"ALIGNMENT", @"STATIONS", @"BRIDGES", @"TRACKS", nil];
             theCollapseClick.CollapseClickDelegate = self;
             [theCollapseClick reloadCollapseClick];
-            [_uis_zoomingMap.blurView setImage: [UIImage imageNamed:@"grfx_38Overlay.png"]];
+            [_uis_zoomingMap.blurView setImage: [UIImage imageNamed:@"boston_zoomed.jpg"]];
             break;
         }
         case 12:{
@@ -385,15 +392,69 @@ static float kClosedMenu_W = 40.0;
             [theCollapseClick closeCollapseClickCellsWithIndexes:_arr_cellName animated:NO];
             [theCollapseClick closeCellResize];
             [_arr_cellName removeAllObjects];
-            _arr_cellName = [[NSMutableArray alloc] initWithObjects:@"PUBLIC TRANSIT", @"COLLEGES / UNIVERSITIES", nil];
+            _arr_cellName = [[NSMutableArray alloc] initWithObjects:@"38 AT GRADE CROSSINGS", @"PARKING", @"CULTURAL RESOURCES", @"WETLAND FILL", @"GALLERY", nil];
             theCollapseClick.CollapseClickDelegate = self;
             [theCollapseClick reloadCollapseClick];
-            [_uis_zoomingMap.blurView setImage: [UIImage imageNamed:@"grfx_active&inactive.png"]];
+            [_uis_zoomingMap.blurView setImage: [UIImage imageNamed:@"boston_zoomed.jpg"]];
             break;
         }
         default:
             break;
     }
+}
+
+-(void)initTextBox
+{
+    _uiv_textBoxContainer = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 600, 85)];
+    _uiv_textBoxContainer.backgroundColor = [UIColor redColor];
+    [self.view insertSubview:_uiv_textBoxContainer aboveSubview:_uiv_collapseContainer];
+    
+    _uitv_textBox = [[UITextView alloc] initWithFrame:_uiv_textBoxContainer.bounds];
+    [_uitv_textBox setText:@"Boston Info."];
+    _uitv_textBox.backgroundColor = [UIColor clearColor];
+    [_uitv_textBox setFont:[UIFont systemFontOfSize:18]];
+    [_uitv_textBox setTextColor:[UIColor greenColor]];
+    [_uiv_textBoxContainer addSubview: _uitv_textBox];
+}
+
+-(void)initToggle
+{
+    _uiv_toggleContainer = [[UIView alloc] initWithFrame:CGRectMake(1024-100, 0.0, 100.0, 50.0)];
+    _uiv_toggleContainer.backgroundColor = [UIColor blueColor];
+    [self.view insertSubview:_uiv_toggleContainer aboveSubview:_uiv_collapseContainer];
+    [self addToggleBtns];
+}
+
+-(void)addToggleBtns
+{
+    _uib_normalTime = [UIButton buttonWithType:UIButtonTypeCustom];
+    _uib_normalTime.frame = CGRectMake(0.0, 0.0, 50.0, 50.0);
+    _uib_normalTime.backgroundColor = [UIColor redColor];
+    _uib_normalTime.tag = 1;
+    [_uib_normalTime addTarget:self action:@selector(toggleBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
+    
+    _uib_summerTime = [UIButton buttonWithType:UIButtonTypeCustom];
+    _uib_summerTime.frame = CGRectMake(50.0, 0.0, 50.0, 50.0);
+    _uib_summerTime.backgroundColor = [UIColor greenColor];
+    _uib_summerTime.tag = 2;
+    [_uib_summerTime addTarget:self action:@selector(toggleBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_uiv_toggleContainer addSubview: _uib_normalTime];
+    [_uiv_toggleContainer addSubview: _uib_summerTime];
+}
+
+-(void)toggleBtnTapped:(id)sender
+{
+    UIButton *tappedBtn = sender;
+    if (tappedBtn.tag == 1) {
+        [_uis_zoomingMap.overView setImage:nil];
+        [_uitv_textBox setText:@"Boston Info."];
+    }
+    else {
+        [_uis_zoomingMap.overView setImage:[UIImage imageNamed:@"summerOverlay.png"]];
+        [_uitv_textBox setText:@"Boston Summer Info."];
+    }
+    
 }
 
 -(void)initAccessBtn
@@ -1009,19 +1070,17 @@ static float kClosedMenu_W = 40.0;
 #pragma mark - Collapse Click Delegate
 // Required Methods
 -(int)numberOfCellsForCollapseClick {
-    if (isCity == YES) {
-        //        _uiv_collapseContainer.frame = CGRectMake(0.0f, (768-kCCHeaderHeight*(numOfCells+1))/2, container_W, kCCHeaderHeight*(numOfCells+1));
-        [_uiv_collapseContainer setBackgroundColor:[UIColor clearColor]];
-        [self resizeCollapseContainer:3];
-        return (int)_arr_cellName.count;
-    }
-    else{
+    
+//        [_uiv_collapseContainer setBackgroundColor:[UIColor clearColor]];
+//        [self resizeCollapseContainer:3];
+//        return (int)_arr_cellName.count;
+
         //        _uiv_collapseContainer.frame = CGRectMake(0.0f, (768-kCCHeaderHeight*(3+1))/2, container_W, kCCHeaderHeight*(3+1));
-        [self resizeCollapseContainer:9];
+        [self resizeCollapseContainer:(int)_arr_cellName.count];
         [_uiv_collapseContainer setBackgroundColor:[UIColor clearColor]];
         return (int)_arr_cellName.count;
-    }
-    return 4;
+
+//    return 4;
 }
 
 -(UIImage *)iconForTitle:(int)index {
@@ -1057,7 +1116,7 @@ static float kClosedMenu_W = 40.0;
             break;
         }
         case 1:{
-            if (isCity) {
+//            if (isCity) {
                 //                return nil;
 				UIImageView *tmpImgeView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, container_W, 194)];
                 [tmpImgeView setImage:[UIImage imageNamed:@"grfx_city_transit.png"]];
@@ -1065,16 +1124,14 @@ static float kClosedMenu_W = 40.0;
                 [uiv_sideBar setBackgroundColor: [UIColor colorWithRed:25.0/255.0 green:179.0/255.0 blue:219.0/255.0 alpha:1.0]];
                 [tmpImgeView addSubview: uiv_sideBar];
                 return tmpImgeView;
-            }
+//            }
             [self initStationContentView];
             return _uiv_stationContent;
             //            return nil;
             break;
         }
         case 2:{
-            if (isCity) {
 
-            }
             [self initBridgeContentView];
             return _uiv_bridgeContent;
             //            return nil;
@@ -1227,13 +1284,8 @@ static float kClosedMenu_W = 40.0;
 }
 -(void)didClickCollapseClickCellAtIndex:(int)index isNowOpen:(BOOL)open;
 {
-    if (isCity) {
-        _uis_zoomingMap.blurView.image = [UIImage imageNamed:@"mapBG.jpg"];
-    }
-    else
-    {
-        _uis_zoomingMap.blurView.image = [UIImage imageNamed:@"mapBG.jpg"];
-    }
+
+    _uis_zoomingMap.blurView.image = [UIImage imageNamed:@"mapBG.jpg"];
     for (UIView *tmp in _arr_hotsopts) {
         [tmp removeFromSuperview];
     }
@@ -1275,46 +1327,46 @@ static float kClosedMenu_W = 40.0;
         _uiv_closeMenuSideBar.backgroundColor = [self colorForTitleSideBarAtIndex:index];
         _uil_cellName.textColor = [self colorForTitleSideBarAtIndex:index];
         
-        if (isCity) {
-            switch (index) {
-                    //                case 0:
-                    //                {
-                    //                    _vanness_Hotspot.hidden = NO;
-                    //                    _vanness_Parking_Hotspot.hidden = YES;
-                    //                    NSLog(@"The tapped index is %i", index);
-                    //                    break;
-                    //                }
-                case 0:
-                {
-                    _uis_zoomingMap.blurView.image = [UIImage imageNamed:@"mapBG.jpg"];
-                    NSLog(@"The tapped index is %i", index);
-                    break;
-                }
-                case 1:
-                {
-                    _arr_hotspotsData = [NSMutableArray arrayWithArray:[_dict_hotspots objectForKey:@"universities"] ];
-                    [self initHotspots];
-                    [_uis_zoomingMap resetPinSize];
-                    NSLog(@"The tapped index is %i", index);
-                    break;
-                }
-                case 2:
-                {
-                    NSLog(@"The tapped index is %i", index);
-                    break;
-                }
-                case 3:
-                {
-                    NSLog(@"The tapped index is %i", index);
-                    break;
-                }
-                default:
-                    break;
-            }
-            
-        }
-        
-        if (!isCity) {
+//        if (isCity) {
+//            switch (index) {
+//                    //                case 0:
+//                    //                {
+//                    //                    _vanness_Hotspot.hidden = NO;
+//                    //                    _vanness_Parking_Hotspot.hidden = YES;
+//                    //                    NSLog(@"The tapped index is %i", index);
+//                    //                    break;
+//                    //                }
+//                case 0:
+//                {
+//                    _uis_zoomingMap.blurView.image = [UIImage imageNamed:@"mapBG.jpg"];
+//                    NSLog(@"The tapped index is %i", index);
+//                    break;
+//                }
+//                case 1:
+//                {
+//                    _arr_hotspotsData = [NSMutableArray arrayWithArray:[_dict_hotspots objectForKey:@"universities"] ];
+//                    [self initHotspots];
+//                    [_uis_zoomingMap resetPinSize];
+//                    NSLog(@"The tapped index is %i", index);
+//                    break;
+//                }
+//                case 2:
+//                {
+//                    NSLog(@"The tapped index is %i", index);
+//                    break;
+//                }
+//                case 3:
+//                {
+//                    NSLog(@"The tapped index is %i", index);
+//                    break;
+//                }
+//                default:
+//                    break;
+//            }
+//            
+//        }
+//        
+//        if (!isCity) {
             switch (index) {
                 case 0: // STATIONS
                 {
@@ -1445,7 +1497,7 @@ static float kClosedMenu_W = 40.0;
                 default:
                     break;
             }
-        }
+//        }
     }
     
 //    [self removeAllHelpViews];
@@ -1703,12 +1755,12 @@ static float kClosedMenu_W = 40.0;
 	MKAnnotationView *annotationView = [views objectAtIndex:0];
 	id <MKAnnotation> mp = [annotationView annotation];
     MKCoordinateRegion region;
-	if (isCity) {
-        region = MKCoordinateRegionMakeWithDistance([mp coordinate], 2500, 2500);
-    }
-    else {
+//	if (isCity) {
+//        region = MKCoordinateRegionMakeWithDistance([mp coordinate], 2500, 2500);
+//    }
+//    else {
         region = MKCoordinateRegionMakeWithDistance([mp coordinate], 1500, 1500);
-    }
+//    }
 	[mv setRegion:region animated:YES];
 	[mv selectAnnotation:mp animated:YES];
 }

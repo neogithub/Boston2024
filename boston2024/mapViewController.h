@@ -14,7 +14,6 @@
 @interface mapViewController : UIViewController <CollapseClickDelegate, UITextFieldDelegate, MKMapViewDelegate,  UIGestureRecognizerDelegate, FGalleryViewControllerDelegate>
 {
     CollapseClick   *theCollapseClick;
-    BOOL            isCity;
     
     // fgallery
 	FGalleryViewController	*localGallery;
