@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>menuTitle</key>
+		<string>Commitment</string>
+		<key>startIndex</key>
+		<string>1</string>
+	</dict>
+	<dict>
+		<key>menuTitle</key>
+		<string>Leadership</string>
+		<key>startIndex</key>
+		<string>2</string>
+	</dict>
+	<dict>
+		<key>menuTitle</key>
+		<string>Environmental</string>
+		<key>startIndex</key>
+		<string>21</string>
+	</dict>
+	<dict>
+		<key>menuTitle</key>
+		<string>Engineering</string>
+		<key>startIndex</key>
+		<string>31</string>
+	</dict>
+	<dict>
+		<key>menuTitle</key>
+		<string>Systems</string>
+		<key>startIndex</key>
+		<string>36</string>
+	</dict>
+	<dict>
+		<key>menuTitle</key>
+		<string>Construction</string>
+		<key>startIndex</key>
+		<string>40</string>
+	</dict>
+	<dict>
+		<key>menuTitle</key>
+		<string>Close</string>
+		<key>startIndex</key>
+		<string>41</string>
+	</dict>
+	<dict>
+		<key>menuTitle</key>
+		<string>Alignment</string>
+		<key>startIndex</key>
+		<string>45</string>
+	</dict>
+</array>
+</plist>

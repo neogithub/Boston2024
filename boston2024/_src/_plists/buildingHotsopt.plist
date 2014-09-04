@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>3D</key>
+	<array>
+		<dict>
+			<key>type</key>
+			<string>image</string>
+			<key>background</key>
+			<string>grfx_hs_building.jpg</string>
+			<key>xy</key>
+			<string>675,102</string>
+			<key>angle</key>
+			<string></string>
+			<key>caption</key>
+			<string>SKY TERRACE</string>
+			<key>RGB</key>
+			<string></string>
+			<key>fileName</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>image</string>
+			<key>background</key>
+			<string>grfx_hs_building.jpg</string>
+			<key>xy</key>
+			<string>501,267</string>
+			<key>angle</key>
+			<string></string>
+			<key>caption</key>
+			<string>OFFICE INTERIOR</string>
+			<key>RGB</key>
+			<string></string>
+			<key>fileName</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>image</string>
+			<key>background</key>
+			<string>grfx_hs_building.jpg</string>
+			<key>xy</key>
+			<string>329,530</string>
+			<key>angle</key>
+			<string></string>
+			<key>caption</key>
+			<string>GARDEN TERRACE</string>
+			<key>RGB</key>
+			<string></string>
+			<key>fileName</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>image</string>
+			<key>background</key>
+			<string>grfx_hs_building.jpg</string>
+			<key>xy</key>
+			<string>715,250</string>
+			<key>angle</key>
+			<string></string>
+			<key>caption</key>
+			<string>CLASS A OFFICE BUILDING</string>
+			<key>RGB</key>
+			<string></string>
+			<key>fileName</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>image</string>
+			<key>background</key>
+			<string>grfx_hs_building.jpg</string>
+			<key>xy</key>
+			<string>433,659</string>
+			<key>angle</key>
+			<string></string>
+			<key>caption</key>
+			<string>LOBBY</string>
+			<key>RGB</key>
+			<string></string>
+			<key>fileName</key>
+			<string></string>
+		</dict>
+	</array>
+</dict>
+</plist>

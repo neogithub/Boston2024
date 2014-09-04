@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="4510" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment defaultVersion="1552" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="66" id="rkv-iu-4GB" customClass="contentTableCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="66"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rkv-iu-4GB" id="bUe-4m-3UD">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbB-8R-ckl" userLabel="Label - Name Label">
+                        <rect key="frame" x="44" y="0.0" width="276" height="65"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nt2-iG-Bh3" userLabel="Label - Num Label">
+                        <rect key="frame" x="20" y="0.0" width="20" height="65"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M9x-UU-dnM">
+                        <rect key="frame" x="0.0" y="0.0" width="5" height="65"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="nt2-iG-Bh3" secondAttribute="bottom" id="53V-iN-Sr4"/>
+                    <constraint firstItem="nt2-iG-Bh3" firstAttribute="top" secondItem="bUe-4m-3UD" secondAttribute="top" id="59F-dI-cGG"/>
+                    <constraint firstItem="M9x-UU-dnM" firstAttribute="top" secondItem="bUe-4m-3UD" secondAttribute="top" id="6iu-qE-Fqp"/>
+                    <constraint firstItem="dbB-8R-ckl" firstAttribute="leading" secondItem="bUe-4m-3UD" secondAttribute="leading" constant="44" id="9qI-nz-knh"/>
+                    <constraint firstItem="nt2-iG-Bh3" firstAttribute="leading" secondItem="bUe-4m-3UD" secondAttribute="leading" constant="20" id="TVl-OO-Zz1"/>
+                    <constraint firstItem="dbB-8R-ckl" firstAttribute="top" secondItem="bUe-4m-3UD" secondAttribute="top" id="Vdb-5O-yUk"/>
+                    <constraint firstAttribute="bottom" secondItem="dbB-8R-ckl" secondAttribute="bottom" id="p58-lv-Kq4"/>
+                    <constraint firstItem="M9x-UU-dnM" firstAttribute="leading" secondItem="bUe-4m-3UD" secondAttribute="leading" id="zll-Eg-dZf"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="uiiv_cellSideBar" destination="M9x-UU-dnM" id="3Le-Df-IWG"/>
+                <outlet property="uil_cellName" destination="dbB-8R-ckl" id="LcE-db-sB5"/>
+                <outlet property="uil_cellNum" destination="nt2-iG-Bh3" id="tfS-Cz-U8w"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>
