@@ -921,7 +921,7 @@ didFinishSavingWithError:(NSError *)error
 - (void)showThumbnailViewWithAnimation:(BOOL)animation
 {
     _isThumbViewShowing = YES;
-    [uib_share setEnabled:NO];
+//    [uib_share setEnabled:NO];
     [self arrangeThumbs];
     [self.navigationItem.rightBarButtonItem setTitle:NSLocalizedString(@"Close", @"")];
     
@@ -942,7 +942,7 @@ didFinishSavingWithError:(NSError *)error
 - (void)hideThumbnailViewWithAnimation:(BOOL)animation
 {
     _isThumbViewShowing = NO;
-    [uib_share setEnabled:YES];
+//    [uib_share setEnabled:YES];
     [self.navigationItem.rightBarButtonItem setTitle:NSLocalizedString(@"See all", @"")];
     
     if (animation) {

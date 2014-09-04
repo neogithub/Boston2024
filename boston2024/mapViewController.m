@@ -1012,7 +1012,7 @@ static float kClosedMenu_W = 40.0;
 
 -(void)accessTapped
 {
-    NSArray *imageArray = [[NSArray alloc] initWithObjects:@"q_and_a_00.jpg", @"q_and_a_01.jpg", nil];
+    NSArray *imageArray = [[NSArray alloc] initWithObjects:@"10_Fall_River_Depot_1000.jpg", @"11_Battleship_Cove_5000.jpg", nil];
     localImages = imageArray;
     localGallery = [[FGalleryViewController alloc] initWithPhotoSource:self];
     _navigationController = [[UINavigationController alloc]
