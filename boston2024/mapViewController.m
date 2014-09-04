@@ -33,8 +33,6 @@ static float kClosedMenu_W = 40.0;
 @property (nonatomic, strong) UIView                        *uiv_collapseContainer;
 @property (nonatomic, strong) UIView                        *uiv_closedMenuContainer;
 
-@property (nonatomic, strong) UIButton                      *uib_city;
-@property (nonatomic, strong) UIButton                      *uib_neighborhood;
 @property (nonatomic, strong) UIButton                      *uib_closeBtn;
 @property (nonatomic, strong) UIButton                      *uib_openBtn;
 
@@ -50,11 +48,12 @@ static float kClosedMenu_W = 40.0;
 @property (nonatomic, strong) UIView                        *uiv_leftBar;
 
 @property (nonatomic, strong) NSMutableArray                *arr_cellName;
-@property (nonatomic, strong) NSMutableArray                *arr_contentView;
 
 @property (nonatomic, strong) UIView                        *uiv_stationContent;
 @property (nonatomic, strong) UIView                        *uiv_bridgeContent;
+@property (nonatomic, strong) NSMutableArray                *arr_bridgeBtns;
 @property (nonatomic, strong) UIView                        *uiv_tracksContent;
+@property (nonatomic, strong) NSMutableArray                *arr_tracksBtn;
 
 @property (nonatomic, strong) UIButton                      *uib_originalMap;
 @property (nonatomic, strong) UIButton                      *uib_appleMap;
@@ -163,29 +162,6 @@ static float kClosedMenu_W = 40.0;
     //    [self initBlockBtns];
     
 	[self initAccessBtn];
-
-    
-    NSLog(@"\n\n\n\n\nRElaunch");
-    
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideAndUnhideHelpViews:) name:@"hideAndUnhideHelp" object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideHelpViews:) name:@"hideHelpView" object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(hideStatusBar)
-												 name:@"hideStatusBar"
-											   object:nil];
-}
--(void)hideStatusBar {
-    [_navigationController removeFromParentViewController];
-    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)])
-    {
-        [self prefersStatusBarHidden];
-        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
-    }
-    else
-    {
-        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
-    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -233,13 +209,8 @@ static float kClosedMenu_W = 40.0;
         [self initZoomingMap];
         [self initCollapseView];
         [self initBottomMenu];
-        
         _contentTableView = [[contentTableViewController alloc] init];
         
-//        // Init Title Image
-//        UIImageView *uiiv_titleText = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"grfx_titleText.png"]];
-//        uiiv_titleText.frame = CGRectMake(748.0, 0.0, 277.0, 181.0);
-//        [self.view insertSubview:uiiv_titleText aboveSubview:_uiv_collapseContainer];
     }
 }
 
@@ -247,9 +218,9 @@ static float kClosedMenu_W = 40.0;
 {
     // Set Zooming Map
     _uiiv_bgImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mapBG.jpg"]];
-    // _uis_zoomingMap = [[ebZoomingScrollView alloc] initWithFrame:self.view.bounds image:[UIImage imageNamed:@"neighborhood_map.jpg"] shouldZoom:YES];
     _uis_zoomingMap = [[embOverlayScrollView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1024.0, 768.0) image:[UIImage imageNamed:@"mapBG.jpg"] overlay:nil shouldZoom:YES];
     _uis_zoomingMap.imageToggle = NO;
+//    [_uis_zoomingMap.overView setImage:[UIImage imageNamed:@"grfx_alignmentOverlay.png"]];
     [self.view addSubview: _uis_zoomingMap];
 }
 
@@ -257,47 +228,13 @@ static float kClosedMenu_W = 40.0;
 {
     // Set Container's Frame
     _uiv_collapseContainer = [[UIView alloc] init];
-    //    _uiv_collapseContainer.frame = CGRectMake(0.0f, (768-kCCHeaderHeight*(numOfCells+1))/2, container_W, kCCHeaderHeight*(numOfCells+1));
     _uiv_collapseContainer.frame = CGRectMake(0.0f, (768-kCCHeaderHeight*(numOfCells))/2, container_W, kCCHeaderHeight*(numOfCells));
     [_uiv_collapseContainer setBackgroundColor:[UIColor clearColor]];
-    //    [_uiv_collapseContainer setBackgroundColor:[UIColor colorWithRed:59.0/255.0 green:55.0/255.0 blue:50.0/255.0 alpha:0.9]];
     _uiv_collapseContainer.clipsToBounds = YES;
     
     //Set Collapse View's Frame
     theCollapseClick = [[CollapseClick alloc] initWithFrame:CGRectMake(0.0f, kCCHeaderHeight, container_W, kCCHeaderHeight*numOfCells)];
-    //    [theCollapseClick setBackgroundColor:[UIColor blackColor]];
     [theCollapseClick setBackgroundColor:[UIColor clearColor]];
-    
-    //Set Top Section Buttons
-    _uib_city = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_uib_city setBackgroundColor:[self chosenBtnColor]];
-    [_uib_city setTitle:@"CITY" forState:UIControlStateNormal];
-    //    _uib_city.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:12.5];
-    [_uib_city .titleLabel setFont:[UIFont fontWithName:@"DINPro-CondBlack" size:16]];
-    [_uib_city setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
-    [_uib_city setContentVerticalAlignment:UIControlContentVerticalAlignmentBottom];
-    CGFloat rightSpace = 12.0;
-    CGFloat bottomSpace = 1.0;
-    [_uib_city setContentEdgeInsets:UIEdgeInsetsMake(0, 0, bottomSpace, rightSpace)];
-    [_uib_city setTitleColor:[self chosenBtnTitleColor] forState:UIControlStateNormal];
-    _uib_city.frame = CGRectMake(0.0, 0.0, 55, kCCHeaderHeight);
-    [_uib_city addTarget:self action:@selector(cityBtnTapped) forControlEvents:UIControlEventTouchDown];
-    _uib_city.userInteractionEnabled = YES;
-    
-    _uib_neighborhood = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_uib_neighborhood setBackgroundColor:[self normalCellColor]];
-    [_uib_neighborhood setTitle:@"NEIGHBORHOOD" forState:UIControlStateNormal];
-    //    _uib_neighborhood.titleLabel.font = [UIFont boldSystemFontOfSize:11.5];
-    [_uib_neighborhood .titleLabel setFont:[UIFont fontWithName:@"DINPro-CondBlack" size:16]];
-    _uib_neighborhood.titleLabel.textColor = [UIColor whiteColor];
-    _uib_neighborhood.frame = CGRectMake(55.0, 0.0, container_W-55, kCCHeaderHeight);
-    CGFloat leftSpacing = 8.0;
-    [_uib_neighborhood setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-    [_uib_neighborhood setContentVerticalAlignment:UIControlContentVerticalAlignmentBottom];
-    [_uib_neighborhood setContentEdgeInsets:UIEdgeInsetsMake(0, leftSpacing, bottomSpace, 0)];
-    //    _uib_neighborhood.titleEdgeInsets = UIEdgeInsetsMake(0, spacing, 0, 0);
-    [_uib_neighborhood addTarget:self action:@selector(neighborhoodBtnTapped) forControlEvents:UIControlEventTouchDown];
-    _uib_neighborhood.userInteractionEnabled = NO;
     
     //Set Close Button
     _uib_closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -323,12 +260,51 @@ static float kClosedMenu_W = 40.0;
     theCollapseClick.CollapseClickDelegate = self;
     [theCollapseClick reloadCollapseClick];
     
-    //    [_uiv_collapseContainer addSubview: _uib_city];
-    //    [_uiv_collapseContainer addSubview: _uib_neighborhood];
     [_uiv_collapseContainer addSubview:theCollapseClick];
     [_uiv_collapseContainer addSubview:_uib_closeBtn];
-    
     _uiv_collapseContainer.alpha = 0.0;
+}
+
+-(void)initCellNameLabel:(NSString *)cellName
+{
+    //Init UILabel
+    CGFloat padding = 0.0;
+    if (cellName)
+        padding = 12.0;
+    
+    [_uil_cellName removeFromSuperview];
+    [_uiv_closeMenuSideBar removeFromSuperview];
+    
+    _uil_cellName = [[UILabel alloc] initWithFrame:CGRectMake(10, 48.0, 30.0, 20.0)];//_uib_openBtn.frame.size.height = 40, space = 8, 40+8=48
+    _uil_cellName.layer.anchorPoint = CGPointMake(0, 1.0);
+    [_uil_cellName setBackgroundColor:[UIColor clearColor]];
+    _uil_cellName.autoresizesSubviews = YES;
+    [_uil_cellName setText:cellName];
+    _uil_cellName.font = [UIFont fontWithName:@"DINPro-CondBlack" size:16];
+    [_uil_cellName setTextColor:[UIColor whiteColor]];
+    [_uiv_closedMenuContainer addSubview:_uil_cellName];
+    
+    // Adjust the frame of label after changing the anchor point
+    CGRect frame = _uil_cellName.frame;
+    frame.origin.x = _uil_cellName.frame.origin.x - 15;
+    frame.origin.y = _uil_cellName.frame.origin.y - (18-padding);
+    
+    [_uil_cellName setTransform:CGAffineTransformMakeRotation(M_PI / 2)];
+    _uil_cellName.frame = frame;
+    
+    [_uil_cellName sizeToFit];
+    //Adjust the frame of container according to the height of label
+    CGRect containerFrame = _uiv_closedMenuContainer.frame;
+    containerFrame.size.height = _uib_openBtn.frame.size.height + padding + _uil_cellName.frame.size.height + padding;
+    containerFrame.size.width = kClosedMenu_W;
+    containerFrame.origin.y = (768 - containerFrame.size.height)/2;
+    containerFrame.origin.x = _uiv_closedMenuContainer.frame.origin.x;
+    _uiv_closedMenuContainer.frame = containerFrame;
+    
+    _uiv_closeMenuSideBar = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 5.0, containerFrame.size.height)];
+    _uiv_closeMenuSideBar.backgroundColor = [UIColor redColor];
+    
+    [_uiv_closedMenuContainer insertSubview:_uiv_closeMenuSideBar belowSubview:_uib_openBtn];
 }
 
 -(void)initBottomMenu
@@ -380,15 +356,39 @@ static float kClosedMenu_W = 40.0;
 {
     switch (index) {
         case 10:{
-            
+            [_arr_tapHotspots removeAllObjects];
+            [_uis_zoomingMap resetScroll];
+            [theCollapseClick closeCollapseClickCellsWithIndexes:_arr_cellName animated:NO];
+            [theCollapseClick closeCellResize];
+            [_arr_cellName removeAllObjects];
+            _arr_cellName = [[NSMutableArray alloc] initWithObjects:@"ALIGNMENT", @"STATIONS", @"BRIDGES", @"TRACKS", @"38 AT GRADE CROSSINGS", @"PARKING", @"CULTURAL RESOURCES", @"WETLAND FILL", @"GALLERY", nil];
+            theCollapseClick.CollapseClickDelegate = self;
+            [theCollapseClick reloadCollapseClick];
+            [_uis_zoomingMap.blurView setImage: [UIImage imageNamed:@"mapBg.jpg"]];
             break;
         }
         case 11:{
-            
+            [_arr_tapHotspots removeAllObjects];
+            [_uis_zoomingMap resetScroll];
+            [theCollapseClick closeCollapseClickCellsWithIndexes:_arr_cellName animated:NO];
+            [theCollapseClick closeCellResize];
+            [_arr_cellName removeAllObjects];
+            _arr_cellName = [[NSMutableArray alloc] initWithObjects:@"PUBLIC TRANSIT", @"COLLEGES / UNIVERSITIES", nil];
+            theCollapseClick.CollapseClickDelegate = self;
+            [theCollapseClick reloadCollapseClick];
+            [_uis_zoomingMap.blurView setImage: [UIImage imageNamed:@"grfx_38Overlay.png"]];
             break;
         }
         case 12:{
-            
+            [_arr_tapHotspots removeAllObjects];
+            [_uis_zoomingMap resetScroll];
+            [theCollapseClick closeCollapseClickCellsWithIndexes:_arr_cellName animated:NO];
+            [theCollapseClick closeCellResize];
+            [_arr_cellName removeAllObjects];
+            _arr_cellName = [[NSMutableArray alloc] initWithObjects:@"PUBLIC TRANSIT", @"COLLEGES / UNIVERSITIES", nil];
+            theCollapseClick.CollapseClickDelegate = self;
+            [theCollapseClick reloadCollapseClick];
+            [_uis_zoomingMap.blurView setImage: [UIImage imageNamed:@"grfx_active&inactive.png"]];
             break;
         }
         default:
@@ -406,48 +406,6 @@ static float kClosedMenu_W = 40.0;
     [self.view addSubview:_uib_access];
 }
 
--(void)initCellNameLabel:(NSString *)cellName
-{
-    //Init UILabel
-    CGFloat padding = 0.0;
-    if (cellName)
-        padding = 12.0;
-    
-    [_uil_cellName removeFromSuperview];
-    [_uiv_closeMenuSideBar removeFromSuperview];
-    
-    _uil_cellName = [[UILabel alloc] initWithFrame:CGRectMake(10, 48.0, 30.0, 20.0)];//_uib_openBtn.frame.size.height = 40, space = 8, 40+8=48
-    _uil_cellName.layer.anchorPoint = CGPointMake(0, 1.0);
-    [_uil_cellName setBackgroundColor:[UIColor clearColor]];
-    _uil_cellName.autoresizesSubviews = YES;
-    [_uil_cellName setText:cellName];
-    _uil_cellName.font = [UIFont fontWithName:@"DINPro-CondBlack" size:16];
-    [_uil_cellName setTextColor:[UIColor whiteColor]];
-    [_uiv_closedMenuContainer addSubview:_uil_cellName];
-    
-    // Adjust the frame of label after changing the anchor point
-    CGRect frame = _uil_cellName.frame;
-    frame.origin.x = _uil_cellName.frame.origin.x - 15;
-    frame.origin.y = _uil_cellName.frame.origin.y - (18-padding);
-    
-    [_uil_cellName setTransform:CGAffineTransformMakeRotation(M_PI / 2)];
-    _uil_cellName.frame = frame;
-    
-    [_uil_cellName sizeToFit];
-    //Adjust the frame of container according to the height of label
-    CGRect containerFrame = _uiv_closedMenuContainer.frame;
-    containerFrame.size.height = _uib_openBtn.frame.size.height + padding + _uil_cellName.frame.size.height + padding;
-    containerFrame.size.width = kClosedMenu_W;
-    containerFrame.origin.y = (768 - containerFrame.size.height)/2;
-    containerFrame.origin.x = _uiv_closedMenuContainer.frame.origin.x;
-    _uiv_closedMenuContainer.frame = containerFrame;
-    
-    _uiv_closeMenuSideBar = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 5.0, containerFrame.size.height)];
-    _uiv_closeMenuSideBar.backgroundColor = [UIColor redColor];
-    
-    [_uiv_closedMenuContainer insertSubview:_uiv_closeMenuSideBar belowSubview:_uib_openBtn];
-}
-
 -(void)initStationContentView
 {
 	_uiv_stationContent = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, container_W, 30.0)];
@@ -462,19 +420,6 @@ static float kClosedMenu_W = 40.0;
     UIButton *uib_direc3 = [UIButton buttonWithType:UIButtonTypeCustom];
     UIButton *uib_direc4 = [UIButton buttonWithType:UIButtonTypeCustom];
     
-	// INGRESS NORTH / SOUTH
-	// EGRESS NORTH / SOUTH
-	// INGRESS WEST
-	// EGRESS WEST
-	
-    //    uib_direc1.frame = CGRectMake(0, 0, container_W, 30);
-    //    uib_direc1.backgroundColor = [UIColor clearColor];
-    //    [uib_direc1 setTitle:@"Commuter Rail" forState:UIControlStateNormal];
-    //    uib_direc1.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
-    //    uib_direc1.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    //    uib_direc1.contentEdgeInsets = UIEdgeInsetsMake(0, 50, 0, 0);
-    //    uib_direc1.tag = 5001;
-    
     uib_direc2.frame = CGRectMake(0, 0, container_W, 30);
     uib_direc2.backgroundColor = [UIColor clearColor];
     [uib_direc2 setTitle:@"11 New Stations" forState:UIControlStateNormal];
@@ -482,22 +427,6 @@ static float kClosedMenu_W = 40.0;
     uib_direc2.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     uib_direc2.contentEdgeInsets = UIEdgeInsetsMake(0, 50, 0, 0);
     uib_direc2.tag = 5002;
-    
-    //    uib_direc3.frame = CGRectMake(0, 62, container_W, 30);
-    //    uib_direc3.backgroundColor = [UIColor clearColor];
-    //    [uib_direc3 setTitle:@"INGRESS NORTH / SOUTH" forState:UIControlStateNormal];
-    //    uib_direc3.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
-    //    uib_direc3.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    //    uib_direc3.contentEdgeInsets = UIEdgeInsetsMake(0, 50, 0, 0);
-    //    uib_direc3.tag = 5003;
-    //
-    //    uib_direc4.frame = CGRectMake(0, 93, container_W, 30);
-    //    uib_direc4.backgroundColor = [UIColor clearColor];
-    //    [uib_direc4 setTitle:@"EGRESS NORTH / SOUTH" forState:UIControlStateNormal];
-    //    uib_direc4.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
-    //    uib_direc4.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    //    uib_direc4.contentEdgeInsets = UIEdgeInsetsMake(0, 50, 0, 0);
-    //    uib_direc4.tag = 5004;
     
     UIView *uiv_sideBar = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 5.0, _uiv_stationContent.frame.size.height)];
     [uiv_sideBar setBackgroundColor:[UIColor colorWithRed:234.0/255.0 green:189.0/255.0 blue:14.0/255.0 alpha:1.0]];
@@ -519,6 +448,10 @@ static float kClosedMenu_W = 40.0;
 }
 
 -(void)initBridgeContentView {
+    [_arr_bridgeBtns removeAllObjects];
+    _arr_bridgeBtns = nil;
+    _arr_bridgeBtns = [[NSMutableArray alloc] init];
+    
     _uiv_bridgeContent = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, container_W, 90)];
     _uiv_bridgeContent.backgroundColor = [UIColor colorWithRed:38.0/255.0 green:36.0/255.0 blue:33.0/255.0 alpha:1.0];
     _uiv_bridgeContent.tag = 3001;
@@ -537,6 +470,7 @@ static float kClosedMenu_W = 40.0;
     uib_bridge1.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     uib_bridge1.contentEdgeInsets = UIEdgeInsetsMake(0, 50, 0, 0);
     uib_bridge1.tag = 6001;
+    [_arr_bridgeBtns addObject: uib_bridge1];
     
     uib_bridge2.frame = CGRectMake(0, 30, container_W, 30);
     uib_bridge2.backgroundColor = [UIColor clearColor];
@@ -545,6 +479,7 @@ static float kClosedMenu_W = 40.0;
     uib_bridge2.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     uib_bridge2.contentEdgeInsets = UIEdgeInsetsMake(0, 50, 0, 0);
     uib_bridge2.tag = 6002;
+    [_arr_bridgeBtns addObject: uib_bridge2];
     
     uib_bridge3.frame = CGRectMake(0, 60, container_W, 30);
     uib_bridge3.backgroundColor = [UIColor clearColor];
@@ -553,6 +488,7 @@ static float kClosedMenu_W = 40.0;
     uib_bridge3.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     uib_bridge3.contentEdgeInsets = UIEdgeInsetsMake(0, 50, 0, 0);
     uib_bridge3.tag = 6003;
+    [_arr_bridgeBtns addObject: uib_bridge3];
     
     UIView *uiv_sideBar = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 5.0, _uiv_bridgeContent.frame.size.height)];
     [uiv_sideBar setBackgroundColor:[UIColor colorWithRed:181.0/255.0 green:38.0/255.0 blue:45.0/255.0 alpha:1.0]];
@@ -573,6 +509,10 @@ static float kClosedMenu_W = 40.0;
 }
 
 -(void)initTrackContentView {
+    [_arr_tracksBtn removeAllObjects];
+    _arr_tracksBtn = nil;
+    _arr_tracksBtn = [[NSMutableArray alloc] init];
+    
     _uiv_tracksContent = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, container_W, 150)];
     _uiv_tracksContent.backgroundColor = [UIColor colorWithRed:38.0/255.0 green:36.0/255.0 blue:33.0/255.0 alpha:1.0];
     _uiv_tracksContent.tag = 3002;
@@ -593,6 +533,7 @@ static float kClosedMenu_W = 40.0;
     uib_tracks1.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     uib_tracks1.contentEdgeInsets = UIEdgeInsetsMake(0, 50, 0, 0);
     uib_tracks1.tag = 7001;
+    [_arr_tracksBtn addObject: uib_tracks1];
 	
 	uib_tracks3.frame = CGRectMake(0, 60, container_W, 30);
     uib_tracks3.backgroundColor = [UIColor clearColor];
@@ -601,6 +542,7 @@ static float kClosedMenu_W = 40.0;
     uib_tracks3.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     uib_tracks3.contentEdgeInsets = UIEdgeInsetsMake(0, 50, 0, 0);
 	uib_tracks2.tag = 7002;
+    [_arr_tracksBtn addObject: uib_tracks3];
     
     uib_tracks2.frame = CGRectMake(0, 30, container_W, 30);
     uib_tracks2.backgroundColor = [UIColor clearColor];
@@ -609,6 +551,7 @@ static float kClosedMenu_W = 40.0;
     uib_tracks2.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     uib_tracks2.contentEdgeInsets = UIEdgeInsetsMake(0, 50, 0, 0);
     uib_tracks3.tag = 7003;
+    [_arr_tracksBtn addObject: uib_tracks2];
     
     uib_tracks4.frame = CGRectMake(0, 90, container_W, 30);
     uib_tracks4.backgroundColor = [UIColor clearColor];
@@ -617,6 +560,7 @@ static float kClosedMenu_W = 40.0;
     uib_tracks4.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     uib_tracks4.contentEdgeInsets = UIEdgeInsetsMake(0, 50, 0, 0);
     uib_tracks4.tag = 7004;
+    [_arr_tracksBtn addObject: uib_tracks4];
     
     uib_tracks5.frame = CGRectMake(0, 120, container_W, 30);
     uib_tracks5.backgroundColor = [UIColor clearColor];
@@ -625,6 +569,7 @@ static float kClosedMenu_W = 40.0;
     uib_tracks5.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     uib_tracks5.contentEdgeInsets = UIEdgeInsetsMake(0, 50, 0, 0);
     uib_tracks5.tag = 7005;
+    [_arr_tracksBtn addObject: uib_tracks5];
     
     UIView *uiv_sideBar = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 5.0, _uiv_tracksContent.frame.size.height)];
     [uiv_sideBar setBackgroundColor:[UIColor colorWithRed:31.0/255.0 green:162.0/255.0 blue:197.0/255.0 alpha:1.0]];
@@ -704,31 +649,13 @@ static float kClosedMenu_W = 40.0;
 		[self directionViewCleanUp];
 		NSLog(@"sdssdfdsf");
 	}
-    if(tmpBtn.tag == 5001) {
-        
-        if (tmpBtn.tag != _preBtnTag) {
-            [self addButtonsForDirections:@"low"];
-            [self drawPathsFromBezierClass:tmpBtn];
-            _preBtnTag = tmpBtn.tag;
-        }
-        else {
-            _uiv_directionDot.transform = CGAffineTransformMakeTranslation(-50, 15);
-            _uis_zoomingMap.blurView.image = [UIImage imageNamed:@"mapBG.jpg"];
-            _preBtnTag = 0;
-            return;
-        }
-	}
-    else {
-        if (tmpBtn.tag != _preBtnTag) {
-            _preBtnTag = tmpBtn.tag;
-        }
-        else {
-            _uiv_directionDot.transform = CGAffineTransformMakeTranslation(-50, 15);
-            _uis_zoomingMap.blurView.image = [UIImage imageNamed:@"mapBG.jpg"];
-            _preBtnTag = 0;
-            return;
-        }
-        
+    
+    if (tmpBtn.selected) {
+        _uiv_directionDot.transform = CGAffineTransformMakeTranslation(-50, 15);
+        _uis_zoomingMap.blurView.image = [UIImage imageNamed:@"mapBG.jpg"];
+        _preBtnTag = 0;
+        tmpBtn.selected = NO;
+        return;
     }
     
     switch (tmpBtn.tag) {
@@ -745,6 +672,7 @@ static float kClosedMenu_W = 40.0;
             _arr_hotspotsData = [NSMutableArray arrayWithArray:[_dict_hotspots objectForKey:@"11NewStations"] ];
             [self initHotspots];
             [_uis_zoomingMap resetPinSize];
+            tmpBtn.selected = YES;
             break;
         }
         case 5003:
@@ -774,14 +702,19 @@ static float kClosedMenu_W = 40.0;
     [_arr_hotsopts removeAllObjects];
     [_arr_tapHotspots removeAllObjects];
     
-    if (tmpBtn.tag != _preBtnTag) {
-        _preBtnTag = tmpBtn.tag;
+    for (UIButton *tmp in _arr_bridgeBtns) {
+        if (tmp.tag != tmpBtn.tag) {
+            tmp.selected = NO;
+        }
     }
-    else {
+    
+    if (tmpBtn.selected) {
         _uiv_bridgeDot.transform = CGAffineTransformMakeTranslation(-50, 15);
         _uis_zoomingMap.blurView.image = [UIImage imageNamed:@"mapBG.jpg"];
         _preBtnTag = 0;
+        tmpBtn.selected = NO;
         return;
+
     }
     
     switch (tmpBtn.tag) {
@@ -789,6 +722,7 @@ static float kClosedMenu_W = 40.0;
             _uiv_bridgeDot.transform = CGAffineTransformMakeTranslation(16, 15);
             [_uiv_bridgeContent insertSubview:_uiv_bridgeDot aboveSubview:tmpBtn];
             _uis_zoomingMap.blurView.image = [UIImage imageNamed:@"grfx_trestleOverlay.png"];
+            tmpBtn.selected = YES;
             break;
         }
         case 6002: {
@@ -797,6 +731,7 @@ static float kClosedMenu_W = 40.0;
             _arr_hotspotsData = [NSMutableArray arrayWithArray:[_dict_hotspots objectForKey:@"6NewBridges"] ];
             [self initHotspots];
             [_uis_zoomingMap resetPinSize];
+            tmpBtn.selected = YES;
             break;
         }
         case 6003: {
@@ -805,6 +740,7 @@ static float kClosedMenu_W = 40.0;
             _arr_hotspotsData = [NSMutableArray arrayWithArray:[_dict_hotspots objectForKey:@"bridges"] ];
             [self initHotspots];
             [_uis_zoomingMap resetPinSize];
+            tmpBtn.selected = YES;
             break;
         }
         default:
@@ -823,72 +759,58 @@ static float kClosedMenu_W = 40.0;
         //    return;
     }
     
-    if (tmpBtn.tag == 7004) {
-        if (tmpBtn.tag != _preBtnTag) {
-            _uis_zoomingMap.blurView.image = [UIImage imageNamed:@"grfx_textOverlay.png"];
-            _preBtnTag = tmpBtn.tag;
-        }
-        else {
-            _uiv_tracksDot.transform = CGAffineTransformMakeTranslation(-50, 15);
-            _uis_zoomingMap.blurView.image = [UIImage imageNamed:@"mapBG.jpg"];
-            _preBtnTag = 0;
-            return;
-        }
-        
-    }
-    else if (tmpBtn.tag == 7005) {
-        if (tmpBtn.tag != _preBtnTag) {
-            _uis_zoomingMap.blurView.image = [UIImage imageNamed:@"grfx_active&inactive.png"];
-            _preBtnTag = tmpBtn.tag;
-        }
-        else {
-            _uiv_tracksDot.transform = CGAffineTransformMakeTranslation(-50, 15);
-            _uis_zoomingMap.blurView.image = [UIImage imageNamed:@"mapBG.jpg"];
-            _preBtnTag = 0;
-            return;
+    _uis_zoomingMap.blurView.image = [UIImage imageNamed:@"mapBG.jpg"];
+    
+    for (UIButton *tmp in _arr_tracksBtn) {
+        if (tmp.tag != tmpBtn.tag) {
+            tmp.selected = NO;
         }
     }
-    else {
-        _uis_zoomingMap.blurView.image = [UIImage imageNamed:@"mapBG.jpg"];
-        
-        if (tmpBtn.tag != _preBtnTag) {
-            [self addButtonsForDirections:@"low"];
-            [self drawPathsFromBezierClass:tmpBtn];
-            _preBtnTag = tmpBtn.tag;
-        }
-        else {
-            _uiv_tracksDot.transform = CGAffineTransformMakeTranslation(-50, 15);
-            _preBtnTag = 0;
-            
-            return;
-        }
-        
+    
+    if (tmpBtn.selected) {
+        _uiv_tracksDot.transform = CGAffineTransformMakeTranslation(-50, 15);
+        _preBtnTag = 0;
+        tmpBtn.selected = NO;
+        return;
     }
     
     switch (tmpBtn.tag) {
         case 7001: {
             _uiv_tracksDot.transform = CGAffineTransformMakeTranslation(16, 15);
             [_uiv_tracksContent insertSubview:_uiv_tracksDot aboveSubview:tmpBtn];
+            [self addButtonsForDirections:@"low"];
+            [self drawPathsFromBezierClass:tmpBtn];
+            tmpBtn.selected = YES;
             break;
         }
         case 7002: {
             _uiv_tracksDot.transform = CGAffineTransformMakeTranslation(16, 45);
             [_uiv_tracksContent insertSubview:_uiv_tracksDot aboveSubview:tmpBtn];
+            [self addButtonsForDirections:@"low"];
+            [self drawPathsFromBezierClass:tmpBtn];
+            tmpBtn.selected = YES;
             break;
         }
         case 7003: {
             _uiv_tracksDot.transform = CGAffineTransformMakeTranslation(16, 75);
             [_uiv_tracksContent insertSubview:_uiv_tracksDot aboveSubview:tmpBtn];
+            [self addButtonsForDirections:@"low"];
+            [self drawPathsFromBezierClass:tmpBtn];
+            tmpBtn.selected = YES;
             break;
         }
         case 7004: {
             _uiv_tracksDot.transform = CGAffineTransformMakeTranslation(16, 105);
             [_uiv_tracksContent insertSubview:_uiv_tracksDot aboveSubview:tmpBtn];
+            _uis_zoomingMap.blurView.image = [UIImage imageNamed:@"grfx_textOverlay.png"];
+            tmpBtn.selected = YES;
             break;
         }
         case 7005: {
             _uiv_tracksDot.transform = CGAffineTransformMakeTranslation(16, 135);
             [_uiv_tracksContent insertSubview:_uiv_tracksDot aboveSubview:tmpBtn];
+            _uis_zoomingMap.blurView.image = [UIImage imageNamed:@"grfx_active&inactive.png"];
+            tmpBtn.selected = YES;
             break;
         }
         default:
@@ -935,55 +857,11 @@ static float kClosedMenu_W = 40.0;
 	// actual drawpath function
 	_embDirectionPath = [[embDrawBezierPath alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
 	_embDirectionPath.delegate=self;
-	//[_uiv_mapContainer insertSubview:_embDirectionPath atIndex:2];
-	
-	
-	//[_uis_zoomingMap.uiv_windowComparisonContainer insertSubview:_embDirectionPath belowSubview:_uib_armyCorp];
-	
 	[_uis_zoomingMap.uiv_windowComparisonContainer insertSubview:_embDirectionPath atIndex:2];
-    
-	
-	//[_uis_zoomingMap.blurView addSubview:_embDirectionPath];
-    
-	//NSLog(@"%li",(long)currentHeaderIndex);
-	
-	// loop # paths in a group
+
 	int pathGrouping	= -1;
 	int indexStart		= -1;
 	
-    //	if(currentHeaderIndex == 0)
-    //	{
-    //		switch ([sender tag]) {
-    //			case 0:
-    //				pathGrouping	= 1;
-    //				indexStart		= 0;
-    //				break;
-    //
-    //			case 1:
-    //				pathGrouping	= 1;
-    //				indexStart		= 1;
-    //				break;
-    //
-    //			case 2:
-    //				pathGrouping	= 1;
-    //				indexStart		= 2;
-    //				break;
-    //
-    //			case 3:
-    //				pathGrouping	= 1;
-    //				indexStart		= 3;
-    //				break;
-    //
-    //			case 4:
-    //				pathGrouping	= 1;
-    //				indexStart		= 4;
-    //				break;
-    //
-    //			default:
-    //				break;
-    //		}
-    //
-    //	} else if (currentHeaderIndex == 2) {
     switch ([sender tag]) {
         case 5001:
             pathGrouping	= 9;
@@ -1081,6 +959,7 @@ static float kClosedMenu_W = 40.0;
     _navigationController.view.frame = CGRectMake(0.0, 0.0, 1024, 768);
     [self addChildViewController: _navigationController];
     [_navigationController setNavigationBarHidden:YES];
+    [self.view addSubview: _navigationController.view];
 }
 
 -(void)didRemove:(embSimpleScrollView *)customClass
@@ -1095,47 +974,6 @@ static float kClosedMenu_W = 40.0;
                      }];
 }
 
--(void)cityBtnTapped
-{
-    [UIView animateWithDuration:0.2 animations:^{
-        _uiv_collapseContainer.alpha = 0.0;
-		[self directionViewCleanUp];
-    } completion:^(BOOL finished){
-        [self citySectionData];
-        [self initCellNameLabel:nil];
-        [_uib_neighborhood setBackgroundColor:[self chosenBtnColor]];
-        _uib_neighborhood.alpha = 1.0;
-        [_uib_city setBackgroundColor:[self normalCellColor]];
-        _uib_city.alpha = 1.0;
-        [_uib_city setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_uib_neighborhood setTitleColor:[self chosenBtnTitleColor] forState:UIControlStateNormal];
-        _uiv_closedMenuContainer.frame = CGRectMake(-41.0, (768-36)/2, 41.0, 36);
-        [UIView animateWithDuration:0.33 animations:^{
-            _uiv_collapseContainer.alpha = 1.0;
-        }];
-    }];
-}
-
--(void)neighborhoodBtnTapped
-{
-    [UIView animateWithDuration:0.2 animations:^{
-        _uiv_collapseContainer.alpha = 0.0;
-		[self directionViewCleanUp];
-    }completion:^(BOOL finished){
-        [self neighborhoodSectionData];
-        [self initCellNameLabel:nil];
-        [_uib_city setBackgroundColor:[self chosenBtnColor]];
-        _uib_city.alpha = 1.0;
-        [_uib_neighborhood setBackgroundColor:[self normalCellColor]];
-        _uib_neighborhood.alpha = 1.0;
-        [_uib_neighborhood setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_uib_city setTitleColor:[self chosenBtnTitleColor] forState:UIControlStateNormal];
-        _uiv_closedMenuContainer.frame = CGRectMake(-41.0, (768-36)/2, 41.0, 36);
-        [UIView animateWithDuration:0.33 animations:^{
-            _uiv_collapseContainer.alpha = 1.0;
-        }];
-    }];
-}
 -(void)closeButtonTapped
 {
     [UIView animateWithDuration:0.33 animations:^{
@@ -1156,75 +994,6 @@ static float kClosedMenu_W = 40.0;
             _uiv_collapseContainer.transform = CGAffineTransformMakeTranslation(0, 0);
         }];
     }];
-}
-
-#pragma mark - Init Data For 2 Sections
--(void)citySectionData
-{
-    isCity = YES;
-    for (UIView *tmp in _arr_hotsopts) {
-        [tmp removeFromSuperview];
-    }
-    [_uiiv_overlays removeFromSuperview];
-    for (UIView *tmp in _arr_tapHotspots) {
-        [tmp removeFromSuperview];
-    }
-    [_arr_tapHotspots removeAllObjects];
-    
-    [_uis_zoomingMap resetScroll];
-    
-    UIImage * toMap = [UIImage imageNamed:@"mapBG.jpg"];
-	[UIView transitionWithView:self.view
-					  duration:0.33f
-					   options:UIViewAnimationOptionTransitionCrossDissolve
-					animations:^{
-                        _uis_zoomingMap.blurView.image = toMap;
-					} completion:NULL];
-    
-    [theCollapseClick closeCollapseClickCellsWithIndexes:_arr_cellName animated:NO];
-    [theCollapseClick closeCellResize];
-    [_arr_cellName removeAllObjects];
-    _arr_cellName = [[NSMutableArray alloc] initWithObjects:@"PUBLIC TRANSIT", @"COLLEGES / UNIVERSITIES", nil];
-    theCollapseClick.CollapseClickDelegate = self;
-    [theCollapseClick reloadCollapseClick];
-    _uib_city.userInteractionEnabled = NO;
-    _uib_neighborhood.userInteractionEnabled = YES;
-}
-
--(void)neighborhoodSectionData
-{
-    isCity = NO;
-    for (UIView *tmp in _arr_hotsopts) {
-        [tmp removeFromSuperview];
-    }
-    
-    [_uiiv_overlays removeFromSuperview];
-    
-    for (UIView *tmp in _arr_tapHotspots) {
-        [tmp removeFromSuperview];
-    }
-    [_arr_tapHotspots removeAllObjects];
-    
-    [_uis_zoomingMap resetScroll];
-    
-    //    [self initBlockBtns];
-    
-    UIImage * toMap = [UIImage imageNamed:@"mapBG.jpg"];
-	[UIView transitionWithView:self.view
-					  duration:0.33f
-					   options:UIViewAnimationOptionTransitionCrossDissolve
-					animations:^{
-                        _uis_zoomingMap.blurView.image = toMap;
-					} completion:NULL];
-    
-    [theCollapseClick closeCollapseClickCellsWithIndexes:_arr_cellName animated:NO];
-    [theCollapseClick closeCellResize];
-    [_arr_cellName removeAllObjects];
-    _arr_cellName = [[NSMutableArray alloc] initWithObjects:@"11 NEW STATIONS", @"6 NEW BRIDGES", @"1.5 MILE TRESTLE BRIDGES", @"RECONSTRUCTED TRACKS", @"NEW-CONSTRUCTED TRACKS", @"ACTIVE FREIGHT RAIL SERVICE", @"CULTURAL RESOURCES", @"WETLAND FILL", nil];
-    theCollapseClick.CollapseClickDelegate = self;
-    [theCollapseClick reloadCollapseClick];
-    _uib_city.userInteractionEnabled = YES;
-    _uib_neighborhood.userInteractionEnabled = NO;
 }
 
 -(void)resizeCollapseContainer:(int)numOfCell
@@ -1257,16 +1026,7 @@ static float kClosedMenu_W = 40.0;
 
 -(UIImage *)iconForTitle:(int)index {
     switch (index) {
-            //        case 0:{
-            //            UIImage *icon0 = [UIImage imageNamed:@"grfx_station_icon.png"];
-            //            return icon0;
-            //            break;
-            //        }
-            //        case 2:{
-            //            UIImage *icon2 = [UIImage imageNamed:@"grfx_newBridge_icon.png"];
-            //            return icon2;
-            //            break;
-            //        }
+
         case 6:{
             UIImage *icon5 = [UIImage imageNamed:@"grfx_culture_icon.png"];
             return icon5;
@@ -1289,6 +1049,7 @@ static float kClosedMenu_W = 40.0;
     return str_cellName;
 }
 
+//Add content view for each cell
 -(UIView *)viewForCollapseClickContentViewAtIndex:(int)index {
     switch (index) {
         case 0: {
