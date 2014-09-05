@@ -24,6 +24,10 @@ static int numOfCells = 4;
 static float container_W = 198.0;  // origial 186
 static float kClosedMenu_W = 40.0;
 @interface mapViewController ()<embSimpleScrollViewDelegate, embDrawBezierPathDelegate, embOverlayScrollViewDelegate>
+{
+    NSString            *overlayName;
+    int                 sectionIndex;
+}
 
 @property (nonatomic, strong) contentTableViewController    *contentTableView;
 @property (nonatomic, strong) CollapseClickCell             *theCell;
@@ -44,7 +48,8 @@ static float kClosedMenu_W = 40.0;
 @property (nonatomic, strong) UIButton                      *uib_bos2024Oly;
 
 @property (nonatomic, strong) UIView                        *uiv_textBoxContainer;
-@property (nonatomic, strong) UITextView                    *uitv_textBox;
+@property (nonatomic, strong) UILabel                       *uil_textYear;
+@property (nonatomic, strong) UILabel                       *uil_textInfo;
 
 @property (nonatomic, strong) UIView                        *uiv_toggleContainer;
 @property (nonatomic, strong) UIButton                      *uib_normalTime;
@@ -143,6 +148,10 @@ static float kClosedMenu_W = 40.0;
     
     _arr_hotspotsData = [[NSMutableArray alloc] init];
     _arr_hotsopts = [[NSMutableArray alloc] init];
+    
+    //Init status of section index and overlay file's name
+    sectionIndex = 1;
+    overlayName = [[NSString alloc] init];
     
     //Prepare gallery info from plist
     NSString *path_gallery = [[NSBundle mainBundle] pathForResource:@"gallery_buttons" ofType:@"plist"];
@@ -356,6 +365,15 @@ static float kClosedMenu_W = 40.0;
     UIButton *tappedBtn = sender;
     tappedBtn.backgroundColor = [UIColor colorWithRed:0.0/255.0 green:174.0/255.0 blue:255.0/255.0 alpha:1.0];
     
+    [_uiv_tracksDot removeFromSuperview];
+    [_uiv_directionDot removeFromSuperview];
+    [_uiiv_overlays removeFromSuperview];
+    [_arr_hotspotsData removeAllObjects];
+    [_arr_hotsopts removeAllObjects];
+	[self directionViewCleanUp];
+    [_uis_zoomingMap.overView setImage:nil];
+    _uiv_toggleContainer.hidden = YES;
+    
     [self updateMap:(int)tappedBtn.tag];
 }
 
@@ -406,15 +424,33 @@ static float kClosedMenu_W = 40.0;
 -(void)initTextBox
 {
     _uiv_textBoxContainer = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 600, 85)];
-    _uiv_textBoxContainer.backgroundColor = [UIColor redColor];
+//    _uiv_textBoxContainer.backgroundColor = [UIColor redColor];
     [self.view insertSubview:_uiv_textBoxContainer aboveSubview:_uiv_collapseContainer];
     
-    _uitv_textBox = [[UITextView alloc] initWithFrame:_uiv_textBoxContainer.bounds];
-    [_uitv_textBox setText:@"Boston Info."];
-    _uitv_textBox.backgroundColor = [UIColor clearColor];
-    [_uitv_textBox setFont:[UIFont systemFontOfSize:18]];
-    [_uitv_textBox setTextColor:[UIColor greenColor]];
-    [_uiv_textBoxContainer addSubview: _uitv_textBox];
+    _uil_textYear = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 100, 85)];
+    [_uil_textYear setText:@"2014"];
+    [_uil_textYear setBackgroundColor:[UIColor clearColor]];
+    [_uil_textYear setTextColor:[UIColor whiteColor]];
+    [_uil_textYear setFont: [UIFont boldSystemFontOfSize:25]];
+    [_uil_textYear setTextAlignment:NSTextAlignmentCenter];
+    [_uiv_textBoxContainer addSubview: _uil_textYear];
+    
+    _uil_textInfo = [[UILabel alloc] initWithFrame:CGRectMake(100.0, 0.0, 200.0, 85)];
+    [_uil_textInfo setText:@"Typical day Boston during peak hours"];
+    [_uil_textInfo setFont:[UIFont systemFontOfSize:20]];
+    [_uil_textInfo setTextColor:[UIColor whiteColor]];
+    [_uil_textInfo setLineBreakMode:NSLineBreakByWordWrapping];
+    _uil_textInfo.numberOfLines = 0;
+    CGSize sizeForText = [_uil_textInfo.text sizeWithFont:[UIFont boldSystemFontOfSize:20]
+                                          constrainedToSize:CGSizeMake(200, 200)
+                                              lineBreakMode:NSLineBreakByWordWrapping];
+    _uil_textInfo.frame = CGRectMake(100.0, (85 - sizeForText.height)/2, sizeForText.width, sizeForText.height);
+    _uil_textInfo.backgroundColor = [UIColor clearColor];
+    [_uiv_textBoxContainer addSubview: _uil_textInfo];
+    
+    CGRect frame = CGRectMake(0.0, 0.0, _uil_textInfo.frame.size.width + _uil_textYear.frame.size.width, 85);
+    _uiv_textBoxContainer.frame = frame;
+    _uiv_textBoxContainer.backgroundColor = [UIColor colorWithRed:6.0/255.0 green:154.0/255.0 blue:216.0/255.0 alpha:1.0];
 }
 
 -(void)initToggle
@@ -423,6 +459,7 @@ static float kClosedMenu_W = 40.0;
     _uiv_toggleContainer.backgroundColor = [UIColor blueColor];
     [self.view insertSubview:_uiv_toggleContainer aboveSubview:_uiv_collapseContainer];
     [self addToggleBtns];
+    _uiv_toggleContainer.hidden = YES;
 }
 
 -(void)addToggleBtns
@@ -431,6 +468,7 @@ static float kClosedMenu_W = 40.0;
     _uib_normalTime.frame = CGRectMake(0.0, 0.0, 50.0, 50.0);
     _uib_normalTime.backgroundColor = [UIColor redColor];
     _uib_normalTime.tag = 1;
+    _uib_normalTime.userInteractionEnabled = NO;
     [_uib_normalTime addTarget:self action:@selector(toggleBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
     
     _uib_summerTime = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -446,15 +484,26 @@ static float kClosedMenu_W = 40.0;
 -(void)toggleBtnTapped:(id)sender
 {
     UIButton *tappedBtn = sender;
+    NSString *path;
     if (tappedBtn.tag == 1) {
-        [_uis_zoomingMap.overView setImage:nil];
-        [_uitv_textBox setText:@"Boston Info."];
+        path = [[NSBundle mainBundle] pathForResource:overlayName ofType:@"png"];
+        _uib_normalTime.userInteractionEnabled = NO;
+        _uib_summerTime.userInteractionEnabled = YES;
     }
     else {
-        [_uis_zoomingMap.overView setImage:[UIImage imageNamed:@"summerOverlay.png"]];
-        [_uitv_textBox setText:@"Boston Summer Info."];
+        NSString *sumOverlay = [NSString stringWithFormat:@"%@_summer", overlayName];
+         path = [[NSBundle mainBundle] pathForResource:sumOverlay ofType:@"png"];
+        _uib_summerTime.userInteractionEnabled = NO;
+        _uib_normalTime.userInteractionEnabled = YES;
     }
-    
+    [_uis_zoomingMap.overView setImage:[UIImage imageWithContentsOfFile:path]];
+}
+
+-(void)updateOverlay
+{
+    _uiv_toggleContainer.hidden = NO;
+    NSString *path = [[NSBundle mainBundle] pathForResource:overlayName ofType:@"png"];
+    [_uis_zoomingMap.overView setImage:[UIImage imageWithContentsOfFile:path]];
 }
 
 -(void)initAccessBtn
@@ -1299,6 +1348,8 @@ static float kClosedMenu_W = 40.0;
     [_arr_hotspotsData removeAllObjects];
     [_arr_hotsopts removeAllObjects];
 	[self directionViewCleanUp];
+    [_uis_zoomingMap.overView setImage:nil];
+    _uiv_toggleContainer.hidden = YES;
     
     for (UIView *tmp in _arr_tapHotspots) {
         [tmp removeFromSuperview];
@@ -1327,57 +1378,15 @@ static float kClosedMenu_W = 40.0;
         _uiv_closeMenuSideBar.backgroundColor = [self colorForTitleSideBarAtIndex:index];
         _uil_cellName.textColor = [self colorForTitleSideBarAtIndex:index];
         
-//        if (isCity) {
-//            switch (index) {
-//                    //                case 0:
-//                    //                {
-//                    //                    _vanness_Hotspot.hidden = NO;
-//                    //                    _vanness_Parking_Hotspot.hidden = YES;
-//                    //                    NSLog(@"The tapped index is %i", index);
-//                    //                    break;
-//                    //                }
-//                case 0:
-//                {
-//                    _uis_zoomingMap.blurView.image = [UIImage imageNamed:@"mapBG.jpg"];
-//                    NSLog(@"The tapped index is %i", index);
-//                    break;
-//                }
-//                case 1:
-//                {
-//                    _arr_hotspotsData = [NSMutableArray arrayWithArray:[_dict_hotspots objectForKey:@"universities"] ];
-//                    [self initHotspots];
-//                    [_uis_zoomingMap resetPinSize];
-//                    NSLog(@"The tapped index is %i", index);
-//                    break;
-//                }
-//                case 2:
-//                {
-//                    NSLog(@"The tapped index is %i", index);
-//                    break;
-//                }
-//                case 3:
-//                {
-//                    NSLog(@"The tapped index is %i", index);
-//                    break;
-//                }
-//                default:
-//                    break;
-//            }
-//            
-//        }
-//        
-//        if (!isCity) {
             switch (index) {
                 case 0: // STATIONS
                 {
-                    if (_uis_zoomingMap.scrollView.zoomScale > 1.0) {
-                        [_uis_zoomingMap zoomToRect:self.view.bounds animated:YES duration:1.0];
-                    }
-                    _uis_zoomingMap.blurView.image = [UIImage imageNamed:@"grfx_alignmentOverlay.png"];
-                    //                    _arr_hotspotsData = [NSMutableArray arrayWithArray:[_dict_hotspots objectForKey:@"11NewStations"] ];
-                    //                    [self initHotspots];
-                    //                    [_uis_zoomingMap resetPinSize];
-                    NSLog(@"The tapped index is %i", index);
+//                    if (_uis_zoomingMap.scrollView.zoomScale > 1.0) {
+//                        [_uis_zoomingMap zoomToRect:self.view.bounds animated:YES duration:1.0];
+//                    }
+//                    _uis_zoomingMap.blurView.image = [UIImage imageNamed:@"grfx_alignmentOverlay.png"];
+                    overlayName = @"Overlay";
+                    [self updateOverlay];
                     break;
                 }
                 case 1: // STATIONS
