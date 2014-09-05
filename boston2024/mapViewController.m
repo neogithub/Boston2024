@@ -326,7 +326,7 @@ static float kClosedMenu_W = 40.0;
 -(void)initBottomMenu
 {
     _uiv_bottomMenu = [[UIView alloc] initWithFrame:CGRectMake(282, 733, 460, 35)];
-    _uiv_bottomMenu.backgroundColor = [UIColor redColor];
+    _uiv_bottomMenu.backgroundColor = [UIColor grayColor];
     [self.view insertSubview:_uiv_bottomMenu aboveSubview:_uiv_closedMenuContainer];
     
     _uib_bos2014 = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -390,6 +390,8 @@ static float kClosedMenu_W = 40.0;
             theCollapseClick.CollapseClickDelegate = self;
             [theCollapseClick reloadCollapseClick];
             [_uis_zoomingMap.blurView setImage: [UIImage imageNamed:@"mapBG.jpg"]];
+            [self setYearText:@"2014"];
+            [self setInfoText:@"Typical day Boston during peak hours"];
             break;
         }
         case 11:{
@@ -402,6 +404,8 @@ static float kClosedMenu_W = 40.0;
             theCollapseClick.CollapseClickDelegate = self;
             [theCollapseClick reloadCollapseClick];
             [_uis_zoomingMap.blurView setImage: [UIImage imageNamed:@"boston_zoomed.jpg"]];
+            [self setYearText:@"2024"];
+            [self setInfoText:@"Typical day Boston during peak hours during peak hours during peak hours"];
             break;
         }
         case 12:{
@@ -414,6 +418,8 @@ static float kClosedMenu_W = 40.0;
             theCollapseClick.CollapseClickDelegate = self;
             [theCollapseClick reloadCollapseClick];
             [_uis_zoomingMap.blurView setImage: [UIImage imageNamed:@"boston_zoomed.jpg"]];
+            [self setYearText:@"2024"];
+            [self setInfoText:@"Typical day Boston"];
             break;
         }
         default:
@@ -427,19 +433,43 @@ static float kClosedMenu_W = 40.0;
 //    _uiv_textBoxContainer.backgroundColor = [UIColor redColor];
     [self.view insertSubview:_uiv_textBoxContainer aboveSubview:_uiv_collapseContainer];
     
+    [self setYearText:@"2014"];
+    
+    [self setInfoText:@"Typical day Boston during peak hours"];
+}
+
+-(void)setYearText:(NSString *)year
+{
+    if (_uil_textYear) {
+        [_uil_textYear removeFromSuperview];
+        _uil_textYear = nil;
+    }
     _uil_textYear = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 100, 85)];
-    [_uil_textYear setText:@"2014"];
+    [_uil_textYear setText:year];
     [_uil_textYear setBackgroundColor:[UIColor clearColor]];
     [_uil_textYear setTextColor:[UIColor whiteColor]];
     [_uil_textYear setFont: [UIFont boldSystemFontOfSize:25]];
     [_uil_textYear setTextAlignment:NSTextAlignmentCenter];
     [_uiv_textBoxContainer addSubview: _uil_textYear];
-    
-    
-    
-    NSString* string = @"Typical day Boston during peak hours";
+}
+
+-(void)setInfoText:(NSString *)string
+{
+    if (_uil_textInfo) {
+        [_uil_textInfo removeFromSuperview];
+        _uil_textInfo = nil;
+    }
     UIFont *font = [UIFont fontWithName:@"Helvetica" size:21];
-    CGSize constraint = CGSizeMake(200,600);
+    NSDictionary *attributes1 = [NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName, nil];
+    CGFloat str_width = [[[NSAttributedString alloc] initWithString:string attributes:attributes1] size].width;
+    NSLog(@"The string width is %f", str_width);
+    CGSize constraint;
+    if (str_width < 400) {
+        constraint = CGSizeMake(str_width,85);
+    }else {
+        constraint = CGSizeMake(400,85);
+    }
+    
     NSDictionary *attributes = @{NSFontAttributeName: font};
     CGRect rect = [string boundingRectWithSize:constraint
                                        options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
@@ -450,7 +480,7 @@ static float kClosedMenu_W = 40.0;
     [_uil_textInfo setText:string];
     [_uil_textInfo setTextColor:[UIColor whiteColor]];
     [_uil_textInfo setLineBreakMode:NSLineBreakByWordWrapping];
-    _uil_textInfo.numberOfLines = 0;
+    _uil_textInfo.numberOfLines = 2;
     _uil_textInfo.frame = CGRectMake(100.0, (85 - rect.size.height)/2, rect.size.width, rect.size.height);
     _uil_textInfo.backgroundColor = [UIColor clearColor];
     [_uiv_textBoxContainer addSubview: _uil_textInfo];
@@ -481,6 +511,7 @@ static float kClosedMenu_W = 40.0;
     _uib_summerTime.frame = CGRectMake(50.0, 0.0, 50.0, 50.0);
     _uib_summerTime.backgroundColor = [UIColor greenColor];
     _uib_summerTime.tag = 2;
+    _uib_summerTime.userInteractionEnabled = YES;
     [_uib_summerTime addTarget:self action:@selector(toggleBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
     
     [_uiv_toggleContainer addSubview: _uib_normalTime];

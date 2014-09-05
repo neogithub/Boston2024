@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8225436419BA1ED500943EF0 /* Overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 8225436219BA1ED500943EF0 /* Overlay.png */; };
 		8225436519BA1ED500943EF0 /* Overlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8225436319BA1ED500943EF0 /* Overlay@2x.png */; };
+		8225436719BA3A0E00943EF0 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8225436619BA3A0E00943EF0 /* MediaPlayer.framework */; };
+		8225436919BA3A1400943EF0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8225436819BA3A1400943EF0 /* AVFoundation.framework */; };
 		8225B0D519B9008C00A0DA6F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82CBFBA719B638CE00B20EB8 /* Main.storyboard */; };
 		8251107E19B8DDAB00106984 /* boston_zoomed.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8251107C19B8DDAB00106984 /* boston_zoomed.jpg */; };
 		8251107F19B8DDAB00106984 /* boston_zoomed@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8251107D19B8DDAB00106984 /* boston_zoomed@2x.jpg */; };
@@ -316,6 +318,8 @@
 /* Begin PBXFileReference section */
 		8225436219BA1ED500943EF0 /* Overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Overlay.png; sourceTree = "<group>"; };
 		8225436319BA1ED500943EF0 /* Overlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Overlay@2x.png"; sourceTree = "<group>"; };
+		8225436619BA3A0E00943EF0 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		8225436819BA3A1400943EF0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		8251107C19B8DDAB00106984 /* boston_zoomed.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = boston_zoomed.jpg; sourceTree = "<group>"; };
 		8251107D19B8DDAB00106984 /* boston_zoomed@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "boston_zoomed@2x.jpg"; sourceTree = "<group>"; };
 		82CBFB9219B638CE00B20EB8 /* boston2024.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = boston2024.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -650,6 +654,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8225436919BA3A1400943EF0 /* AVFoundation.framework in Frameworks */,
+				8225436719BA3A0E00943EF0 /* MediaPlayer.framework in Frameworks */,
 				82CBFC0B19B63E8E00B20EB8 /* MapKit.framework in Frameworks */,
 				82CBFB9819B638CE00B20EB8 /* CoreGraphics.framework in Frameworks */,
 				82CBFB9A19B638CE00B20EB8 /* UIKit.framework in Frameworks */,
@@ -692,6 +698,8 @@
 		82CBFB9419B638CE00B20EB8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8225436819BA3A1400943EF0 /* AVFoundation.framework */,
+				8225436619BA3A0E00943EF0 /* MediaPlayer.framework */,
 				82CBFC0A19B63E8E00B20EB8 /* MapKit.framework */,
 				82CBFB9519B638CE00B20EB8 /* Foundation.framework */,
 				82CBFB9719B638CE00B20EB8 /* CoreGraphics.framework */,
