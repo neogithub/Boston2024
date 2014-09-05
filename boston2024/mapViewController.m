@@ -435,19 +435,25 @@ static float kClosedMenu_W = 40.0;
     [_uil_textYear setTextAlignment:NSTextAlignmentCenter];
     [_uiv_textBoxContainer addSubview: _uil_textYear];
     
-    _uil_textInfo = [[UILabel alloc] initWithFrame:CGRectMake(100.0, 0.0, 200.0, 85)];
-    [_uil_textInfo setText:@"Typical day Boston during peak hours"];
-    [_uil_textInfo setFont:[UIFont systemFontOfSize:20]];
+    
+    
+    NSString* string = @"Typical day Boston during peak hours";
+    UIFont *font = [UIFont fontWithName:@"Helvetica" size:21];
+    CGSize constraint = CGSizeMake(200,600);
+    NSDictionary *attributes = @{NSFontAttributeName: font};
+    CGRect rect = [string boundingRectWithSize:constraint
+                                       options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                    attributes:attributes
+                                       context:nil];
+    
+    _uil_textInfo = [[UILabel alloc] initWithFrame:rect];
+    [_uil_textInfo setText:string];
     [_uil_textInfo setTextColor:[UIColor whiteColor]];
     [_uil_textInfo setLineBreakMode:NSLineBreakByWordWrapping];
     _uil_textInfo.numberOfLines = 0;
-    CGSize sizeForText = [_uil_textInfo.text sizeWithFont:[UIFont boldSystemFontOfSize:20]
-                                          constrainedToSize:CGSizeMake(200, 200)
-                                              lineBreakMode:NSLineBreakByWordWrapping];
-    _uil_textInfo.frame = CGRectMake(100.0, (85 - sizeForText.height)/2, sizeForText.width, sizeForText.height);
+    _uil_textInfo.frame = CGRectMake(100.0, (85 - rect.size.height)/2, rect.size.width, rect.size.height);
     _uil_textInfo.backgroundColor = [UIColor clearColor];
     [_uiv_textBoxContainer addSubview: _uil_textInfo];
-    
     CGRect frame = CGRectMake(0.0, 0.0, _uil_textInfo.frame.size.width + _uil_textYear.frame.size.width, 85);
     _uiv_textBoxContainer.frame = frame;
     _uiv_textBoxContainer.backgroundColor = [UIColor colorWithRed:6.0/255.0 green:154.0/255.0 blue:216.0/255.0 alpha:1.0];
