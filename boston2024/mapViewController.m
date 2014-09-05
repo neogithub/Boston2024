@@ -17,6 +17,7 @@
 #import "embDirections.h"
 #import "embDirectionsHigh.h"
 #import "neoHotspotsView.h"
+#import <MediaPlayer/MediaPlayer.h>
 //#import "embAppDelegate.h"
 
 #define METERS_PER_MILE 1609.344
@@ -106,6 +107,8 @@ static float kClosedMenu_W = 40.0;
 @property (nonatomic, readwrite) int                        preBtnTag;
 //navigation controller
 @property (strong, nonatomic) UINavigationController        *navigationController;
+
+@property (nonatomic, strong) MPMoviePlayerViewController   *playerViewController;
 @end
 
 @implementation mapViewController
@@ -178,6 +181,8 @@ static float kClosedMenu_W = 40.0;
     //    [self initBlockBtns];
     
 	[self initAccessBtn];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doneButtonClick:) name:MPMoviePlayerPlaybackDidFinishNotification object:_playerViewController];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -754,6 +759,37 @@ static float kClosedMenu_W = 40.0;
         [_uis_zoomingMap.uiv_windowComparisonContainer addSubview: uib_galleryBtn];
     }
 }
+
+
+#pragma mark - Play movie
+-(void)playMovie
+{
+    if (_playerViewController) {
+        [_playerViewController.view removeFromSuperview];
+        _playerViewController = nil;
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"hideLogo" object:self];
+    NSString *url = [[NSBundle mainBundle]
+                     pathForResource:@"Skanska_101Seaport_Final_HD"
+                     ofType:@"mov"];
+    _playerViewController = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:url]];
+    _playerViewController.view.frame = CGRectMake(0, 0, 1024, 768);
+    _playerViewController.view.alpha=1.0;
+    //            _playerViewController.extendedLayoutIncludesOpaqueBars = YES;
+    _playerViewController.moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
+    //            _playerViewController.moviePlayer.controlStyle =  MPMovieControlStyleDefault;
+    [_playerViewController.moviePlayer setAllowsAirPlay:YES];
+    _playerViewController.moviePlayer.repeatMode = MPMovieRepeatModeOne;
+    [self.view insertSubview:_playerViewController.view belowSubview:_uiv_collapseContainer];
+    [_playerViewController.moviePlayer play];
+}
+
+-(void)doneButtonClick:(NSNotification*)aNotification{
+    [_playerViewController.view removeFromSuperview];
+    _playerViewController = nil;
+}
+
 #pragma mark - Gallery Button Tapped
 -(void)galleryBtnTapped:(id)sender
 {
@@ -1535,7 +1571,8 @@ static float kClosedMenu_W = 40.0;
                         [_uis_zoomingMap zoomToRect:self.view.bounds animated:YES duration:1.0];
                     }
                     NSLog(@"The Tapped Cell is %i", index);
-                    [self initGalleryButtons];
+//                    [self initGalleryButtons];
+                    [self playMovie];
                     
                     break;
                 }
