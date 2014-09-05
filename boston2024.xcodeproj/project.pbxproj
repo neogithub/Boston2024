@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8225436419BA1ED500943EF0 /* Overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 8225436219BA1ED500943EF0 /* Overlay.png */; };
+		8225436519BA1ED500943EF0 /* Overlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8225436319BA1ED500943EF0 /* Overlay@2x.png */; };
 		8225B0D519B9008C00A0DA6F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82CBFBA719B638CE00B20EB8 /* Main.storyboard */; };
 		8251107E19B8DDAB00106984 /* boston_zoomed.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8251107C19B8DDAB00106984 /* boston_zoomed.jpg */; };
 		8251107F19B8DDAB00106984 /* boston_zoomed@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8251107D19B8DDAB00106984 /* boston_zoomed@2x.jpg */; };
@@ -297,8 +299,8 @@
 		82CBFFFD19B6430D00B20EB8 /* grfx_mapThumb.png in Resources */ = {isa = PBXBuildFile; fileRef = 82CBFE0919B6430D00B20EB8 /* grfx_mapThumb.png */; };
 		82CBFFFE19B6430D00B20EB8 /* grfx_mapThumb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82CBFE0A19B6430D00B20EB8 /* grfx_mapThumb@2x.png */; };
 		82CBFFFF19B6430D00B20EB8 /* grfx_NewBridge.png in Resources */ = {isa = PBXBuildFile; fileRef = 82CBFE0B19B6430D00B20EB8 /* grfx_NewBridge.png */; };
-		82EC836219B8EC0C00A76DE8 /* summerOverlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 82EC836019B8EC0C00A76DE8 /* summerOverlay.png */; };
-		82EC836319B8EC0C00A76DE8 /* summerOverlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82EC836119B8EC0C00A76DE8 /* summerOverlay@2x.png */; };
+		82EC836219B8EC0C00A76DE8 /* Overlay_summer.png in Resources */ = {isa = PBXBuildFile; fileRef = 82EC836019B8EC0C00A76DE8 /* Overlay_summer.png */; };
+		82EC836319B8EC0C00A76DE8 /* Overlay_summer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82EC836119B8EC0C00A76DE8 /* Overlay_summer@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -312,6 +314,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8225436219BA1ED500943EF0 /* Overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Overlay.png; sourceTree = "<group>"; };
+		8225436319BA1ED500943EF0 /* Overlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Overlay@2x.png"; sourceTree = "<group>"; };
 		8251107C19B8DDAB00106984 /* boston_zoomed.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = boston_zoomed.jpg; sourceTree = "<group>"; };
 		8251107D19B8DDAB00106984 /* boston_zoomed@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "boston_zoomed@2x.jpg"; sourceTree = "<group>"; };
 		82CBFB9219B638CE00B20EB8 /* boston2024.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = boston2024.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -637,8 +641,8 @@
 		82CBFE3919B6430D00B20EB8 /* thumbs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumbs@2x.png"; sourceTree = "<group>"; };
 		82CBFE3A19B6430D00B20EB8 /* view-icon-sq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "view-icon-sq.png"; sourceTree = "<group>"; };
 		82CBFE3B19B6430D00B20EB8 /* view-icon-sq@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "view-icon-sq@2x.png"; sourceTree = "<group>"; };
-		82EC836019B8EC0C00A76DE8 /* summerOverlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = summerOverlay.png; sourceTree = "<group>"; };
-		82EC836119B8EC0C00A76DE8 /* summerOverlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "summerOverlay@2x.png"; sourceTree = "<group>"; };
+		82EC836019B8EC0C00A76DE8 /* Overlay_summer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Overlay_summer.png; sourceTree = "<group>"; };
+		82EC836119B8EC0C00A76DE8 /* Overlay_summer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Overlay_summer@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -852,8 +856,10 @@
 				82CBFCFD19B6430D00B20EB8 /* mapBG@2x.jpg */,
 				8251107C19B8DDAB00106984 /* boston_zoomed.jpg */,
 				8251107D19B8DDAB00106984 /* boston_zoomed@2x.jpg */,
-				82EC836019B8EC0C00A76DE8 /* summerOverlay.png */,
-				82EC836119B8EC0C00A76DE8 /* summerOverlay@2x.png */,
+				82EC836019B8EC0C00A76DE8 /* Overlay_summer.png */,
+				82EC836119B8EC0C00A76DE8 /* Overlay_summer@2x.png */,
+				8225436219BA1ED500943EF0 /* Overlay.png */,
+				8225436319BA1ED500943EF0 /* Overlay@2x.png */,
 				82CBFD0419B6430D00B20EB8 /* Station_Gallery_JPEG */,
 			);
 			path = _Map;
@@ -1247,6 +1253,7 @@
 				82CBFF7B19B6430D00B20EB8 /* menuData.plist in Resources */,
 				82CBFF8619B6430D00B20EB8 /* br-138@2x.png in Resources */,
 				82CBFEE519B6430D00B20EB8 /* map_apple-ON.png in Resources */,
+				8225436519BA1ED500943EF0 /* Overlay@2x.png in Resources */,
 				82CB000E19B6430D00B20EB8 /* grfx_textOverlay@2x.png in Resources */,
 				82CB002C19B6430D00B20EB8 /* thumbs.png in Resources */,
 				82CBFF9A19B6430D00B20EB8 /* br-central-st@2x.png in Resources */,
@@ -1275,6 +1282,7 @@
 				82CBFF3619B6430D00B20EB8 /* Weavers_3000.jpg in Resources */,
 				82CBFFC019B6430D00B20EB8 /* br-new-st@2x.png in Resources */,
 				82CBFEE719B6430D00B20EB8 /* map_apple-Toggle.png in Resources */,
+				8225436419BA1ED500943EF0 /* Overlay.png in Resources */,
 				82CBFFFB19B6430D00B20EB8 /* grfx_hs_building.jpg in Resources */,
 				82CB001C19B6430D00B20EB8 /* logo_white.png in Resources */,
 				82CB001A19B6430D00B20EB8 /* logo.png in Resources */,
@@ -1310,7 +1318,7 @@
 				82CB001219B6430D00B20EB8 /* grfx_trestleOverlay@2x.png in Resources */,
 				82CB001819B6430D00B20EB8 /* grfx_whiteText@2x.png in Resources */,
 				82CBFFDE19B6430D00B20EB8 /* br-weld-st@2x.png in Resources */,
-				82EC836219B8EC0C00A76DE8 /* summerOverlay.png in Resources */,
+				82EC836219B8EC0C00A76DE8 /* Overlay_summer.png in Resources */,
 				82CB000619B6430D00B20EB8 /* grfx_NewStation@2x.png in Resources */,
 				82CBFF9F19B6430D00B20EB8 /* br-coal-yard-road.png in Resources */,
 				82CBFF8119B6430D00B20EB8 /* amps.png in Resources */,
@@ -1445,7 +1453,7 @@
 				82CBFFCD19B6430D00B20EB8 /* br-small-creek.png in Resources */,
 				82CBFF1719B6430D00B20EB8 /* 2_Canton_Station_3000.jpg in Resources */,
 				82CBFFB919B6430D00B20EB8 /* br-mill-brook.png in Resources */,
-				82EC836319B8EC0C00A76DE8 /* summerOverlay@2x.png in Resources */,
+				82EC836319B8EC0C00A76DE8 /* Overlay_summer@2x.png in Resources */,
 				82CBFC0119B63E5100B20EB8 /* photo-gallery-edit-caption.png in Resources */,
 				82CBFF1419B6430D00B20EB8 /* 1_Canton_Junction_3000.jpg in Resources */,
 				82CBFFDC19B6430D00B20EB8 /* br-weaver-st@2x.png in Resources */,
