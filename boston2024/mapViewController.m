@@ -235,6 +235,8 @@ static float kClosedMenu_W = 40.0;
     }
 }
 
+#pragma mark- Init Items
+#pragma mark - init zooming map
 -(void)initZoomingMap
 {
     // Set Zooming Map
@@ -245,6 +247,7 @@ static float kClosedMenu_W = 40.0;
     [self.view addSubview: _uis_zoomingMap];
 }
 
+#pragma mark - init collapse view container
 -(void)initCollapseView
 {
     // Set Container's Frame
@@ -328,6 +331,7 @@ static float kClosedMenu_W = 40.0;
     [_uiv_closedMenuContainer insertSubview:_uiv_closeMenuSideBar belowSubview:_uib_openBtn];
 }
 
+#pragma mark - init bottom menu
 -(void)initBottomMenu
 {
     _uiv_bottomMenu = [[UIView alloc] initWithFrame:CGRectMake(282, 733, 460, 35)];
@@ -397,6 +401,7 @@ static float kClosedMenu_W = 40.0;
             [_uis_zoomingMap.blurView setImage: [UIImage imageNamed:@"mapBG.jpg"]];
             [self setYearText:@"2014"];
             [self setInfoText:@"Typical day Boston during peak hours"];
+            sectionIndex = 1;
             break;
         }
         case 11:{
@@ -411,6 +416,7 @@ static float kClosedMenu_W = 40.0;
             [_uis_zoomingMap.blurView setImage: [UIImage imageNamed:@"boston_zoomed.jpg"]];
             [self setYearText:@"2024"];
             [self setInfoText:@"Typical day Boston during peak hours during peak hours during peak hours"];
+            sectionIndex = 2;
             break;
         }
         case 12:{
@@ -425,6 +431,7 @@ static float kClosedMenu_W = 40.0;
             [_uis_zoomingMap.blurView setImage: [UIImage imageNamed:@"boston_zoomed.jpg"]];
             [self setYearText:@"2024"];
             [self setInfoText:@"Typical day Boston"];
+            sectionIndex = 3;
             break;
         }
         default:
@@ -432,6 +439,7 @@ static float kClosedMenu_W = 40.0;
     }
 }
 
+#pragma mark - init top left text box
 -(void)initTextBox
 {
     _uiv_textBoxContainer = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 600, 85)];
@@ -503,6 +511,7 @@ static float kClosedMenu_W = 40.0;
     _uiv_toggleContainer.hidden = YES;
 }
 
+#pragma mark - init non/summer toggle buttons
 -(void)addToggleBtns
 {
     _uib_normalTime = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -548,6 +557,7 @@ static float kClosedMenu_W = 40.0;
     [_uis_zoomingMap.overView setImage:[UIImage imageWithContentsOfFile:path]];
 }
 
+#pragma mark - bottom left Gallery button
 -(void)initAccessBtn
 {
     _uib_access = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -558,6 +568,20 @@ static float kClosedMenu_W = 40.0;
     [self.view addSubview:_uib_access];
 }
 
+-(void)accessTapped
+{
+    NSArray *imageArray = [[NSArray alloc] initWithObjects:@"10_Fall_River_Depot_1000.jpg", @"11_Battleship_Cove_5000.jpg", nil];
+    localImages = imageArray;
+    localGallery = [[FGalleryViewController alloc] initWithPhotoSource:self];
+    _navigationController = [[UINavigationController alloc]
+                             initWithRootViewController:localGallery];
+    _navigationController.view.frame = CGRectMake(0.0, 0.0, 1024, 768);
+    [self addChildViewController: _navigationController];
+    [_navigationController setNavigationBarHidden:YES];
+    [self.view addSubview: _navigationController.view];
+}
+
+#pragma mark - init collapse view's content views
 -(void)initStationContentView
 {
 	_uiv_stationContent = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, container_W, 30.0)];
@@ -1132,18 +1156,7 @@ static float kClosedMenu_W = 40.0;
 }
 #pragma mark - Handle Button Actions
 
--(void)accessTapped
-{
-    NSArray *imageArray = [[NSArray alloc] initWithObjects:@"10_Fall_River_Depot_1000.jpg", @"11_Battleship_Cove_5000.jpg", nil];
-    localImages = imageArray;
-    localGallery = [[FGalleryViewController alloc] initWithPhotoSource:self];
-    _navigationController = [[UINavigationController alloc]
-                                initWithRootViewController:localGallery];
-    _navigationController.view.frame = CGRectMake(0.0, 0.0, 1024, 768);
-    [self addChildViewController: _navigationController];
-    [_navigationController setNavigationBarHidden:YES];
-    [self.view addSubview: _navigationController.view];
-}
+
 
 -(void)didRemove:(embSimpleScrollView *)customClass
 {
@@ -1615,7 +1628,6 @@ static float kClosedMenu_W = 40.0;
         _tappableHotspots.withCaption = YES;
         NSString *str_caption = [[NSString alloc] initWithString:[hotspotItem objectForKey:@"caption"]];
         _tappableHotspots.str_labelText = str_caption;
-        //            _bldHotspots.labelAlignment = CaptionAlignmentLeft;
         [_tappableHotspots.uil_caption setTextColor:[UIColor whiteColor]];
         _tappableHotspots.uil_caption.frame = CGRectMake(-160, 0, 150, 17);
         [_tappableHotspots.uil_caption setTextAlignment:NSTextAlignmentRight];
