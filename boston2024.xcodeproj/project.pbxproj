@@ -301,6 +301,14 @@
 		82CBFFFD19B6430D00B20EB8 /* grfx_mapThumb.png in Resources */ = {isa = PBXBuildFile; fileRef = 82CBFE0919B6430D00B20EB8 /* grfx_mapThumb.png */; };
 		82CBFFFE19B6430D00B20EB8 /* grfx_mapThumb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82CBFE0A19B6430D00B20EB8 /* grfx_mapThumb@2x.png */; };
 		82CBFFFF19B6430D00B20EB8 /* grfx_NewBridge.png in Resources */ = {isa = PBXBuildFile; fileRef = 82CBFE0B19B6430D00B20EB8 /* grfx_NewBridge.png */; };
+		82E1239219BDF37600EEB8D1 /* 2014_Overlay_summer.png in Resources */ = {isa = PBXBuildFile; fileRef = 82E1238A19BDF37600EEB8D1 /* 2014_Overlay_summer.png */; };
+		82E1239319BDF37600EEB8D1 /* 2014_Overlay_summer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82E1238B19BDF37600EEB8D1 /* 2014_Overlay_summer@2x.png */; };
+		82E1239419BDF37600EEB8D1 /* 2014_Overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 82E1238C19BDF37600EEB8D1 /* 2014_Overlay.png */; };
+		82E1239519BDF37600EEB8D1 /* 2014_Overlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82E1238D19BDF37600EEB8D1 /* 2014_Overlay@2x.png */; };
+		82E1239619BDF37600EEB8D1 /* 2024_Overlay_summer.png in Resources */ = {isa = PBXBuildFile; fileRef = 82E1238E19BDF37600EEB8D1 /* 2024_Overlay_summer.png */; };
+		82E1239719BDF37600EEB8D1 /* 2024_Overlay_summer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82E1238F19BDF37600EEB8D1 /* 2024_Overlay_summer@2x.png */; };
+		82E1239819BDF37600EEB8D1 /* 2024_Overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 82E1239019BDF37600EEB8D1 /* 2024_Overlay.png */; };
+		82E1239919BDF37600EEB8D1 /* 2024_Overlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82E1239119BDF37600EEB8D1 /* 2024_Overlay@2x.png */; };
 		82EC836219B8EC0C00A76DE8 /* Overlay_summer.png in Resources */ = {isa = PBXBuildFile; fileRef = 82EC836019B8EC0C00A76DE8 /* Overlay_summer.png */; };
 		82EC836319B8EC0C00A76DE8 /* Overlay_summer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82EC836119B8EC0C00A76DE8 /* Overlay_summer@2x.png */; };
 /* End PBXBuildFile section */
@@ -645,6 +653,14 @@
 		82CBFE3919B6430D00B20EB8 /* thumbs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumbs@2x.png"; sourceTree = "<group>"; };
 		82CBFE3A19B6430D00B20EB8 /* view-icon-sq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "view-icon-sq.png"; sourceTree = "<group>"; };
 		82CBFE3B19B6430D00B20EB8 /* view-icon-sq@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "view-icon-sq@2x.png"; sourceTree = "<group>"; };
+		82E1238A19BDF37600EEB8D1 /* 2014_Overlay_summer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2014_Overlay_summer.png; sourceTree = "<group>"; };
+		82E1238B19BDF37600EEB8D1 /* 2014_Overlay_summer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2014_Overlay_summer@2x.png"; sourceTree = "<group>"; };
+		82E1238C19BDF37600EEB8D1 /* 2014_Overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2014_Overlay.png; sourceTree = "<group>"; };
+		82E1238D19BDF37600EEB8D1 /* 2014_Overlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2014_Overlay@2x.png"; sourceTree = "<group>"; };
+		82E1238E19BDF37600EEB8D1 /* 2024_Overlay_summer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2024_Overlay_summer.png; sourceTree = "<group>"; };
+		82E1238F19BDF37600EEB8D1 /* 2024_Overlay_summer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2024_Overlay_summer@2x.png"; sourceTree = "<group>"; };
+		82E1239019BDF37600EEB8D1 /* 2024_Overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2024_Overlay.png; sourceTree = "<group>"; };
+		82E1239119BDF37600EEB8D1 /* 2024_Overlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2024_Overlay@2x.png"; sourceTree = "<group>"; };
 		82EC836019B8EC0C00A76DE8 /* Overlay_summer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Overlay_summer.png; sourceTree = "<group>"; };
 		82EC836119B8EC0C00A76DE8 /* Overlay_summer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Overlay_summer@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -868,6 +884,14 @@
 				82EC836119B8EC0C00A76DE8 /* Overlay_summer@2x.png */,
 				8225436219BA1ED500943EF0 /* Overlay.png */,
 				8225436319BA1ED500943EF0 /* Overlay@2x.png */,
+				82E1238A19BDF37600EEB8D1 /* 2014_Overlay_summer.png */,
+				82E1238B19BDF37600EEB8D1 /* 2014_Overlay_summer@2x.png */,
+				82E1238C19BDF37600EEB8D1 /* 2014_Overlay.png */,
+				82E1238D19BDF37600EEB8D1 /* 2014_Overlay@2x.png */,
+				82E1238E19BDF37600EEB8D1 /* 2024_Overlay_summer.png */,
+				82E1238F19BDF37600EEB8D1 /* 2024_Overlay_summer@2x.png */,
+				82E1239019BDF37600EEB8D1 /* 2024_Overlay.png */,
+				82E1239119BDF37600EEB8D1 /* 2024_Overlay@2x.png */,
 				82CBFD0419B6430D00B20EB8 /* Station_Gallery_JPEG */,
 			);
 			path = _Map;
@@ -1250,6 +1274,7 @@
 				82CBFFB619B6430D00B20EB8 /* br-logan-st@2x.png in Resources */,
 				82CBFFA819B6430D00B20EB8 /* br-days-farm-road@2x.png in Resources */,
 				82CBFF9719B6430D00B20EB8 /* br-cedar-swamp-river.png in Resources */,
+				82E1239719BDF37600EEB8D1 /* 2024_Overlay_summer@2x.png in Resources */,
 				82CBFF7A19B6430D00B20EB8 /* location_hotspots.plist in Resources */,
 				82CB002219B6430D00B20EB8 /* menuBtn_cap.png in Resources */,
 				82CBFEF219B6430D00B20EB8 /* old_map_apple-ON@2x.png in Resources */,
@@ -1290,6 +1315,7 @@
 				82CB000819B6430D00B20EB8 /* grfx_play_btn@2x.png in Resources */,
 				82CBFF3619B6430D00B20EB8 /* Weavers_3000.jpg in Resources */,
 				82CBFFC019B6430D00B20EB8 /* br-new-st@2x.png in Resources */,
+				82E1239219BDF37600EEB8D1 /* 2014_Overlay_summer.png in Resources */,
 				82CBFEE719B6430D00B20EB8 /* map_apple-Toggle.png in Resources */,
 				8225436419BA1ED500943EF0 /* Overlay.png in Resources */,
 				82CBFFFB19B6430D00B20EB8 /* grfx_hs_building.jpg in Resources */,
@@ -1304,6 +1330,7 @@
 				82CBFFE419B6430D00B20EB8 /* br-western-expressway-rt79@2x.png in Resources */,
 				82CBFF8819B6430D00B20EB8 /* br-195@2x.png in Resources */,
 				82CBFF3419B6430D00B20EB8 /* Wamsutta_3000.jpg in Resources */,
+				82E1239519BDF37600EEB8D1 /* 2014_Overlay@2x.png in Resources */,
 				82CBFF2619B6430D00B20EB8 /* 7_Taunton_Station_3000.jpg in Resources */,
 				82CBFFC819B6430D00B20EB8 /* br-rt-24-79@2x.png in Resources */,
 				82CB001E19B6430D00B20EB8 /* map_menu_close.png in Resources */,
@@ -1330,6 +1357,7 @@
 				82EC836219B8EC0C00A76DE8 /* Overlay_summer.png in Resources */,
 				82CB000619B6430D00B20EB8 /* grfx_NewStation@2x.png in Resources */,
 				82CBFF9F19B6430D00B20EB8 /* br-coal-yard-road.png in Resources */,
+				82E1239319BDF37600EEB8D1 /* 2014_Overlay_summer@2x.png in Resources */,
 				82CBFF8119B6430D00B20EB8 /* amps.png in Resources */,
 				82CBFF2819B6430D00B20EB8 /* 8_Taunton_Depot_1000.jpg in Resources */,
 				8251107E19B8DDAB00106984 /* boston_zoomed.jpg in Resources */,
@@ -1352,10 +1380,12 @@
 				82CBFFBD19B6430D00B20EB8 /* br-nb-ramp.png in Resources */,
 				82CBFFA319B6430D00B20EB8 /* br-cove-st.png in Resources */,
 				82CBFF2D19B6430D00B20EB8 /* 9_Freetown_Station_5000.jpg in Resources */,
+				82E1239619BDF37600EEB8D1 /* 2024_Overlay_summer.png in Resources */,
 				82CBFFAC19B6430D00B20EB8 /* br-forge-pond@2x.png in Resources */,
 				82CBFFFC19B6430D00B20EB8 /* grfx_hs_building@2x.jpg in Resources */,
 				82CBFF9919B6430D00B20EB8 /* br-central-st.png in Resources */,
 				82CBFF8B19B6430D00B20EB8 /* br-bolivar-st.png in Resources */,
+				82E1239919BDF37600EEB8D1 /* 2024_Overlay@2x.png in Resources */,
 				82CBFFCA19B6430D00B20EB8 /* br-sawyer-st@2x.png in Resources */,
 				82CBFF2419B6430D00B20EB8 /* 6_Raynham_Park_5000.jpg in Resources */,
 				82CBFFF719B6430D00B20EB8 /* grfx_CultureResource.png in Resources */,
@@ -1417,7 +1447,9 @@
 				82CB001419B6430D00B20EB8 /* grfx_wetland_icon@2x.png in Resources */,
 				82CBFFD219B6430D00B20EB8 /* br-taunton-river-1@2x.png in Resources */,
 				82CB002419B6430D00B20EB8 /* menuBtn_cap_Sel.png in Resources */,
+				82E1239419BDF37600EEB8D1 /* 2014_Overlay.png in Resources */,
 				82CBFFC119B6430D00B20EB8 /* br-pond-st.png in Resources */,
+				82E1239819BDF37600EEB8D1 /* 2024_Overlay.png in Resources */,
 				82CBFEF419B6430D00B20EB8 /* old_map_google-ON@2x.png in Resources */,
 				82CBFF3219B6430D00B20EB8 /* Myricks_Junction_5000.jpg in Resources */,
 				82CB002B19B6430D00B20EB8 /* playButton_Hi@2x.png in Resources */,

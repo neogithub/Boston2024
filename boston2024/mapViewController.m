@@ -504,7 +504,7 @@ static float kClosedMenu_W = 40.0;
 
 -(void)initToggle
 {
-    _uiv_toggleContainer = [[UIView alloc] initWithFrame:CGRectMake(1024-100, 0.0, 100.0, 50.0)];
+    _uiv_toggleContainer = [[UIView alloc] initWithFrame:CGRectMake(1024-200, 0.0, 200.0, 50.0)];
     _uiv_toggleContainer.backgroundColor = [UIColor blueColor];
     [self.view insertSubview:_uiv_toggleContainer aboveSubview:_uiv_collapseContainer];
     [self addToggleBtns];
@@ -515,16 +515,25 @@ static float kClosedMenu_W = 40.0;
 -(void)addToggleBtns
 {
     _uib_normalTime = [UIButton buttonWithType:UIButtonTypeCustom];
-    _uib_normalTime.frame = CGRectMake(0.0, 0.0, 50.0, 50.0);
-    _uib_normalTime.backgroundColor = [UIColor redColor];
+    _uib_normalTime.frame = CGRectMake(0.0, 0.0, 100.0, 50.0);
+    _uib_normalTime.backgroundColor = [UIColor grayColor];
     _uib_normalTime.tag = 1;
+    [_uib_normalTime setTitle:@"Typical" forState:UIControlStateNormal];
+    [_uib_normalTime setTitle:@"Typicla" forState:UIControlStateSelected];
+    [_uib_normalTime setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_uib_normalTime setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
     _uib_normalTime.userInteractionEnabled = NO;
+    _uib_normalTime.selected = YES;
     [_uib_normalTime addTarget:self action:@selector(toggleBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
     
     _uib_summerTime = [UIButton buttonWithType:UIButtonTypeCustom];
-    _uib_summerTime.frame = CGRectMake(50.0, 0.0, 50.0, 50.0);
-    _uib_summerTime.backgroundColor = [UIColor greenColor];
+    _uib_summerTime.frame = CGRectMake(100.0, 0.0, 100.0, 50.0);
+    _uib_summerTime.backgroundColor = [UIColor grayColor];
     _uib_summerTime.tag = 2;
+    [_uib_summerTime setTitle:@"Summer" forState:UIControlStateNormal];
+    [_uib_summerTime setTitle:@"Summer" forState:UIControlStateSelected];
+    [_uib_summerTime setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_uib_summerTime setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
     _uib_summerTime.userInteractionEnabled = YES;
     [_uib_summerTime addTarget:self action:@selector(toggleBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -534,18 +543,23 @@ static float kClosedMenu_W = 40.0;
 
 -(void)toggleBtnTapped:(id)sender
 {
+    
     UIButton *tappedBtn = sender;
     NSString *path;
     if (tappedBtn.tag == 1) {
         path = [[NSBundle mainBundle] pathForResource:overlayName ofType:@"png"];
         _uib_normalTime.userInteractionEnabled = NO;
+        _uib_normalTime.selected = YES;
         _uib_summerTime.userInteractionEnabled = YES;
+        _uib_summerTime.selected = NO;
     }
     else {
         NSString *sumOverlay = [NSString stringWithFormat:@"%@_summer", overlayName];
          path = [[NSBundle mainBundle] pathForResource:sumOverlay ofType:@"png"];
         _uib_summerTime.userInteractionEnabled = NO;
+        _uib_summerTime.selected = YES;
         _uib_normalTime.userInteractionEnabled = YES;
+        _uib_normalTime.selected = NO;
     }
     [_uis_zoomingMap.overView setImage:[UIImage imageWithContentsOfFile:path]];
 }
@@ -1471,7 +1485,15 @@ static float kClosedMenu_W = 40.0;
 //                        [_uis_zoomingMap zoomToRect:self.view.bounds animated:YES duration:1.0];
 //                    }
 //                    _uis_zoomingMap.blurView.image = [UIImage imageNamed:@"grfx_alignmentOverlay.png"];
-                    overlayName = @"Overlay";
+                    if (sectionIndex == 1) {
+                        overlayName = @"2014_Overlay";
+                    } else {
+                        overlayName = @"2024_Overlay";
+                    }
+                    _uib_normalTime.userInteractionEnabled = NO;
+                    _uib_normalTime.selected = YES;
+                    _uib_summerTime.userInteractionEnabled = YES;
+                    _uib_summerTime.selected = NO;
                     [self updateOverlay];
                     break;
                 }
