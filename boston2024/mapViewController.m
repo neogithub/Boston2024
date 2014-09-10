@@ -245,8 +245,10 @@ static float kClosedMenu_W = 40.0;
 -(void)initZoomingMap
 {
     // Set Zooming Map
-    _uiiv_bgImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mapBG.jpg"]];
-    _uis_zoomingMap = [[embOverlayScrollView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1024.0, 768.0) image:[UIImage imageNamed:@"mapBG.jpg"] overlay:nil shouldZoom:YES];
+    _uiiv_bgImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"00-base-regional-map.png"]];
+    _uis_zoomingMap = [[embOverlayScrollView alloc] initWithFrame:CGRectMake(0.0, 0.0, 1024.0, 768.0) image:[UIImage imageNamed:@"00-base-regional-map.png"] overlay:nil shouldZoom:YES];
+    overlayName = @"00-bg-base-highways";
+    [self updateOverlay];
     _uis_zoomingMap.imageToggle = NO;
 //    [_uis_zoomingMap.overView setImage:[UIImage imageNamed:@"grfx_alignmentOverlay.png"]];
     [self.view addSubview: _uis_zoomingMap];
@@ -256,7 +258,7 @@ static float kClosedMenu_W = 40.0;
 -(void)initTopRightBox
 {
     _uiiv_topRightBox = [UIImageView new];
-    _uiiv_topRightBox.backgroundColor = [UIColor redColor];
+    _uiiv_topRightBox.backgroundColor = [UIColor clearColor];
     [self.view insertSubview:_uiiv_topRightBox belowSubview:_uiv_bottomMenu];
     _uiiv_topRightBox.hidden = YES;
 }
@@ -278,7 +280,7 @@ static float kClosedMenu_W = 40.0;
 {
     _uiiv_rightTextBox = [UIImageView new];
     _uiiv_rightTextBox.frame = CGRectZero;
-    _uiiv_rightTextBox.backgroundColor = [UIColor redColor];
+    _uiiv_rightTextBox.backgroundColor = [UIColor clearColor];
     [self.view insertSubview:_uiiv_rightTextBox belowSubview:_uiv_bottomMenu];
     _uiiv_rightTextBox.hidden = YES;
 }
@@ -470,7 +472,9 @@ static float kClosedMenu_W = 40.0;
             _arr_cellName = [[NSMutableArray alloc] initWithObjects:@"Traffic", @"People", @"Statistics", nil];
 //            theCollapseClick.CollapseClickDelegate = self;
             [theCollapseClick reloadCollapseClick];
-            [_uis_zoomingMap.blurView setImage: [UIImage imageNamed:@"mapBG.jpg"]];
+            [_uis_zoomingMap.blurView setImage: [UIImage imageNamed:@"00-base-regional-map.png"]];
+            overlayName = @"00-bg-base-highways";
+            [self updateOverlay];
             [self setYearText:@"2014"];
             [self setInfoText:@"Typical day Boston during peak hours"];
             break;
@@ -485,7 +489,9 @@ static float kClosedMenu_W = 40.0;
             _arr_cellName = [[NSMutableArray alloc] initWithObjects:@"Traffic", @"People", @"Statistics", nil];
 //            theCollapseClick.CollapseClickDelegate = self;
             [theCollapseClick reloadCollapseClick];
-            [_uis_zoomingMap.blurView setImage: [UIImage imageNamed:@"boston_zoomed.jpg"]];
+            [_uis_zoomingMap.blurView setImage: [UIImage imageNamed:@"00-base-regional-map.png"]];
+            overlayName = @"00-bg-base-highways";
+            [self updateOverlay];
             [self setYearText:@"2024"];
             [self setInfoText:@"Typical day Boston during peak hours during peak hours during peak hours"];
             break;
@@ -497,10 +503,12 @@ static float kClosedMenu_W = 40.0;
             [theCollapseClick closeCollapseClickCellsWithIndexes:_arr_cellName animated:NO];
             [theCollapseClick closeCellResize];
             [_arr_cellName removeAllObjects];
-            _arr_cellName = [[NSMutableArray alloc] initWithObjects:@"Traffic", @"Current Use", nil];
+            _arr_cellName = [[NSMutableArray alloc] initWithObjects:@"Traffic", @"Statistics", nil];
 //            theCollapseClick.CollapseClickDelegate = self;
             [theCollapseClick reloadCollapseClick];
-            [_uis_zoomingMap.blurView setImage: [UIImage imageNamed:@"boston_zoomed.jpg"]];
+            [_uis_zoomingMap.blurView setImage: [UIImage imageNamed:@"00-base-regional-map.png"]];
+            overlayName = @"00-bg-base-highways";
+            [self updateOverlay];
             [self setYearText:@"2024"];
             [self setInfoText:@"Typical day Boston"];
             break;
@@ -783,25 +791,37 @@ static float kClosedMenu_W = 40.0;
         case 1:
         {
             [self setInfoText:@"Existing Highway Conditions During the Academic Year"];
-            [self updateRightTextBox:@"map_apple-OFF"];
+            [self updateRightTextBox:@"01-01-right-panel"];
+            overlayName = @"overlay_highway_A";
+            [self updateOverlay];
+            [self updateTopRightBox:@"map-key-vehicular-traffic"];
             break;
         }
         case 2:
         {
             [self setInfoText:@"Existing Highway Conditions During Summer Months"];
-            [self updateRightTextBox:@"map_apple-OFF"];
+            [self updateRightTextBox:@"01-02-right-panel"];
+            overlayName = @"overlay_highway_S";
+            [self updateTopRightBox:@"map-key-vehicular-traffic"];
+            [self updateOverlay];
             break;
         }
         case 3:
         {
             [self setInfoText:@"Existing Transit Conditions During Academic Monthes"];
-            [self updateRightTextBox:@"map_apple-OFF"];
+            [self updateRightTextBox:@"01-03-right-panel"];
+            overlayName = @"overlay_trasit_A";
+            [self updateTopRightBox:@"map-key-transit-traffic"];
+            [self updateOverlay];
             break;
         }
         case 4:
         {
             [self setInfoText:@"Existing Transit Conditions During Summer Monthes"];
-            [self updateRightTextBox:@"map_apple-OFF"];
+            [self updateRightTextBox:@"01-04-right-panel"];
+            overlayName = @"overlay_trasit_S";
+            [self updateTopRightBox:@"map-key-transit-traffic"];
+            [self updateOverlay];
             break;
         }
         default:
@@ -853,13 +873,19 @@ static float kClosedMenu_W = 40.0;
         case 1:
         {
             [self setInfoText:@"Existing Highway Conditions During the Academic Year"];
-            [self updateRightTextBox:@""];
+            [self updateRightTextBox:@"02-01-right-panel"];
+            overlayName = @"overlay_highway_N";
+            [self updateOverlay];
+            _uiiv_topRightBox.hidden = YES;
             break;
         }
         case 2:
         {
             [self setInfoText:@"Highway Conditions with Improvement"];
-            [self updateRightTextBox:@""];
+            [self updateRightTextBox:@"02-02-right-panel"];
+            overlayName = @"overlay_highway_W";
+            [self updateTopRightBox:@"map-key-vehicular-traffic"];
+            [self updateOverlay];
             break;
         }
         default:
@@ -955,37 +981,55 @@ static float kClosedMenu_W = 40.0;
         case 1:
         {
             [self setInfoText:@"Regional Intercept Strategy and Dedicated Olympic Lanes"];
-            [self updateRightTextBox:@""];
+            [self updateRightTextBox:@"03-03-right-panel"];
+            overlayName = @"03-01-olympic lanes";
+            [self updateTopRightBox:@"map-key-olympic-lanes"];
+            [self updateOverlay];
             break;
         }
         case 2:
         {
             [self setInfoText:@"Highway Transit Demand without Olympic Improvements"];
-            [self updateRightTextBox:@""];
+            [self updateRightTextBox:@"03-02-right-panel"];
+            overlayName = @"03-03-transit-no-improvements";
+            [self updateTopRightBox:@"map-key-vehicular-traffic"];
+            [self updateOverlay];
             break;
         }
         case 3:
         {
             [self setInfoText:@"Highway Transit Demand with Olympic Improvements"];
-            [self updateRightTextBox:@""];
+            [self updateRightTextBox:@"03-03-right-panel"];
+            overlayName = @"03-03-highway-with-improvements";
+            [self updateTopRightBox:@"map-key-vehicular-traffic"];
+            [self updateOverlay];
             break;
         }
         case 4:
         {
             [self setInfoText:@"Transit System Policy Demand with Olympic Improvements"];
-            [self updateRightTextBox:@""];
+            [self updateRightTextBox:@"03-04-right-panel"];
+            overlayName = @"overlay_highway_W";
+            [self updateTopRightBox:@"map-key-transit-traffic"];
+            [self updateOverlay];
             break;
         }
         case 5:
         {
             [self setInfoText:@"Transit System Crush Demand with Olympic Improvements"];
-            [self updateRightTextBox:@""];
+            [self updateRightTextBox:@"03-05-right-panel"];
+            overlayName = @"overlay_highway_W";
+            [self updateTopRightBox:@"map-key-transit-traffic"];
+            [self updateOverlay];
             break;
         }
         case 6:
         {
             [self setInfoText:@"Drive Times"];
-            [self updateRightTextBox:@""];
+            [self updateRightTextBox:@"02-02-right-panel"];
+            overlayName = @"overlay_highway_W";
+            [self updateTopRightBox:@"map-key-vehicular-traffic"];
+            [self updateOverlay];
             break;
         }
         default:
@@ -1072,25 +1116,37 @@ static float kClosedMenu_W = 40.0;
         case 1:
         {
             [self setInfoText:@"Existing Metro Daily Population"];
-            [self updateRightTextBox:@"map_apple-OFF"];
+            [self updateRightTextBox:@"01-06-right-panel"];
+            overlayName = @"01-07-bg-2014_RegionalDailyPopulation";
+            [self updateOverlay];
+            [self updateTopRightBox:@"map-key-population-density 2"];
             break;
         }
         case 2:
         {
             [self setInfoText:@"Existing Metro Residential Population"];
-            [self updateRightTextBox:@"map_apple-OFF"];
+            [self updateRightTextBox:@"01-05-right-panel"];
+            overlayName = @"01-06-bg-2014_RegionalResidentialPopulation";
+            [self updateOverlay];
+            [self updateTopRightBox:@"map-key-population-density 2"];
             break;
         }
         case 3:
         {
             [self setInfoText:@"Existing City Daily Population"];
-            [self updateRightTextBox:@"map_apple-OFF"];
+            [self updateRightTextBox:@"01-06-right-panel"];
+            overlayName = @"01-07-bg-2014_RegionalDailyPopulation";
+            [self updateOverlay];
+            [self updateTopRightBox:@"map-key-population-density 2"];
             break;
         }
         case 4:
         {
             [self setInfoText:@"Existing City Residential Population"];
-            [self updateRightTextBox:@"map_apple-OFF"];
+            [self updateRightTextBox:@"01-05-right-panel"];
+            overlayName = @"01-06-bg-2014_RegionalResidentialPopulation";
+            [self updateOverlay];
+            [self updateTopRightBox:@"map-key-population-density 2"];
             break;
         }
         default:
@@ -1141,13 +1197,19 @@ static float kClosedMenu_W = 40.0;
         case 1:
         {
             [self setInfoText:@"Existing Metro Residential Population"];
-            [self updateRightTextBox:@""];
+            [self updateRightTextBox:@"01-05-right-panel"];
+            overlayName = @"02-03-2014_RegionalResidentialPopulation";
+            [self updateOverlay];
+            [self updateTopRightBox:@"map-key-population-density 2"];
             break;
         }
         case 2:
         {
             [self setInfoText:@"Existing Metro Daily Population"];
-            [self updateRightTextBox:@""];
+            [self updateRightTextBox:@"01-05-right-panel"];
+            overlayName = @"02-04-2014_RegionalDailyPopulation";
+            [self updateOverlay];
+            [self updateTopRightBox:@"map-key-population-density 2"];
             break;
         }
         default:
@@ -1538,8 +1600,14 @@ static float kClosedMenu_W = 40.0;
             break;
         }
         case 1:{
-            UIImage *icon6 = [UIImage imageNamed:@"icon_people.png"];
-            return icon6;
+            if (sectionIndex < 3) {
+                UIImage *icon6 = [UIImage imageNamed:@"icon_people.png"];
+                return icon6;
+            }
+            else {
+                UIImage *icon6 = [UIImage imageNamed:@"icon_statistics.png"];
+                return icon6;
+            }
             break;
         }
         case 2:{
@@ -1637,7 +1705,6 @@ static float kClosedMenu_W = 40.0;
 }
 -(void)didClickCollapseClickCellAtIndex:(int)index isNowOpen:(BOOL)open;
 {
-
 //    _uis_zoomingMap.blurView.image = [UIImage imageNamed:@"mapBG.jpg"];
     for (UIView *tmp in _arr_hotsopts) {
         [tmp removeFromSuperview];
@@ -1657,7 +1724,8 @@ static float kClosedMenu_W = 40.0;
     _uiv_textBoxContainer.hidden = YES;
     _uiiv_rightTextBox.hidden = YES;
     _uiiv_topRightBox.hidden = YES;
-    
+    overlayName = @"00-bg-base-highways";
+    [self updateOverlay];
     for (UIView *tmp in _arr_tapHotspots) {
         [tmp removeFromSuperview];
     }
@@ -1696,6 +1764,9 @@ static float kClosedMenu_W = 40.0;
                 {
                     [self setSectionText: test];
                     NSLog(@"The tapped index is %i", index);
+                    if (sectionIndex == 3) {
+                        [self loadHelp];
+                    }
                     break;
                 }
                 case 2: // Statistics (2014 & 2024)
@@ -1720,11 +1791,30 @@ static float kClosedMenu_W = 40.0;
 #pragma mark - Load Help view
 - (void)loadHelp
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"hideLogo" object:self];
-    UIImage *helpImage = [UIImage imageNamed:@"grfx_38Overlay.png"];
-    UIImage *helpImage1 = [UIImage imageNamed:@"grfx_active&inactive.png"];
-    UIImage *helpImage2 = [UIImage imageNamed:@"grfx_alignmentOverlay.png"];
-    NSArray *helpArray = [[NSArray alloc] initWithObjects:helpImage, helpImage1, helpImage2, nil];
+    NSArray *helpArray;
+    switch (sectionIndex) {
+        case 1: {
+            UIImage *helpImage = [UIImage imageNamed:@"01A-panel-population.png"];
+            UIImage *helpImage1 = [UIImage imageNamed:@"01B-panel-transit.png"];
+            helpArray = [[NSArray alloc] initWithObjects:helpImage, helpImage1, nil];
+            break;
+        }
+        case 2: {
+            UIImage *helpImage = [UIImage imageNamed:@"02A-panel-massdot-improvements.png"];
+            UIImage *helpImage1 = [UIImage imageNamed:@"02B-panel-summer-transit.png"];
+            UIImage *helpImage2 = [UIImage imageNamed:@"02C-panel-summer-reduction-journeys.png"];
+            helpArray = [[NSArray alloc] initWithObjects:helpImage, helpImage1, helpImage2, nil];
+            break;
+        }
+        case 3: {
+            UIImage *helpImage1 = [UIImage imageNamed:@"03A-panel-highway-transit-growth.png"];
+            UIImage *helpImage2 = [UIImage imageNamed:@"03B-panel-capacity.png"];
+            helpArray = [[NSArray alloc] initWithObjects: helpImage1, helpImage2, nil];
+            break;
+        }
+        default:
+            break;
+    }
     
     _helpVC = [[xhHelpViewController alloc] initWithImageArray:helpArray andFrame:CGRectMake(0.0, 0.0, 1024, 768)];
     [self.view addSubview: _helpVC.view];

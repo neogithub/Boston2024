@@ -52,6 +52,62 @@
 		8243AB1D19C0DBC100FE9B58 /* 01-05-right-panel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB0519C0DBC100FE9B58 /* 01-05-right-panel@2x.png */; };
 		8243AB1E19C0DBC100FE9B58 /* 01-06-right-panel.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB0619C0DBC100FE9B58 /* 01-06-right-panel.png */; };
 		8243AB1F19C0DBC100FE9B58 /* 01-06-right-panel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB0719C0DBC100FE9B58 /* 01-06-right-panel@2x.png */; };
+		8243AB2219C0DD0600FE9B58 /* 00-bg-base-highways.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB2019C0DD0600FE9B58 /* 00-bg-base-highways.png */; };
+		8243AB2319C0DD0600FE9B58 /* 00-bg-base-highways@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB2119C0DD0600FE9B58 /* 00-bg-base-highways@2x.png */; };
+		8243AB2F19C0E35A00FE9B58 /* map-key-olympic-lanes.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB2519C0E35A00FE9B58 /* map-key-olympic-lanes.png */; };
+		8243AB3019C0E35A00FE9B58 /* map-key-olympic-lanes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB2619C0E35A00FE9B58 /* map-key-olympic-lanes@2x.png */; };
+		8243AB3119C0E35A00FE9B58 /* map-key-population-density 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB2719C0E35A00FE9B58 /* map-key-population-density 2.png */; };
+		8243AB3219C0E35A00FE9B58 /* map-key-population-density 2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB2819C0E35A00FE9B58 /* map-key-population-density 2@2x.png */; };
+		8243AB3319C0E35A00FE9B58 /* map-key-population-density.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB2919C0E35A00FE9B58 /* map-key-population-density.png */; };
+		8243AB3419C0E35A00FE9B58 /* map-key-population-density@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB2A19C0E35A00FE9B58 /* map-key-population-density@2x.png */; };
+		8243AB3519C0E35A00FE9B58 /* map-key-transit-traffic.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB2B19C0E35A00FE9B58 /* map-key-transit-traffic.png */; };
+		8243AB3619C0E35A00FE9B58 /* map-key-transit-traffic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB2C19C0E35A00FE9B58 /* map-key-transit-traffic@2x.png */; };
+		8243AB3719C0E35A00FE9B58 /* map-key-vehicular-traffic.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB2D19C0E35A00FE9B58 /* map-key-vehicular-traffic.png */; };
+		8243AB3819C0E35A00FE9B58 /* map-key-vehicular-traffic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB2E19C0E35A00FE9B58 /* map-key-vehicular-traffic@2x.png */; };
+		8243AB4719C0E65600FE9B58 /* 02-03-2014_RegionalResidentialPopulation.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB3A19C0E65600FE9B58 /* 02-03-2014_RegionalResidentialPopulation.png */; };
+		8243AB4819C0E65600FE9B58 /* 02-03-2014_RegionalResidentialPopulation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB3B19C0E65600FE9B58 /* 02-03-2014_RegionalResidentialPopulation@2x.png */; };
+		8243AB4919C0E65600FE9B58 /* 02-04-2014_RegionalDailyPopulation.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB3C19C0E65600FE9B58 /* 02-04-2014_RegionalDailyPopulation.png */; };
+		8243AB4A19C0E65600FE9B58 /* 02-04-2014_RegionalDailyPopulation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB3D19C0E65600FE9B58 /* 02-04-2014_RegionalDailyPopulation@2x.png */; };
+		8243AB4B19C0E65600FE9B58 /* overlay_highway_N.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB3E19C0E65600FE9B58 /* overlay_highway_N.png */; };
+		8243AB4C19C0E65600FE9B58 /* overlay_highway_N@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB3F19C0E65600FE9B58 /* overlay_highway_N@2x.png */; };
+		8243AB4D19C0E65600FE9B58 /* overlay_highway_W.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB4019C0E65600FE9B58 /* overlay_highway_W.png */; };
+		8243AB4E19C0E65600FE9B58 /* overlay_highway_W@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB4119C0E65600FE9B58 /* overlay_highway_W@2x.png */; };
+		8243AB4F19C0E65600FE9B58 /* 02-01-right-panel.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB4319C0E65600FE9B58 /* 02-01-right-panel.png */; };
+		8243AB5019C0E65600FE9B58 /* 02-01-right-panel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB4419C0E65600FE9B58 /* 02-01-right-panel@2x.png */; };
+		8243AB5119C0E65600FE9B58 /* 02-02-right-panel.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB4519C0E65600FE9B58 /* 02-02-right-panel.png */; };
+		8243AB5219C0E65600FE9B58 /* 02-02-right-panel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB4619C0E65600FE9B58 /* 02-02-right-panel@2x.png */; };
+		8243AB6719C0EA8200FE9B58 /* 03-01-olympic lanes.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB5419C0EA8200FE9B58 /* 03-01-olympic lanes.png */; };
+		8243AB6819C0EA8200FE9B58 /* 03-01-olympic lanes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB5519C0EA8200FE9B58 /* 03-01-olympic lanes@2x.png */; };
+		8243AB6919C0EA8200FE9B58 /* 03-03-2024-highway-improvements.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB5619C0EA8200FE9B58 /* 03-03-2024-highway-improvements.png */; };
+		8243AB6A19C0EA8200FE9B58 /* 03-03-2024-highway-improvements@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB5719C0EA8200FE9B58 /* 03-03-2024-highway-improvements@2x.png */; };
+		8243AB6B19C0EA8200FE9B58 /* 03-03-highway-with-improvements.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB5819C0EA8200FE9B58 /* 03-03-highway-with-improvements.png */; };
+		8243AB6C19C0EA8200FE9B58 /* 03-03-highway-with-improvements@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB5919C0EA8200FE9B58 /* 03-03-highway-with-improvements@2x.png */; };
+		8243AB6D19C0EA8200FE9B58 /* 03-03-transit-no-improvements.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB5A19C0EA8200FE9B58 /* 03-03-transit-no-improvements.png */; };
+		8243AB6E19C0EA8200FE9B58 /* 03-03-transit-no-improvements@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB5B19C0EA8200FE9B58 /* 03-03-transit-no-improvements@2x.png */; };
+		8243AB6F19C0EA8200FE9B58 /* 03-05-transit-crush.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB5C19C0EA8200FE9B58 /* 03-05-transit-crush.png */; };
+		8243AB7019C0EA8200FE9B58 /* 03-05-transit-crush@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB5D19C0EA8200FE9B58 /* 03-05-transit-crush@2x.png */; };
+		8243AB7119C0EA8200FE9B58 /* 03-02-right-panel.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB5F19C0EA8200FE9B58 /* 03-02-right-panel.png */; };
+		8243AB7219C0EA8200FE9B58 /* 03-02-right-panel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB6019C0EA8200FE9B58 /* 03-02-right-panel@2x.png */; };
+		8243AB7319C0EA8200FE9B58 /* 03-03-right-panel.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB6119C0EA8200FE9B58 /* 03-03-right-panel.png */; };
+		8243AB7419C0EA8200FE9B58 /* 03-03-right-panel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB6219C0EA8200FE9B58 /* 03-03-right-panel@2x.png */; };
+		8243AB7519C0EA8200FE9B58 /* 03-04-right-panel.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB6319C0EA8200FE9B58 /* 03-04-right-panel.png */; };
+		8243AB7619C0EA8200FE9B58 /* 03-04-right-panel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB6419C0EA8200FE9B58 /* 03-04-right-panel@2x.png */; };
+		8243AB7719C0EA8200FE9B58 /* 03-05-right-panel.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB6519C0EA8200FE9B58 /* 03-05-right-panel.png */; };
+		8243AB7819C0EA8200FE9B58 /* 03-05-right-panel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB6619C0EA8200FE9B58 /* 03-05-right-panel@2x.png */; };
+		8243AB7E19C0F02C00FE9B58 /* 01A-panel-population.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB7A19C0F02C00FE9B58 /* 01A-panel-population.png */; };
+		8243AB7F19C0F02C00FE9B58 /* 01A-panel-population@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB7B19C0F02C00FE9B58 /* 01A-panel-population@2x.png */; };
+		8243AB8019C0F02C00FE9B58 /* 01B-panel-transit.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB7C19C0F02C00FE9B58 /* 01B-panel-transit.png */; };
+		8243AB8119C0F02C00FE9B58 /* 01B-panel-transit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB7D19C0F02C00FE9B58 /* 01B-panel-transit@2x.png */; };
+		8243AB8919C0F03800FE9B58 /* 02A-panel-massdot-improvements.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB8319C0F03800FE9B58 /* 02A-panel-massdot-improvements.png */; };
+		8243AB8A19C0F03800FE9B58 /* 02A-panel-massdot-improvements@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB8419C0F03800FE9B58 /* 02A-panel-massdot-improvements@2x.png */; };
+		8243AB8B19C0F03800FE9B58 /* 02B-panel-summer-transit.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB8519C0F03800FE9B58 /* 02B-panel-summer-transit.png */; };
+		8243AB8C19C0F03800FE9B58 /* 02B-panel-summer-transit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB8619C0F03800FE9B58 /* 02B-panel-summer-transit@2x.png */; };
+		8243AB8D19C0F03800FE9B58 /* 02C-panel-summer-reduction-journeys.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB8719C0F03800FE9B58 /* 02C-panel-summer-reduction-journeys.png */; };
+		8243AB8E19C0F03800FE9B58 /* 02C-panel-summer-reduction-journeys@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB8819C0F03800FE9B58 /* 02C-panel-summer-reduction-journeys@2x.png */; };
+		8243AB9419C0F04500FE9B58 /* 03A-panel-highway-transit-growth.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB9019C0F04500FE9B58 /* 03A-panel-highway-transit-growth.png */; };
+		8243AB9519C0F04500FE9B58 /* 03A-panel-highway-transit-growth@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB9119C0F04500FE9B58 /* 03A-panel-highway-transit-growth@2x.png */; };
+		8243AB9619C0F04500FE9B58 /* 03B-panel-capacity.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB9219C0F04500FE9B58 /* 03B-panel-capacity.png */; };
+		8243AB9719C0F04500FE9B58 /* 03B-panel-capacity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AB9319C0F04500FE9B58 /* 03B-panel-capacity@2x.png */; };
 		8251107E19B8DDAB00106984 /* boston_zoomed.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8251107C19B8DDAB00106984 /* boston_zoomed.jpg */; };
 		8251107F19B8DDAB00106984 /* boston_zoomed@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8251107D19B8DDAB00106984 /* boston_zoomed@2x.jpg */; };
 		82CB000019B6430D00B20EB8 /* grfx_NewBridge2.png in Resources */ = {isa = PBXBuildFile; fileRef = 82CBFE0C19B6430D00B20EB8 /* grfx_NewBridge2.png */; };
@@ -410,6 +466,62 @@
 		8243AB0519C0DBC100FE9B58 /* 01-05-right-panel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "01-05-right-panel@2x.png"; sourceTree = "<group>"; };
 		8243AB0619C0DBC100FE9B58 /* 01-06-right-panel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "01-06-right-panel.png"; sourceTree = "<group>"; };
 		8243AB0719C0DBC100FE9B58 /* 01-06-right-panel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "01-06-right-panel@2x.png"; sourceTree = "<group>"; };
+		8243AB2019C0DD0600FE9B58 /* 00-bg-base-highways.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "00-bg-base-highways.png"; sourceTree = "<group>"; };
+		8243AB2119C0DD0600FE9B58 /* 00-bg-base-highways@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "00-bg-base-highways@2x.png"; sourceTree = "<group>"; };
+		8243AB2519C0E35A00FE9B58 /* map-key-olympic-lanes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-key-olympic-lanes.png"; sourceTree = "<group>"; };
+		8243AB2619C0E35A00FE9B58 /* map-key-olympic-lanes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-key-olympic-lanes@2x.png"; sourceTree = "<group>"; };
+		8243AB2719C0E35A00FE9B58 /* map-key-population-density 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-key-population-density 2.png"; sourceTree = "<group>"; };
+		8243AB2819C0E35A00FE9B58 /* map-key-population-density 2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-key-population-density 2@2x.png"; sourceTree = "<group>"; };
+		8243AB2919C0E35A00FE9B58 /* map-key-population-density.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-key-population-density.png"; sourceTree = "<group>"; };
+		8243AB2A19C0E35A00FE9B58 /* map-key-population-density@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-key-population-density@2x.png"; sourceTree = "<group>"; };
+		8243AB2B19C0E35A00FE9B58 /* map-key-transit-traffic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-key-transit-traffic.png"; sourceTree = "<group>"; };
+		8243AB2C19C0E35A00FE9B58 /* map-key-transit-traffic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-key-transit-traffic@2x.png"; sourceTree = "<group>"; };
+		8243AB2D19C0E35A00FE9B58 /* map-key-vehicular-traffic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-key-vehicular-traffic.png"; sourceTree = "<group>"; };
+		8243AB2E19C0E35A00FE9B58 /* map-key-vehicular-traffic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-key-vehicular-traffic@2x.png"; sourceTree = "<group>"; };
+		8243AB3A19C0E65600FE9B58 /* 02-03-2014_RegionalResidentialPopulation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02-03-2014_RegionalResidentialPopulation.png"; sourceTree = "<group>"; };
+		8243AB3B19C0E65600FE9B58 /* 02-03-2014_RegionalResidentialPopulation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02-03-2014_RegionalResidentialPopulation@2x.png"; sourceTree = "<group>"; };
+		8243AB3C19C0E65600FE9B58 /* 02-04-2014_RegionalDailyPopulation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02-04-2014_RegionalDailyPopulation.png"; sourceTree = "<group>"; };
+		8243AB3D19C0E65600FE9B58 /* 02-04-2014_RegionalDailyPopulation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02-04-2014_RegionalDailyPopulation@2x.png"; sourceTree = "<group>"; };
+		8243AB3E19C0E65600FE9B58 /* overlay_highway_N.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overlay_highway_N.png; sourceTree = "<group>"; };
+		8243AB3F19C0E65600FE9B58 /* overlay_highway_N@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "overlay_highway_N@2x.png"; sourceTree = "<group>"; };
+		8243AB4019C0E65600FE9B58 /* overlay_highway_W.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overlay_highway_W.png; sourceTree = "<group>"; };
+		8243AB4119C0E65600FE9B58 /* overlay_highway_W@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "overlay_highway_W@2x.png"; sourceTree = "<group>"; };
+		8243AB4319C0E65600FE9B58 /* 02-01-right-panel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02-01-right-panel.png"; sourceTree = "<group>"; };
+		8243AB4419C0E65600FE9B58 /* 02-01-right-panel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02-01-right-panel@2x.png"; sourceTree = "<group>"; };
+		8243AB4519C0E65600FE9B58 /* 02-02-right-panel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02-02-right-panel.png"; sourceTree = "<group>"; };
+		8243AB4619C0E65600FE9B58 /* 02-02-right-panel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02-02-right-panel@2x.png"; sourceTree = "<group>"; };
+		8243AB5419C0EA8200FE9B58 /* 03-01-olympic lanes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-01-olympic lanes.png"; sourceTree = "<group>"; };
+		8243AB5519C0EA8200FE9B58 /* 03-01-olympic lanes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-01-olympic lanes@2x.png"; sourceTree = "<group>"; };
+		8243AB5619C0EA8200FE9B58 /* 03-03-2024-highway-improvements.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-03-2024-highway-improvements.png"; sourceTree = "<group>"; };
+		8243AB5719C0EA8200FE9B58 /* 03-03-2024-highway-improvements@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-03-2024-highway-improvements@2x.png"; sourceTree = "<group>"; };
+		8243AB5819C0EA8200FE9B58 /* 03-03-highway-with-improvements.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-03-highway-with-improvements.png"; sourceTree = "<group>"; };
+		8243AB5919C0EA8200FE9B58 /* 03-03-highway-with-improvements@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-03-highway-with-improvements@2x.png"; sourceTree = "<group>"; };
+		8243AB5A19C0EA8200FE9B58 /* 03-03-transit-no-improvements.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-03-transit-no-improvements.png"; sourceTree = "<group>"; };
+		8243AB5B19C0EA8200FE9B58 /* 03-03-transit-no-improvements@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-03-transit-no-improvements@2x.png"; sourceTree = "<group>"; };
+		8243AB5C19C0EA8200FE9B58 /* 03-05-transit-crush.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-05-transit-crush.png"; sourceTree = "<group>"; };
+		8243AB5D19C0EA8200FE9B58 /* 03-05-transit-crush@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-05-transit-crush@2x.png"; sourceTree = "<group>"; };
+		8243AB5F19C0EA8200FE9B58 /* 03-02-right-panel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-02-right-panel.png"; sourceTree = "<group>"; };
+		8243AB6019C0EA8200FE9B58 /* 03-02-right-panel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-02-right-panel@2x.png"; sourceTree = "<group>"; };
+		8243AB6119C0EA8200FE9B58 /* 03-03-right-panel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-03-right-panel.png"; sourceTree = "<group>"; };
+		8243AB6219C0EA8200FE9B58 /* 03-03-right-panel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-03-right-panel@2x.png"; sourceTree = "<group>"; };
+		8243AB6319C0EA8200FE9B58 /* 03-04-right-panel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-04-right-panel.png"; sourceTree = "<group>"; };
+		8243AB6419C0EA8200FE9B58 /* 03-04-right-panel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-04-right-panel@2x.png"; sourceTree = "<group>"; };
+		8243AB6519C0EA8200FE9B58 /* 03-05-right-panel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-05-right-panel.png"; sourceTree = "<group>"; };
+		8243AB6619C0EA8200FE9B58 /* 03-05-right-panel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-05-right-panel@2x.png"; sourceTree = "<group>"; };
+		8243AB7A19C0F02C00FE9B58 /* 01A-panel-population.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "01A-panel-population.png"; sourceTree = "<group>"; };
+		8243AB7B19C0F02C00FE9B58 /* 01A-panel-population@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "01A-panel-population@2x.png"; sourceTree = "<group>"; };
+		8243AB7C19C0F02C00FE9B58 /* 01B-panel-transit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "01B-panel-transit.png"; sourceTree = "<group>"; };
+		8243AB7D19C0F02C00FE9B58 /* 01B-panel-transit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "01B-panel-transit@2x.png"; sourceTree = "<group>"; };
+		8243AB8319C0F03800FE9B58 /* 02A-panel-massdot-improvements.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02A-panel-massdot-improvements.png"; sourceTree = "<group>"; };
+		8243AB8419C0F03800FE9B58 /* 02A-panel-massdot-improvements@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02A-panel-massdot-improvements@2x.png"; sourceTree = "<group>"; };
+		8243AB8519C0F03800FE9B58 /* 02B-panel-summer-transit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02B-panel-summer-transit.png"; sourceTree = "<group>"; };
+		8243AB8619C0F03800FE9B58 /* 02B-panel-summer-transit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02B-panel-summer-transit@2x.png"; sourceTree = "<group>"; };
+		8243AB8719C0F03800FE9B58 /* 02C-panel-summer-reduction-journeys.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02C-panel-summer-reduction-journeys.png"; sourceTree = "<group>"; };
+		8243AB8819C0F03800FE9B58 /* 02C-panel-summer-reduction-journeys@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02C-panel-summer-reduction-journeys@2x.png"; sourceTree = "<group>"; };
+		8243AB9019C0F04500FE9B58 /* 03A-panel-highway-transit-growth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03A-panel-highway-transit-growth.png"; sourceTree = "<group>"; };
+		8243AB9119C0F04500FE9B58 /* 03A-panel-highway-transit-growth@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03A-panel-highway-transit-growth@2x.png"; sourceTree = "<group>"; };
+		8243AB9219C0F04500FE9B58 /* 03B-panel-capacity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03B-panel-capacity.png"; sourceTree = "<group>"; };
+		8243AB9319C0F04500FE9B58 /* 03B-panel-capacity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03B-panel-capacity@2x.png"; sourceTree = "<group>"; };
 		8251107C19B8DDAB00106984 /* boston_zoomed.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = boston_zoomed.jpg; sourceTree = "<group>"; };
 		8251107D19B8DDAB00106984 /* boston_zoomed@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "boston_zoomed@2x.jpg"; sourceTree = "<group>"; };
 		82CBFB9219B638CE00B20EB8 /* boston2024.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = boston2024.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -812,6 +924,7 @@
 				8243AAF819C0DBC100FE9B58 /* overlay_trasit_A@2x.png */,
 				8243AAF919C0DBC100FE9B58 /* overlay_trasit_S.png */,
 				8243AAFA19C0DBC100FE9B58 /* overlay_trasit_S@2x.png */,
+				8243AB7919C0F02C00FE9B58 /* statistic */,
 				8243AAFB19C0DBC100FE9B58 /* Right_box */,
 			);
 			path = 2014;
@@ -834,6 +947,120 @@
 				8243AB0719C0DBC100FE9B58 /* 01-06-right-panel@2x.png */,
 			);
 			path = Right_box;
+			sourceTree = "<group>";
+		};
+		8243AB2419C0E35A00FE9B58 /* keys */ = {
+			isa = PBXGroup;
+			children = (
+				8243AB2519C0E35A00FE9B58 /* map-key-olympic-lanes.png */,
+				8243AB2619C0E35A00FE9B58 /* map-key-olympic-lanes@2x.png */,
+				8243AB2719C0E35A00FE9B58 /* map-key-population-density 2.png */,
+				8243AB2819C0E35A00FE9B58 /* map-key-population-density 2@2x.png */,
+				8243AB2919C0E35A00FE9B58 /* map-key-population-density.png */,
+				8243AB2A19C0E35A00FE9B58 /* map-key-population-density@2x.png */,
+				8243AB2B19C0E35A00FE9B58 /* map-key-transit-traffic.png */,
+				8243AB2C19C0E35A00FE9B58 /* map-key-transit-traffic@2x.png */,
+				8243AB2D19C0E35A00FE9B58 /* map-key-vehicular-traffic.png */,
+				8243AB2E19C0E35A00FE9B58 /* map-key-vehicular-traffic@2x.png */,
+			);
+			path = keys;
+			sourceTree = "<group>";
+		};
+		8243AB3919C0E65600FE9B58 /* 2024 */ = {
+			isa = PBXGroup;
+			children = (
+				8243AB3A19C0E65600FE9B58 /* 02-03-2014_RegionalResidentialPopulation.png */,
+				8243AB3B19C0E65600FE9B58 /* 02-03-2014_RegionalResidentialPopulation@2x.png */,
+				8243AB3C19C0E65600FE9B58 /* 02-04-2014_RegionalDailyPopulation.png */,
+				8243AB3D19C0E65600FE9B58 /* 02-04-2014_RegionalDailyPopulation@2x.png */,
+				8243AB3E19C0E65600FE9B58 /* overlay_highway_N.png */,
+				8243AB3F19C0E65600FE9B58 /* overlay_highway_N@2x.png */,
+				8243AB4019C0E65600FE9B58 /* overlay_highway_W.png */,
+				8243AB4119C0E65600FE9B58 /* overlay_highway_W@2x.png */,
+				8243AB8219C0F03800FE9B58 /* statistic */,
+				8243AB4219C0E65600FE9B58 /* RightBox */,
+			);
+			path = 2024;
+			sourceTree = "<group>";
+		};
+		8243AB4219C0E65600FE9B58 /* RightBox */ = {
+			isa = PBXGroup;
+			children = (
+				8243AB4319C0E65600FE9B58 /* 02-01-right-panel.png */,
+				8243AB4419C0E65600FE9B58 /* 02-01-right-panel@2x.png */,
+				8243AB4519C0E65600FE9B58 /* 02-02-right-panel.png */,
+				8243AB4619C0E65600FE9B58 /* 02-02-right-panel@2x.png */,
+			);
+			path = RightBox;
+			sourceTree = "<group>";
+		};
+		8243AB5319C0EA8200FE9B58 /* Olympic */ = {
+			isa = PBXGroup;
+			children = (
+				8243AB5419C0EA8200FE9B58 /* 03-01-olympic lanes.png */,
+				8243AB5519C0EA8200FE9B58 /* 03-01-olympic lanes@2x.png */,
+				8243AB5619C0EA8200FE9B58 /* 03-03-2024-highway-improvements.png */,
+				8243AB5719C0EA8200FE9B58 /* 03-03-2024-highway-improvements@2x.png */,
+				8243AB5819C0EA8200FE9B58 /* 03-03-highway-with-improvements.png */,
+				8243AB5919C0EA8200FE9B58 /* 03-03-highway-with-improvements@2x.png */,
+				8243AB5A19C0EA8200FE9B58 /* 03-03-transit-no-improvements.png */,
+				8243AB5B19C0EA8200FE9B58 /* 03-03-transit-no-improvements@2x.png */,
+				8243AB5C19C0EA8200FE9B58 /* 03-05-transit-crush.png */,
+				8243AB5D19C0EA8200FE9B58 /* 03-05-transit-crush@2x.png */,
+				8243AB8F19C0F04500FE9B58 /* statistic */,
+				8243AB5E19C0EA8200FE9B58 /* RightBox */,
+			);
+			path = Olympic;
+			sourceTree = "<group>";
+		};
+		8243AB5E19C0EA8200FE9B58 /* RightBox */ = {
+			isa = PBXGroup;
+			children = (
+				8243AB5F19C0EA8200FE9B58 /* 03-02-right-panel.png */,
+				8243AB6019C0EA8200FE9B58 /* 03-02-right-panel@2x.png */,
+				8243AB6119C0EA8200FE9B58 /* 03-03-right-panel.png */,
+				8243AB6219C0EA8200FE9B58 /* 03-03-right-panel@2x.png */,
+				8243AB6319C0EA8200FE9B58 /* 03-04-right-panel.png */,
+				8243AB6419C0EA8200FE9B58 /* 03-04-right-panel@2x.png */,
+				8243AB6519C0EA8200FE9B58 /* 03-05-right-panel.png */,
+				8243AB6619C0EA8200FE9B58 /* 03-05-right-panel@2x.png */,
+			);
+			path = RightBox;
+			sourceTree = "<group>";
+		};
+		8243AB7919C0F02C00FE9B58 /* statistic */ = {
+			isa = PBXGroup;
+			children = (
+				8243AB7A19C0F02C00FE9B58 /* 01A-panel-population.png */,
+				8243AB7B19C0F02C00FE9B58 /* 01A-panel-population@2x.png */,
+				8243AB7C19C0F02C00FE9B58 /* 01B-panel-transit.png */,
+				8243AB7D19C0F02C00FE9B58 /* 01B-panel-transit@2x.png */,
+			);
+			path = statistic;
+			sourceTree = "<group>";
+		};
+		8243AB8219C0F03800FE9B58 /* statistic */ = {
+			isa = PBXGroup;
+			children = (
+				8243AB8319C0F03800FE9B58 /* 02A-panel-massdot-improvements.png */,
+				8243AB8419C0F03800FE9B58 /* 02A-panel-massdot-improvements@2x.png */,
+				8243AB8519C0F03800FE9B58 /* 02B-panel-summer-transit.png */,
+				8243AB8619C0F03800FE9B58 /* 02B-panel-summer-transit@2x.png */,
+				8243AB8719C0F03800FE9B58 /* 02C-panel-summer-reduction-journeys.png */,
+				8243AB8819C0F03800FE9B58 /* 02C-panel-summer-reduction-journeys@2x.png */,
+			);
+			path = statistic;
+			sourceTree = "<group>";
+		};
+		8243AB8F19C0F04500FE9B58 /* statistic */ = {
+			isa = PBXGroup;
+			children = (
+				8243AB9019C0F04500FE9B58 /* 03A-panel-highway-transit-growth.png */,
+				8243AB9119C0F04500FE9B58 /* 03A-panel-highway-transit-growth@2x.png */,
+				8243AB9219C0F04500FE9B58 /* 03B-panel-capacity.png */,
+				8243AB9319C0F04500FE9B58 /* 03B-panel-capacity@2x.png */,
+			);
+			path = statistic;
 			sourceTree = "<group>";
 		};
 		82CBFB8919B638CE00B20EB8 = {
@@ -1007,7 +1234,12 @@
 			children = (
 				8243AAEA19C0DB9000FE9B58 /* 00-base-regional-map.png */,
 				8243AAEB19C0DB9000FE9B58 /* 00-base-regional-map@2x.png */,
+				8243AB2019C0DD0600FE9B58 /* 00-bg-base-highways.png */,
+				8243AB2119C0DD0600FE9B58 /* 00-bg-base-highways@2x.png */,
 				8243AAEE19C0DBC100FE9B58 /* 2014 */,
+				8243AB3919C0E65600FE9B58 /* 2024 */,
+				8243AB5319C0EA8200FE9B58 /* Olympic */,
+				8243AB2419C0E35A00FE9B58 /* keys */,
 				8243AAE119C0DB8500FE9B58 /* fonts */,
 				82CBFC2D19B6430D00B20EB8 /* _pages */,
 				82CBFD8019B6430D00B20EB8 /* _plists */,
@@ -1434,6 +1666,7 @@
 				82CB002219B6430D00B20EB8 /* menuBtn_cap.png in Resources */,
 				82CBFEF219B6430D00B20EB8 /* old_map_apple-ON@2x.png in Resources */,
 				82CBFFD719B6430D00B20EB8 /* br-thrasher-st.png in Resources */,
+				8243AB4E19C0E65600FE9B58 /* overlay_highway_W@2x.png in Resources */,
 				82CBFF0E19B6430D00B20EB8 /* 12_Kings_Highway_3000.jpg in Resources */,
 				82CBFFE219B6430D00B20EB8 /* br-western-expressway-ramps@2x.png in Resources */,
 				82CB002F19B6430D00B20EB8 /* view-icon-sq@2x.png in Resources */,
@@ -1446,24 +1679,29 @@
 				82CB000E19B6430D00B20EB8 /* grfx_textOverlay@2x.png in Resources */,
 				82CB002C19B6430D00B20EB8 /* thumbs.png in Resources */,
 				82CBFF9A19B6430D00B20EB8 /* br-central-st@2x.png in Resources */,
+				8243AB2319C0DD0600FE9B58 /* 00-bg-base-highways@2x.png in Resources */,
 				82CBFFAA19B6430D00B20EB8 /* br-deane-st@2x.png in Resources */,
 				8243AAE819C0DB8500FE9B58 /* SabonLTStd-Bold.otf in Resources */,
 				82CBFFFA19B6430D00B20EB8 /* grfx_gradient@2x.png in Resources */,
 				82CBFF1219B6430D00B20EB8 /* 13_Whales_Tooth_5000.jpg in Resources */,
 				82CBFEF019B6430D00B20EB8 /* map_neo-ON@2x.png in Resources */,
+				8243AB8019C0F02C00FE9B58 /* 01B-panel-transit.png in Resources */,
 				82CBFF1B19B6430D00B20EB8 /* 3_Stoughton_Station_5000.jpg in Resources */,
 				82CBFF0719B6430D00B20EB8 /* 10_Fall_River_Depot_1000.jpg in Resources */,
 				8243AB1F19C0DBC100FE9B58 /* 01-06-right-panel@2x.png in Resources */,
 				82CBFFDF19B6430D00B20EB8 /* br-western-express.png in Resources */,
 				82CBFFC519B6430D00B20EB8 /* br-rt-140.png in Resources */,
+				8243AB3319C0E35A00FE9B58 /* map-key-population-density.png in Resources */,
 				82CBFFE619B6430D00B20EB8 /* crossfade@2x.png in Resources */,
 				82CBFF1819B6430D00B20EB8 /* 2_Canton_Station_5000.jpg in Resources */,
 				82CBFF8719B6430D00B20EB8 /* br-195.png in Resources */,
 				82CBFF8319B6430D00B20EB8 /* back.png in Resources */,
 				82CBFFBC19B6430D00B20EB8 /* br-mill-river-2@2x.png in Resources */,
 				82CBFF9119B6430D00B20EB8 /* br-brightman-st.png in Resources */,
+				8243AB6919C0EA8200FE9B58 /* 03-03-2024-highway-improvements.png in Resources */,
 				82CBFF9419B6430D00B20EB8 /* br-canedys@2x.png in Resources */,
 				82CBFFB019B6430D00B20EB8 /* br-howland-rd@2x.png in Resources */,
+				8243AB2F19C0E35A00FE9B58 /* map-key-olympic-lanes.png in Resources */,
 				8243AAEC19C0DB9000FE9B58 /* 00-base-regional-map.png in Resources */,
 				82CBFFD619B6430D00B20EB8 /* br-taunton-river-3@2x.png in Resources */,
 				82CB001619B6430D00B20EB8 /* grfx_WetlandFill@2x.png in Resources */,
@@ -1486,21 +1724,26 @@
 				8243AAD419C08DD100FE9B58 /* icon_statistics.png in Resources */,
 				82CBFF8C19B6430D00B20EB8 /* br-bolivar-st@2x.png in Resources */,
 				82CB002719B6430D00B20EB8 /* open_btn@2x.jpg in Resources */,
+				8243AB7519C0EA8200FE9B58 /* 03-04-right-panel.png in Resources */,
 				82CBFFE419B6430D00B20EB8 /* br-western-expressway-rt79@2x.png in Resources */,
 				82CBFF8819B6430D00B20EB8 /* br-195@2x.png in Resources */,
+				8243AB6B19C0EA8200FE9B58 /* 03-03-highway-with-improvements.png in Resources */,
 				82CBFF3419B6430D00B20EB8 /* Wamsutta_3000.jpg in Resources */,
 				82E1239519BDF37600EEB8D1 /* 2014_Overlay@2x.png in Resources */,
 				8243AAD619C08DD100FE9B58 /* icon_traffic.png in Resources */,
 				82CBFF2619B6430D00B20EB8 /* 7_Taunton_Station_3000.jpg in Resources */,
 				82CBFFC819B6430D00B20EB8 /* br-rt-24-79@2x.png in Resources */,
 				82CB001E19B6430D00B20EB8 /* map_menu_close.png in Resources */,
+				8243AB7319C0EA8200FE9B58 /* 03-03-right-panel.png in Resources */,
 				82CBFFD319B6430D00B20EB8 /* br-taunton-river-2.png in Resources */,
 				82CBFBAE19B638CE00B20EB8 /* Images.xcassets in Resources */,
 				82CB000019B6430D00B20EB8 /* grfx_NewBridge2.png in Resources */,
 				82CBFF7819B6430D00B20EB8 /* buildingHotsopt.plist in Resources */,
 				82CBFBA019B638CE00B20EB8 /* InfoPlist.strings in Resources */,
 				82CB000119B6430D00B20EB8 /* grfx_NewBridge2@2x.png in Resources */,
+				8243AB4D19C0E65600FE9B58 /* overlay_highway_W.png in Resources */,
 				8243AB1619C0DBC100FE9B58 /* 01-02-right-panel.png in Resources */,
+				8243AB7219C0EA8200FE9B58 /* 03-02-right-panel@2x.png in Resources */,
 				82CBFFF919B6430D00B20EB8 /* grfx_gradient.png in Resources */,
 				82CB002D19B6430D00B20EB8 /* thumbs@2x.png in Resources */,
 				82CBFFD819B6430D00B20EB8 /* br-thrasher-st@2x.png in Resources */,
@@ -1511,11 +1754,14 @@
 				82CBFF0F19B6430D00B20EB8 /* 12_Kings_Highway_5000.jpg in Resources */,
 				82CBFF3519B6430D00B20EB8 /* Weavers_1000.jpg in Resources */,
 				82CBFF2F19B6430D00B20EB8 /* Hockomock_5000.jpg in Resources */,
+				8243AB7E19C0F02C00FE9B58 /* 01A-panel-population.png in Resources */,
 				82CBFF1D19B6430D00B20EB8 /* 4_North_Easton_3000.jpg in Resources */,
 				82CBFF2319B6430D00B20EB8 /* 6_Raynham_Park_3000.jpg in Resources */,
+				8243AB8B19C0F03800FE9B58 /* 02B-panel-summer-transit.png in Resources */,
 				8243AB1019C0DBC100FE9B58 /* overlay_trasit_A.png in Resources */,
 				82CB001219B6430D00B20EB8 /* grfx_trestleOverlay@2x.png in Resources */,
 				82CB001819B6430D00B20EB8 /* grfx_whiteText@2x.png in Resources */,
+				8243AB9619C0F04500FE9B58 /* 03B-panel-capacity.png in Resources */,
 				8243AB0A19C0DBC100FE9B58 /* 01-07-bg-2014_RegionalDailyPopulation.png in Resources */,
 				82CBFFDE19B6430D00B20EB8 /* br-weld-st@2x.png in Resources */,
 				82EC836219B8EC0C00A76DE8 /* Overlay_summer.png in Resources */,
@@ -1529,23 +1775,30 @@
 				82CBFEE619B6430D00B20EB8 /* map_apple-ON@2x.png in Resources */,
 				82CBFEF319B6430D00B20EB8 /* old_map_google-OFF@2x.png in Resources */,
 				82CBFF9319B6430D00B20EB8 /* br-canedys.png in Resources */,
+				8243AB3019C0E35A00FE9B58 /* map-key-olympic-lanes@2x.png in Resources */,
 				8243AB1B19C0DBC100FE9B58 /* 01-04-right-panel@2x.png in Resources */,
 				82CBFFD919B6430D00B20EB8 /* br-totman-farm-road.png in Resources */,
 				82CBFF2019B6430D00B20EB8 /* 5_Easton_Village_3000.jpg in Resources */,
 				82CBFC0519B63E5100B20EB8 /* photo-gallery-right@2x.png in Resources */,
 				82CBFFAE19B6430D00B20EB8 /* br-hockomock-trestle@2x.png in Resources */,
 				82CBFFE819B6430D00B20EB8 /* grfx_38Overlay@2x.png in Resources */,
+				8243AB6C19C0EA8200FE9B58 /* 03-03-highway-with-improvements@2x.png in Resources */,
 				82CBFF8219B6430D00B20EB8 /* amps@2x.png in Resources */,
 				82CBFFDD19B6430D00B20EB8 /* br-weld-st.png in Resources */,
 				82CBFFA619B6430D00B20EB8 /* br-cowesset-brook@2x.png in Resources */,
+				8243AB7419C0EA8200FE9B58 /* 03-03-right-panel@2x.png in Resources */,
 				82CBFF1C19B6430D00B20EB8 /* 4_North_Easton_1000.jpg in Resources */,
+				8243AB8919C0F03800FE9B58 /* 02A-panel-massdot-improvements.png in Resources */,
 				82CB000A19B6430D00B20EB8 /* grfx_qanda@2x.png in Resources */,
 				82CBFEFF19B6430D00B20EB8 /* mapBG.jpg in Resources */,
 				82CBFFA919B6430D00B20EB8 /* br-deane-st.png in Resources */,
+				8243AB2219C0DD0600FE9B58 /* 00-bg-base-highways.png in Resources */,
 				82CBFFBD19B6430D00B20EB8 /* br-nb-ramp.png in Resources */,
 				82CBFFA319B6430D00B20EB8 /* br-cove-st.png in Resources */,
 				82CBFF2D19B6430D00B20EB8 /* 9_Freetown_Station_5000.jpg in Resources */,
 				82E1239619BDF37600EEB8D1 /* 2024_Overlay_summer.png in Resources */,
+				8243AB8E19C0F03800FE9B58 /* 02C-panel-summer-reduction-journeys@2x.png in Resources */,
+				8243AB3619C0E35A00FE9B58 /* map-key-transit-traffic@2x.png in Resources */,
 				82CBFFAC19B6430D00B20EB8 /* br-forge-pond@2x.png in Resources */,
 				82CBFFFC19B6430D00B20EB8 /* grfx_hs_building@2x.jpg in Resources */,
 				82CBFF9919B6430D00B20EB8 /* br-central-st.png in Resources */,
@@ -1571,33 +1824,45 @@
 				82CBFF0019B6430D00B20EB8 /* mapBG@2x.jpg in Resources */,
 				82CBFF8F19B6430D00B20EB8 /* br-bridge-st.png in Resources */,
 				8243AAE719C0DB8500FE9B58 /* DINPro-CondBlack.otf in Resources */,
+				8243AB4919C0E65600FE9B58 /* 02-04-2014_RegionalDailyPopulation.png in Resources */,
 				82CBFF8E19B6430D00B20EB8 /* br-bridge st@2x.png in Resources */,
+				8243AB6719C0EA8200FE9B58 /* 03-01-olympic lanes.png in Resources */,
+				8243AB4819C0E65600FE9B58 /* 02-03-2014_RegionalResidentialPopulation@2x.png in Resources */,
 				82CBFFB719B6430D00B20EB8 /* br-main-st.png in Resources */,
 				82CBFF1919B6430D00B20EB8 /* 3_Stoughton_Station_1000.jpg in Resources */,
 				82CB001F19B6430D00B20EB8 /* map_menu_close@2x.png in Resources */,
+				8243AB9719C0F04500FE9B58 /* 03B-panel-capacity@2x.png in Resources */,
 				82CBFEED19B6430D00B20EB8 /* map_neo-OFF.png in Resources */,
 				82CBFF8419B6430D00B20EB8 /* back@2x.png in Resources */,
+				8243AB3719C0E35A00FE9B58 /* map-key-vehicular-traffic.png in Resources */,
 				8243AAE619C0DB8500FE9B58 /* DINEngschriftStd.otf in Resources */,
 				82CBFF9B19B6430D00B20EB8 /* br-clark.png in Resources */,
 				82CB000219B6430D00B20EB8 /* grfx_NewBridge@2x.png in Resources */,
 				82CBFF9C19B6430D00B20EB8 /* br-clark@2x.png in Resources */,
 				82CBFFE319B6430D00B20EB8 /* br-western-expressway-rt79.png in Resources */,
 				82CBFFD419B6430D00B20EB8 /* br-taunton-river-2@2x.png in Resources */,
+				8243AB5019C0E65600FE9B58 /* 02-01-right-panel@2x.png in Resources */,
 				82CBFF2519B6430D00B20EB8 /* 7_Taunton_Station_1000.jpg in Resources */,
 				82CBFFA519B6430D00B20EB8 /* br-cowesset-brook.png in Resources */,
 				8243AB1919C0DBC100FE9B58 /* 01-03-right-panel@2x.png in Resources */,
 				82CBFFDA19B6430D00B20EB8 /* br-totman-farm-road@2x.png in Resources */,
+				8243AB7F19C0F02C00FE9B58 /* 01A-panel-population@2x.png in Resources */,
 				82CB000D19B6430D00B20EB8 /* grfx_textOverlay.png in Resources */,
 				8243AAE919C0DB8500FE9B58 /* SabonLTStd-Roman.otf in Resources */,
 				82CBFF9D19B6430D00B20EB8 /* br-clinton-st.png in Resources */,
 				82CB000519B6430D00B20EB8 /* grfx_NewStation.png in Resources */,
 				8243AAD519C08DD100FE9B58 /* icon_statistics@2x.png in Resources */,
+				8243AB3519C0E35A00FE9B58 /* map-key-transit-traffic.png in Resources */,
 				82CBFF0D19B6430D00B20EB8 /* 12_Kings_Highway_1000.jpg in Resources */,
 				82CBFFE719B6430D00B20EB8 /* grfx_38Overlay.png in Resources */,
 				82CBFFB819B6430D00B20EB8 /* br-main-st@2x.png in Resources */,
 				82CBFF7D19B6430D00B20EB8 /* DINEngschriftStd.otf in Resources */,
+				8243AB7619C0EA8200FE9B58 /* 03-04-right-panel@2x.png in Resources */,
 				82CBFFC219B6430D00B20EB8 /* br-pond-st@2x.png in Resources */,
+				8243AB3819C0E35A00FE9B58 /* map-key-vehicular-traffic@2x.png in Resources */,
+				8243AB8C19C0F03800FE9B58 /* 02B-panel-summer-transit@2x.png in Resources */,
 				82CB001119B6430D00B20EB8 /* grfx_trestleOverlay.png in Resources */,
+				8243AB4C19C0E65600FE9B58 /* overlay_highway_N@2x.png in Resources */,
 				82CBFFFF19B6430D00B20EB8 /* grfx_NewBridge.png in Resources */,
 				82CBFF3319B6430D00B20EB8 /* Wamsutta_1000.jpg in Resources */,
 				82CBFF2C19B6430D00B20EB8 /* 9_Freetown_Station_3000.jpg in Resources */,
@@ -1618,17 +1883,22 @@
 				82CB002E19B6430D00B20EB8 /* view-icon-sq.png in Resources */,
 				82CBFFE519B6430D00B20EB8 /* crossfade.png in Resources */,
 				82CBFF8519B6430D00B20EB8 /* br-138.png in Resources */,
+				8243AB7819C0EA8200FE9B58 /* 03-05-right-panel@2x.png in Resources */,
 				82CBFEEC19B6430D00B20EB8 /* map_google-ON@2x.png in Resources */,
 				82CBFFCC19B6430D00B20EB8 /* br-sb-ramp@2x.png in Resources */,
 				82CB001D19B6430D00B20EB8 /* logo_white@2x.png in Resources */,
+				8243AB5119C0E65600FE9B58 /* 02-02-right-panel.png in Resources */,
 				82CB001419B6430D00B20EB8 /* grfx_wetland_icon@2x.png in Resources */,
 				82CBFFD219B6430D00B20EB8 /* br-taunton-river-1@2x.png in Resources */,
+				8243AB9519C0F04500FE9B58 /* 03A-panel-highway-transit-growth@2x.png in Resources */,
 				82CB002419B6430D00B20EB8 /* menuBtn_cap_Sel.png in Resources */,
 				82E1239419BDF37600EEB8D1 /* 2014_Overlay.png in Resources */,
 				82CBFFC119B6430D00B20EB8 /* br-pond-st.png in Resources */,
+				8243AB6A19C0EA8200FE9B58 /* 03-03-2024-highway-improvements@2x.png in Resources */,
 				82E1239819BDF37600EEB8D1 /* 2024_Overlay.png in Resources */,
 				82CBFEF419B6430D00B20EB8 /* old_map_google-ON@2x.png in Resources */,
 				82CBFF3219B6430D00B20EB8 /* Myricks_Junction_5000.jpg in Resources */,
+				8243AB4B19C0E65600FE9B58 /* overlay_highway_N.png in Resources */,
 				82CB002B19B6430D00B20EB8 /* playButton_Hi@2x.png in Resources */,
 				82CBFFBF19B6430D00B20EB8 /* br-new-st.png in Resources */,
 				82CBFFD119B6430D00B20EB8 /* br-taunton-river-1.png in Resources */,
@@ -1638,12 +1908,14 @@
 				82CBFEE919B6430D00B20EB8 /* map_google-OFF.png in Resources */,
 				82CBFC1319B640F400B20EB8 /* contentTableCell.xib in Resources */,
 				82CBFBF819B63E5100B20EB8 /* contentTableViewController.xib in Resources */,
+				8243AB4719C0E65600FE9B58 /* 02-03-2014_RegionalResidentialPopulation.png in Resources */,
 				8243AB0819C0DBC100FE9B58 /* 01-06-bg-2014_RegionalResidentialPopulation.png in Resources */,
 				82CBFC0619B63E5100B20EB8 /* photo-gallery-trashcan.png in Resources */,
 				82CBFFED19B6430D00B20EB8 /* grfx_alignmentOverlay.png in Resources */,
 				82CB002319B6430D00B20EB8 /* menuBtn_cap@2x.png in Resources */,
 				82CBFEEE19B6430D00B20EB8 /* map_neo-OFF@2x.png in Resources */,
 				82CBFEE319B6430D00B20EB8 /* map_apple-OFF.png in Resources */,
+				8243AB6E19C0EA8200FE9B58 /* 03-03-transit-no-improvements@2x.png in Resources */,
 				82CBFF1119B6430D00B20EB8 /* 13_Whales_Tooth_3000.jpg in Resources */,
 				82CBFFC619B6430D00B20EB8 /* br-rt-140@2x.png in Resources */,
 				8251107F19B8DDAB00106984 /* boston_zoomed@2x.jpg in Resources */,
@@ -1651,11 +1923,13 @@
 				82CBFF2B19B6430D00B20EB8 /* 9_Freetown_Station_1000.jpg in Resources */,
 				82CBFF0919B6430D00B20EB8 /* 10_Fall_River_Depot_5000.jpg in Resources */,
 				8243AAD319C08DD100FE9B58 /* icon_people@2x.png in Resources */,
+				8243AB8D19C0F03800FE9B58 /* 02C-panel-summer-reduction-journeys.png in Resources */,
 				8243AAD219C08DD100FE9B58 /* icon_people.png in Resources */,
 				82CBFFBB19B6430D00B20EB8 /* br-mill-river-2.png in Resources */,
 				82CBFF7E19B6430D00B20EB8 /* DINPro-CondBlack.otf in Resources */,
 				82CBFFC419B6430D00B20EB8 /* br-rt-138-grade-separation@2x.png in Resources */,
 				82CBFFC719B6430D00B20EB8 /* br-rt-24-79.png in Resources */,
+				8243AB7019C0EA8200FE9B58 /* 03-05-transit-crush@2x.png in Resources */,
 				82CBFF2E19B6430D00B20EB8 /* Hockomock_3000.jpg in Resources */,
 				82CBFF7F19B6430D00B20EB8 /* SabonLTStd-Bold.otf in Resources */,
 				82CBFF1E19B6430D00B20EB8 /* 4_North_Easton_5000.jpg in Resources */,
@@ -1672,12 +1946,16 @@
 				82CBFEE419B6430D00B20EB8 /* map_apple-OFF@2x.png in Resources */,
 				82CB001B19B6430D00B20EB8 /* logo@2x.png in Resources */,
 				82CBFFA719B6430D00B20EB8 /* br-days-farm-road.png in Resources */,
+				8243AB7119C0EA8200FE9B58 /* 03-02-right-panel.png in Resources */,
+				8243AB5219C0E65600FE9B58 /* 02-02-right-panel@2x.png in Resources */,
 				82CBFF9619B6430D00B20EB8 /* br-cedar-grove@2x.png in Resources */,
+				8243AB6F19C0EA8200FE9B58 /* 03-05-transit-crush.png in Resources */,
 				82CBFFCD19B6430D00B20EB8 /* br-small-creek.png in Resources */,
 				82CBFF1719B6430D00B20EB8 /* 2_Canton_Station_3000.jpg in Resources */,
 				82CBFFB919B6430D00B20EB8 /* br-mill-brook.png in Resources */,
 				82EC836319B8EC0C00A76DE8 /* Overlay_summer@2x.png in Resources */,
 				8243AB1319C0DBC100FE9B58 /* overlay_trasit_S@2x.png in Resources */,
+				8243AB6D19C0EA8200FE9B58 /* 03-03-transit-no-improvements.png in Resources */,
 				82CBFC0119B63E5100B20EB8 /* photo-gallery-edit-caption.png in Resources */,
 				8243AB1819C0DBC100FE9B58 /* 01-03-right-panel.png in Resources */,
 				82CBFF1419B6430D00B20EB8 /* 1_Canton_Junction_3000.jpg in Resources */,
@@ -1689,10 +1967,14 @@
 				82CBFFB419B6430D00B20EB8 /* br-king-phillip@2x.png in Resources */,
 				82CBFFFE19B6430D00B20EB8 /* grfx_mapThumb@2x.png in Resources */,
 				82CB001919B6430D00B20EB8 /* info.png in Resources */,
+				8243AB4F19C0E65600FE9B58 /* 02-01-right-panel.png in Resources */,
+				8243AB6819C0EA8200FE9B58 /* 03-01-olympic lanes@2x.png in Resources */,
 				82CBFFA219B6430D00B20EB8 /* br-coggeshall-st@2x.png in Resources */,
 				82CBFFB119B6430D00B20EB8 /* br-I-195.png in Resources */,
 				82CBFFC919B6430D00B20EB8 /* br-sawyer-st.png in Resources */,
+				8243AB7719C0EA8200FE9B58 /* 03-05-right-panel.png in Resources */,
 				82CBFFD019B6430D00B20EB8 /* br-south-main-st-rt-79@2x.png in Resources */,
+				8243AB4A19C0E65600FE9B58 /* 02-04-2014_RegionalDailyPopulation@2x.png in Resources */,
 				82CBFF9819B6430D00B20EB8 /* br-cedar-swamp-river@2x.png in Resources */,
 				82CBFFA019B6430D00B20EB8 /* br-coal-yard-road@2x.png in Resources */,
 				82CBFF9019B6430D00B20EB8 /* br-bridge-st@2x.png in Resources */,
@@ -1705,9 +1987,11 @@
 				82CBFF1019B6430D00B20EB8 /* 13_Whales_Tooth_1000.jpg in Resources */,
 				82CB000B19B6430D00B20EB8 /* grfx_station_icon.png in Resources */,
 				82CBFF0819B6430D00B20EB8 /* 10_Fall_River_Depot_3000.jpg in Resources */,
+				8243AB8119C0F02C00FE9B58 /* 01B-panel-transit@2x.png in Resources */,
 				82CBFFAF19B6430D00B20EB8 /* br-howland-rd.png in Resources */,
 				82CBFFE019B6430D00B20EB8 /* br-western-express@2x.png in Resources */,
 				82CBFFBE19B6430D00B20EB8 /* br-nb-ramp@2x.png in Resources */,
+				8243AB3219C0E35A00FE9B58 /* map-key-population-density 2@2x.png in Resources */,
 				82CB000719B6430D00B20EB8 /* grfx_play_btn.png in Resources */,
 				82CBFFF619B6430D00B20EB8 /* grfx_culture_icon@2x.png in Resources */,
 				8243AB1A19C0DBC100FE9B58 /* 01-04-right-panel.png in Resources */,
@@ -1718,10 +2002,14 @@
 				82CB002A19B6430D00B20EB8 /* playButton_Hi.png in Resources */,
 				82CBFFF819B6430D00B20EB8 /* grfx_CultureResource@2x.png in Resources */,
 				82CBFFE119B6430D00B20EB8 /* br-western-expressway-ramps.png in Resources */,
+				8243AB9419C0F04500FE9B58 /* 03A-panel-highway-transit-growth.png in Resources */,
+				8243AB3419C0E35A00FE9B58 /* map-key-population-density@2x.png in Resources */,
 				8243AB0F19C0DBC100FE9B58 /* overlay_highway_S@2x.png in Resources */,
 				82CBFF8A19B6430D00B20EB8 /* br-anawan@2x.png in Resources */,
 				82CBFF9519B6430D00B20EB8 /* br-cedar-grove.png in Resources */,
+				8243AB3119C0E35A00FE9B58 /* map-key-population-density 2.png in Resources */,
 				82CBFFB219B6430D00B20EB8 /* br-I-195@2x.png in Resources */,
+				8243AB8A19C0F03800FE9B58 /* 02A-panel-massdot-improvements@2x.png in Resources */,
 				8243AAED19C0DB9000FE9B58 /* 00-base-regional-map@2x.png in Resources */,
 				8243AB1419C0DBC100FE9B58 /* 01-01-right-panel.png in Resources */,
 			);
