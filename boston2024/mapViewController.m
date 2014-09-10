@@ -808,7 +808,7 @@ static float kClosedMenu_W = 40.0;
         }
         case 3:
         {
-            [self setInfoText:@"Existing Transit Conditions During Academic Monthes"];
+            [self setInfoText:@"Existing Transit Conditions During Academic Months"];
             [self updateRightTextBox:@"01-03-right-panel"];
             overlayName = @"overlay_trasit_A";
             [self updateTopRightBox:@"map-key-transit-traffic"];
@@ -817,7 +817,7 @@ static float kClosedMenu_W = 40.0;
         }
         case 4:
         {
-            [self setInfoText:@"Existing Transit Conditions During Summer Monthes"];
+            [self setInfoText:@"Existing Transit Conditions During Summer Months"];
             [self updateRightTextBox:@"01-04-right-panel"];
             overlayName = @"overlay_trasit_S";
             [self updateTopRightBox:@"map-key-transit-traffic"];
@@ -981,8 +981,8 @@ static float kClosedMenu_W = 40.0;
         case 1:
         {
             [self setInfoText:@"Regional Intercept Strategy and Dedicated Olympic Lanes"];
-            [self updateRightTextBox:@"03-03-right-panel"];
-            overlayName = @"03-01-olympic lanes";
+            [self updateRightTextBox:@"03-01-right-panel"];
+            overlayName = @"overlay_OlymLane";
             [self updateTopRightBox:@"map-key-olympic-lanes"];
             [self updateOverlay];
             break;
@@ -991,7 +991,7 @@ static float kClosedMenu_W = 40.0;
         {
             [self setInfoText:@"Highway Transit Demand without Olympic Improvements"];
             [self updateRightTextBox:@"03-02-right-panel"];
-            overlayName = @"03-03-transit-no-improvements";
+            overlayName = @"overlay_Olyhighway_N";
             [self updateTopRightBox:@"map-key-vehicular-traffic"];
             [self updateOverlay];
             break;
@@ -1000,7 +1000,7 @@ static float kClosedMenu_W = 40.0;
         {
             [self setInfoText:@"Highway Transit Demand with Olympic Improvements"];
             [self updateRightTextBox:@"03-03-right-panel"];
-            overlayName = @"03-03-highway-with-improvements";
+            overlayName = @"overlay_Olyhighway_W";
             [self updateTopRightBox:@"map-key-vehicular-traffic"];
             [self updateOverlay];
             break;
@@ -1009,7 +1009,7 @@ static float kClosedMenu_W = 40.0;
         {
             [self setInfoText:@"Transit System Policy Demand with Olympic Improvements"];
             [self updateRightTextBox:@"03-04-right-panel"];
-            overlayName = @"overlay_highway_W";
+            overlayName = @"overlay_transit_P";
             [self updateTopRightBox:@"map-key-transit-traffic"];
             [self updateOverlay];
             break;
@@ -1018,7 +1018,7 @@ static float kClosedMenu_W = 40.0;
         {
             [self setInfoText:@"Transit System Crush Demand with Olympic Improvements"];
             [self updateRightTextBox:@"03-05-right-panel"];
-            overlayName = @"overlay_highway_W";
+            overlayName = @"overlay_transit_C";
             [self updateTopRightBox:@"map-key-transit-traffic"];
             [self updateOverlay];
             break;
@@ -1026,9 +1026,9 @@ static float kClosedMenu_W = 40.0;
         case 6:
         {
             [self setInfoText:@"Drive Times"];
-            [self updateRightTextBox:@"02-02-right-panel"];
-            overlayName = @"overlay_highway_W";
-            [self updateTopRightBox:@"map-key-vehicular-traffic"];
+            overlayName = @"00-bg-base-highways";
+            _uiiv_topRightBox.hidden = YES;
+            _uiiv_rightTextBox.hidden = YES;
             [self updateOverlay];
             break;
         }
@@ -1116,8 +1116,8 @@ static float kClosedMenu_W = 40.0;
         case 1:
         {
             [self setInfoText:@"Existing Metro Daily Population"];
-            [self updateRightTextBox:@"01-06-right-panel"];
-            overlayName = @"01-07-bg-2014_RegionalDailyPopulation";
+            [self updateRightTextBox:@"01-05-right-panel"];
+            overlayName = @"01-06-bg-2014_RegionalResidentialPopulation";
             [self updateOverlay];
             [self updateTopRightBox:@"map-key-population-density 2"];
             break;
@@ -1125,8 +1125,8 @@ static float kClosedMenu_W = 40.0;
         case 2:
         {
             [self setInfoText:@"Existing Metro Residential Population"];
-            [self updateRightTextBox:@"01-05-right-panel"];
-            overlayName = @"01-06-bg-2014_RegionalResidentialPopulation";
+            [self updateRightTextBox:@"01-06-right-panel"];
+            overlayName = @"01-07-bg-2014_RegionalDailyPopulation";
             [self updateOverlay];
             [self updateTopRightBox:@"map-key-population-density 2"];
             break;
@@ -1197,8 +1197,8 @@ static float kClosedMenu_W = 40.0;
         case 1:
         {
             [self setInfoText:@"Existing Metro Residential Population"];
-            [self updateRightTextBox:@"01-05-right-panel"];
-            overlayName = @"02-03-2014_RegionalResidentialPopulation";
+            [self updateRightTextBox:@"02-04-right-panel"];
+            overlayName = @"02-04-2014_RegionalDailyPopulation";
             [self updateOverlay];
             [self updateTopRightBox:@"map-key-population-density 2"];
             break;
@@ -1206,8 +1206,8 @@ static float kClosedMenu_W = 40.0;
         case 2:
         {
             [self setInfoText:@"Existing Metro Daily Population"];
-            [self updateRightTextBox:@"01-05-right-panel"];
-            overlayName = @"02-04-2014_RegionalDailyPopulation";
+            [self updateRightTextBox:@"02-03-right-panel"];
+            overlayName = @"02-03-2014_RegionalResidentialPopulation";
             [self updateOverlay];
             [self updateTopRightBox:@"map-key-population-density 2"];
             break;
