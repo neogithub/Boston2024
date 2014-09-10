@@ -18,8 +18,8 @@
 #import "embDirectionsHigh.h"
 #import "neoHotspotsView.h"
 #import <MediaPlayer/MediaPlayer.h>
-//#import "embAppDelegate.h"
-
+#import "xhWebViewController.h"
+#import "xhHelpViewController.h"
 #define METERS_PER_MILE 1609.344
 static int numOfCells = 4;
 static float container_W = 198.0;  // origial 186
@@ -51,10 +51,16 @@ static float kClosedMenu_W = 40.0;
 @property (nonatomic, strong) UIView                        *uiv_textBoxContainer;
 @property (nonatomic, strong) UILabel                       *uil_textYear;
 @property (nonatomic, strong) UILabel                       *uil_textInfo;
+@property (nonatomic, strong) UILabel                       *uil_textSection;
 
 @property (nonatomic, strong) UIView                        *uiv_toggleContainer;
 @property (nonatomic, strong) UIButton                      *uib_normalTime;
 @property (nonatomic, strong) UIButton                      *uib_summerTime;
+
+@property (nonatomic, strong) UIImageView                   *uiiv_rightTextBox;
+@property (nonatomic, strong) UIImageView                   *uiiv_topRightBox;
+
+@property (nonatomic, strong) xhHelpViewController          *helpVC;
 
 @property (nonatomic, strong) UILabel                       *uil_cellName;
 
@@ -163,7 +169,7 @@ static float kClosedMenu_W = 40.0;
     _dict_hotspots = [[NSDictionary alloc] initWithContentsOfFile:path];
     
 	// Do any additional setup after loading the view, typically from a nib.
-    _arr_cellName = [[NSMutableArray alloc] initWithObjects:@"Traffic", @"People", @"Current Use", nil];
+    _arr_cellName = [[NSMutableArray alloc] initWithObjects:@"Traffic", @"People", @"Statistics", nil];
     
     if (!_uis_zoomingMap) {
         [self initVC];
@@ -227,6 +233,8 @@ static float kClosedMenu_W = 40.0;
         [self initBottomMenu];
         [self initTextBox];
         [self initToggle];
+        [self initRightImageView];
+        [self initTopRightBox];
         _contentTableView = [[contentTableViewController alloc] init];
         
     }
@@ -242,6 +250,49 @@ static float kClosedMenu_W = 40.0;
     _uis_zoomingMap.imageToggle = NO;
 //    [_uis_zoomingMap.overView setImage:[UIImage imageNamed:@"grfx_alignmentOverlay.png"]];
     [self.view addSubview: _uis_zoomingMap];
+}
+
+#pragma mark - init top right box
+-(void)initTopRightBox
+{
+    _uiiv_topRightBox = [UIImageView new];
+    _uiiv_topRightBox.backgroundColor = [UIColor redColor];
+    [self.view insertSubview:_uiiv_topRightBox belowSubview:_uiv_bottomMenu];
+    _uiiv_topRightBox.hidden = YES;
+}
+
+-(void)updateTopRightBox:(NSString *)string
+{
+    NSString *path = [[NSBundle mainBundle] pathForResource:string ofType:@"png"];
+    UIImage *textImage = [UIImage imageWithContentsOfFile:path];
+    float width = textImage.size.width;
+    float height = textImage.size.height;
+    
+    _uiiv_topRightBox.frame = CGRectMake(1024 - width - 18, 10, width, height);
+    _uiiv_topRightBox.image = textImage;
+    _uiiv_topRightBox.hidden = NO;
+}
+
+#pragma mark - init left part image view
+-(void)initRightImageView
+{
+    _uiiv_rightTextBox = [UIImageView new];
+    _uiiv_rightTextBox.frame = CGRectZero;
+    _uiiv_rightTextBox.backgroundColor = [UIColor redColor];
+    [self.view insertSubview:_uiiv_rightTextBox belowSubview:_uiv_bottomMenu];
+    _uiiv_rightTextBox.hidden = YES;
+}
+
+-(void)updateRightTextBox:(NSString *)string
+{
+    NSString *path = [[NSBundle mainBundle] pathForResource:string ofType:@"png"];
+    UIImage *textImage = [UIImage imageWithContentsOfFile:path];
+    float width = textImage.size.width;
+    float height = textImage.size.height;
+    
+    _uiiv_rightTextBox.frame = CGRectMake(1024 - width, (768 - height)/2, width, height);
+    _uiiv_rightTextBox.image = textImage;
+    _uiiv_rightTextBox.hidden = NO;
 }
 
 #pragma mark - init collapse view container
@@ -384,9 +435,11 @@ static float kClosedMenu_W = 40.0;
 {
     for (UIButton *tmp in [_uiv_bottomMenu subviews] ) {
         tmp.backgroundColor = [UIColor blackColor];
+        tmp.userInteractionEnabled = YES;
     }
     UIButton *tappedBtn = sender;
     tappedBtn.backgroundColor = [UIColor colorWithRed:0.0/255.0 green:174.0/255.0 blue:255.0/255.0 alpha:1.0];
+    tappedBtn.userInteractionEnabled = NO;
     
     [_uiv_tracksDot removeFromSuperview];
     [_uiv_directionDot removeFromSuperview];
@@ -396,24 +449,26 @@ static float kClosedMenu_W = 40.0;
 	[self directionViewCleanUp];
     [_uis_zoomingMap.overView setImage:nil];
     _uiv_toggleContainer.hidden = YES;
-    
+    _uiv_textBoxContainer.hidden = YES;
+    _uiiv_rightTextBox.hidden = YES;
+    _uiiv_topRightBox.hidden = YES;
     [self updateMap:(int)tappedBtn.tag];
 }
 
 -(void)updateMap:(int)index
 {
+    _uiv_closedMenuContainer.transform = CGAffineTransformIdentity;
+    _uiv_collapseContainer.transform = CGAffineTransformIdentity;
     switch (index) {
         case 10:{
             sectionIndex = 1;
-            [self removeClosedMenuItem];
-            [self initClosedMenu];
             [_arr_tapHotspots removeAllObjects];
             [_uis_zoomingMap resetScroll];
             [theCollapseClick closeCollapseClickCellsWithIndexes:_arr_cellName animated:NO];
             [theCollapseClick closeCellResize];
             [_arr_cellName removeAllObjects];
-            _arr_cellName = [[NSMutableArray alloc] initWithObjects:@"Traffic", @"People", @"Current Use", nil];
-            theCollapseClick.CollapseClickDelegate = self;
+            _arr_cellName = [[NSMutableArray alloc] initWithObjects:@"Traffic", @"People", @"Statistics", nil];
+//            theCollapseClick.CollapseClickDelegate = self;
             [theCollapseClick reloadCollapseClick];
             [_uis_zoomingMap.blurView setImage: [UIImage imageNamed:@"mapBG.jpg"]];
             [self setYearText:@"2014"];
@@ -422,15 +477,13 @@ static float kClosedMenu_W = 40.0;
         }
         case 11:{
             sectionIndex = 2;
-            [self removeClosedMenuItem];
-            [self initClosedMenu];
             [_arr_tapHotspots removeAllObjects];
             [_uis_zoomingMap resetScroll];
             [theCollapseClick closeCollapseClickCellsWithIndexes:_arr_cellName animated:NO];
             [theCollapseClick closeCellResize];
             [_arr_cellName removeAllObjects];
-            _arr_cellName = [[NSMutableArray alloc] initWithObjects:@"Traffic", @"People", @"Current Use", nil];
-            theCollapseClick.CollapseClickDelegate = self;
+            _arr_cellName = [[NSMutableArray alloc] initWithObjects:@"Traffic", @"People", @"Statistics", nil];
+//            theCollapseClick.CollapseClickDelegate = self;
             [theCollapseClick reloadCollapseClick];
             [_uis_zoomingMap.blurView setImage: [UIImage imageNamed:@"boston_zoomed.jpg"]];
             [self setYearText:@"2024"];
@@ -439,15 +492,13 @@ static float kClosedMenu_W = 40.0;
         }
         case 12:{
             sectionIndex = 3;
-            [self removeClosedMenuItem];
-            [self initClosedMenu];
             [_arr_tapHotspots removeAllObjects];
             [_uis_zoomingMap resetScroll];
             [theCollapseClick closeCollapseClickCellsWithIndexes:_arr_cellName animated:NO];
             [theCollapseClick closeCellResize];
             [_arr_cellName removeAllObjects];
-            _arr_cellName = [[NSMutableArray alloc] initWithObjects:@"Traffic", @"People", @"Current Use", nil];
-            theCollapseClick.CollapseClickDelegate = self;
+            _arr_cellName = [[NSMutableArray alloc] initWithObjects:@"Traffic", @"Current Use", nil];
+//            theCollapseClick.CollapseClickDelegate = self;
             [theCollapseClick reloadCollapseClick];
             [_uis_zoomingMap.blurView setImage: [UIImage imageNamed:@"boston_zoomed.jpg"]];
             [self setYearText:@"2024"];
@@ -463,12 +514,20 @@ static float kClosedMenu_W = 40.0;
 -(void)initTextBox
 {
     _uiv_textBoxContainer = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 600, 85)];
-//    _uiv_textBoxContainer.backgroundColor = [UIColor redColor];
+    _uiv_textBoxContainer.clipsToBounds = YES;
     [self.view insertSubview:_uiv_textBoxContainer aboveSubview:_uiv_collapseContainer];
     
     [self setYearText:@"2014"];
     
     [self setInfoText:@"Typical day Boston during peak hours"];
+    
+    [self setSectionText:@"Traffic"];
+    
+    UIView *uiv_whiteBar = [[UIView alloc] initWithFrame:CGRectMake(90.0, 10.0, 1.0, _uiv_textBoxContainer.frame.size.height - 20)];
+    uiv_whiteBar.backgroundColor = [UIColor whiteColor];
+    uiv_whiteBar.alpha = 0.5;
+    [_uiv_textBoxContainer addSubview: uiv_whiteBar];
+    _uiv_textBoxContainer.hidden = YES;
 }
 
 -(void)setYearText:(NSString *)year
@@ -477,12 +536,12 @@ static float kClosedMenu_W = 40.0;
         [_uil_textYear removeFromSuperview];
         _uil_textYear = nil;
     }
-    _uil_textYear = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 100, 85)];
+    _uil_textYear = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 5.0, 80, 55)];
     [_uil_textYear setText:year];
     [_uil_textYear setBackgroundColor:[UIColor clearColor]];
     [_uil_textYear setTextColor:[UIColor whiteColor]];
-    [_uil_textYear setFont: [UIFont boldSystemFontOfSize:25]];
-    [_uil_textYear setTextAlignment:NSTextAlignmentCenter];
+    [_uil_textYear setFont: [UIFont boldSystemFontOfSize:33]];
+    [_uil_textYear setTextAlignment:NSTextAlignmentRight];
     [_uiv_textBoxContainer addSubview: _uil_textYear];
 }
 
@@ -497,10 +556,10 @@ static float kClosedMenu_W = 40.0;
     CGFloat str_width = [[[NSAttributedString alloc] initWithString:string attributes:attributes1] size].width;
     NSLog(@"The string width is %f", str_width);
     CGSize constraint;
-    if (str_width < 400) {
+    if (str_width < 300) {
         constraint = CGSizeMake(str_width,85);
     }else {
-        constraint = CGSizeMake(400,85);
+        constraint = CGSizeMake(300,85);
     }
     
     NSDictionary *attributes = @{NSFontAttributeName: font};
@@ -520,6 +579,20 @@ static float kClosedMenu_W = 40.0;
     CGRect frame = CGRectMake(0.0, 0.0, _uil_textInfo.frame.size.width + _uil_textYear.frame.size.width, 85);
     _uiv_textBoxContainer.frame = frame;
     _uiv_textBoxContainer.backgroundColor = [UIColor colorWithRed:6.0/255.0 green:154.0/255.0 blue:216.0/255.0 alpha:1.0];
+}
+
+-(void)setSectionText:(NSString *)string
+{
+    if (_uil_textSection) {
+        [_uil_textSection removeFromSuperview];
+        _uil_textSection = nil;
+    }
+    _uil_textSection = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 45.0, 80.0, 30.0)];
+    [_uil_textSection setText:string];
+    [_uil_textSection setTextColor:[UIColor whiteColor]];
+    [_uil_textSection setFont:[UIFont boldSystemFontOfSize:20]];
+    [_uil_textSection setTextAlignment:NSTextAlignmentRight];
+    [_uiv_textBoxContainer addSubview: _uil_textSection];
 }
 
 -(void)initToggle
@@ -586,7 +659,6 @@ static float kClosedMenu_W = 40.0;
 
 -(void)updateOverlay
 {
-    _uiv_toggleContainer.hidden = NO;
     NSString *path = [[NSBundle mainBundle] pathForResource:overlayName ofType:@"png"];
     [_uis_zoomingMap.overView setImage:[UIImage imageWithContentsOfFile:path]];
 }
@@ -599,11 +671,12 @@ static float kClosedMenu_W = 40.0;
     [_uib_access setImage:[UIImage imageNamed:@"grfx_qanda.png"] forState:UIControlStateNormal];
     [_uib_access addTarget:self action:@selector(accessTapped) forControlEvents:UIControlEventTouchDown];
     _uib_access.backgroundColor= [UIColor redColor];
-//    [self.view addSubview:_uib_access];
+    [self.view addSubview:_uib_access];
 }
 
 -(void)accessTapped
 {
+/* THIS PART LOAD THE FGALLERY!!!
     NSArray *imageArray = [[NSArray alloc] initWithObjects:@"10_Fall_River_Depot_1000.jpg", @"11_Battleship_Cove_5000.jpg", nil];
     localImages = imageArray;
     localGallery = [[FGalleryViewController alloc] initWithPhotoSource:self];
@@ -613,6 +686,17 @@ static float kClosedMenu_W = 40.0;
     [self addChildViewController: _navigationController];
     [_navigationController setNavigationBarHidden:YES];
     [self.view addSubview: _navigationController.view];
+ */
+    
+    NSString *theUrl = @"http://www.neoscape.com";
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+	xhWebViewController *vc = (xhWebViewController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"xhWebViewController"];
+	[vc socialButton:theUrl];
+	vc.title = theUrl;
+    vc.modalPresentationStyle = UIModalPresentationCurrentContext;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"hideNaviBtn" object:self];
+	[self presentViewController:vc animated:YES completion:nil];
+    
 }
 
 #pragma mark - init collapse view's content views
@@ -648,28 +732,36 @@ static float kClosedMenu_W = 40.0;
     [uib_traffic1 setTitle:@"Highway Academic" forState:UIControlStateNormal];
     uib_traffic1.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_traffic1.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    uib_traffic1.contentEdgeInsets = UIEdgeInsetsMake(0, 50, 0, 0);
+    uib_traffic1.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
+    uib_traffic1.tag = 1;
+    [uib_traffic1 addTarget:self action:@selector(tap2014TrafficBtns:) forControlEvents:UIControlEventTouchUpInside];
     
     uib_traffic2.frame = CGRectMake(0.0, 30.0, container_W, 30);
     uib_traffic2.backgroundColor = [UIColor clearColor];
     [uib_traffic2 setTitle:@"Highway Summer" forState:UIControlStateNormal];
     uib_traffic2.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_traffic2.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    uib_traffic2.contentEdgeInsets = UIEdgeInsetsMake(0, 50, 0, 0);
+    uib_traffic2.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
+    uib_traffic2.tag = 2;
+    [uib_traffic2 addTarget:self action:@selector(tap2014TrafficBtns:) forControlEvents:UIControlEventTouchUpInside];
     
     uib_traffic3.frame = CGRectMake(0.0, 60.0, container_W, 30);
     uib_traffic3.backgroundColor = [UIColor clearColor];
     [uib_traffic3 setTitle:@"Transit Policy Academic" forState:UIControlStateNormal];
     uib_traffic3.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_traffic3.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    uib_traffic3.contentEdgeInsets = UIEdgeInsetsMake(0, 50, 0, 0);
+    uib_traffic3.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
+    uib_traffic3.tag = 3;
+    [uib_traffic3 addTarget:self action:@selector(tap2014TrafficBtns:) forControlEvents:UIControlEventTouchUpInside];
     
     uib_traffic4.frame = CGRectMake(0.0, 90.0, container_W, 30);
     uib_traffic4.backgroundColor = [UIColor clearColor];
     [uib_traffic4 setTitle:@"Transit Policy Summer" forState:UIControlStateNormal];
     uib_traffic4.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_traffic4.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    uib_traffic4.contentEdgeInsets = UIEdgeInsetsMake(0, 50, 0, 0);
+    uib_traffic4.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
+    uib_traffic4.tag = 4;
+    [uib_traffic4 addTarget:self action:@selector(tap2014TrafficBtns:) forControlEvents:UIControlEventTouchUpInside];
     
     [uiv_traffic1 addSubview: uib_traffic1];
     [uiv_traffic1 addSubview: uib_traffic2];
@@ -681,98 +773,244 @@ static float kClosedMenu_W = 40.0;
     return uiv_traffic1;
 }
 
+-(void)tap2014TrafficBtns:(id)sender
+{
+    
+    UIButton *tappedBtn = sender;
+    int index = (int)tappedBtn.tag;
+    
+    switch (index) {
+        case 1:
+        {
+            [self setInfoText:@"Existing Highway Conditions During the Academic Year"];
+            [self updateRightTextBox:@"map_apple-OFF"];
+            break;
+        }
+        case 2:
+        {
+            [self setInfoText:@"Existing Highway Conditions During Summer Months"];
+            [self updateRightTextBox:@"map_apple-OFF"];
+            break;
+        }
+        case 3:
+        {
+            [self setInfoText:@"Existing Transit Conditions During Academic Monthes"];
+            [self updateRightTextBox:@"map_apple-OFF"];
+            break;
+        }
+        case 4:
+        {
+            [self setInfoText:@"Existing Transit Conditions During Summer Monthes"];
+            [self updateRightTextBox:@"map_apple-OFF"];
+            break;
+        }
+        default:
+            break;
+    }
+    _uiv_textBoxContainer.hidden = NO;
+}
+
 -(UIView *)create2024Traffic
 {
-    UIView *uiv_traffic2 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, container_W, 90)];
+    UIView *uiv_traffic2 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, container_W, 60)];
     uiv_traffic2.backgroundColor = [UIColor colorWithRed:38.0/255.0 green:36.0/255.0 blue:33.0/255.0 alpha:1.0];
     
     UIButton *uib_traffic1 = [UIButton buttonWithType:UIButtonTypeCustom];
     UIButton *uib_traffic2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIButton *uib_traffic3 = [UIButton buttonWithType:UIButtonTypeCustom];
     
     uib_traffic1.frame = CGRectMake(0.0, 0.0, container_W, 30);
     uib_traffic1.backgroundColor = [UIColor clearColor];
-    [uib_traffic1 setTitle:@"Highway (NB)" forState:UIControlStateNormal];
+    [uib_traffic1 setTitle:@"Highway No Improvements" forState:UIControlStateNormal];
     uib_traffic1.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_traffic1.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    uib_traffic1.contentEdgeInsets = UIEdgeInsetsMake(0, 50, 0, 0);
+    uib_traffic1.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
+    uib_traffic1.tag = 1;
+    [uib_traffic1 addTarget:self action:@selector(tap2024TrafficBtns:) forControlEvents:UIControlEventTouchUpInside];
     
     uib_traffic2.frame = CGRectMake(0.0, 30.0, container_W, 30);
     uib_traffic2.backgroundColor = [UIColor clearColor];
-    [uib_traffic2 setTitle:@"Highway Summer (NB)" forState:UIControlStateNormal];
+    [uib_traffic2 setTitle:@"Highway w/ Improvements" forState:UIControlStateNormal];
     uib_traffic2.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_traffic2.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    uib_traffic2.contentEdgeInsets = UIEdgeInsetsMake(0, 50, 0, 0);
-    
-    uib_traffic3.frame = CGRectMake(0.0, 60.0, container_W, 30);
-    uib_traffic3.backgroundColor = [UIColor clearColor];
-    [uib_traffic3 setTitle:@"Hightway (Improvement)" forState:UIControlStateNormal];
-    uib_traffic3.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
-    uib_traffic3.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    uib_traffic3.contentEdgeInsets = UIEdgeInsetsMake(0, 50, 0, 0);
+    uib_traffic2.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
+    uib_traffic2.tag = 2;
+    [uib_traffic2 addTarget:self action:@selector(tap2024TrafficBtns:) forControlEvents:UIControlEventTouchUpInside];
     
     [uiv_traffic2 addSubview: uib_traffic1];
     [uiv_traffic2 addSubview: uib_traffic2];
-    [uiv_traffic2 addSubview: uib_traffic3];
     UIView *uiv_sideBar = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 5.0, uiv_traffic2.frame.size.height)];
     [uiv_sideBar setBackgroundColor:[UIColor colorWithRed:31.0/255.0 green:162.0/255.0 blue:197.0/255.0 alpha:1.0]];
     [uiv_traffic2 addSubview: uiv_sideBar];
     return uiv_traffic2;
 }
 
+-(void)tap2024TrafficBtns:(id)sender
+{
+    UIButton *tappedBtn = sender;
+    int index = (int)tappedBtn.tag;
+    
+    switch (index) {
+        case 1:
+        {
+            [self setInfoText:@"Existing Highway Conditions During the Academic Year"];
+            [self updateRightTextBox:@""];
+            break;
+        }
+        case 2:
+        {
+            [self setInfoText:@"Highway Conditions with Improvement"];
+            [self updateRightTextBox:@""];
+            break;
+        }
+        default:
+            break;
+    }
+    _uiv_textBoxContainer.hidden = NO;
+}
+
 -(UIView *)createOlymTraffic
 {
-    UIView *uiv_traffic3 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, container_W, 120)];
+    UIView *uiv_traffic3 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, container_W, 180)];
     uiv_traffic3.backgroundColor = [UIColor colorWithRed:38.0/255.0 green:36.0/255.0 blue:33.0/255.0 alpha:1.0];
     
+    UIButton *uib_trafficLane = [UIButton buttonWithType:UIButtonTypeCustom];
     UIButton *uib_traffic1 = [UIButton buttonWithType:UIButtonTypeCustom];
     UIButton *uib_traffic2 = [UIButton buttonWithType:UIButtonTypeCustom];
     UIButton *uib_traffic3 = [UIButton buttonWithType:UIButtonTypeCustom];
     UIButton *uib_traffic4 = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton *uib_trafficTime = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    uib_traffic1.frame = CGRectMake(0.0, 0.0, container_W, 30);
+    uib_trafficLane.frame = CGRectMake(0.0, 0.0, container_W, 30);
+    uib_trafficLane.backgroundColor = [UIColor clearColor];
+    [uib_trafficLane setTitle:@"Olympic Lane" forState:UIControlStateNormal];
+    uib_trafficLane.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
+    uib_trafficLane.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    uib_trafficLane.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
+    uib_trafficLane.tag = 1;
+    [uib_trafficLane addTarget:self action:@selector(tapOlymTrafficBtns:) forControlEvents:UIControlEventTouchUpInside];
+    
+    uib_traffic1.frame = CGRectMake(0.0, 30.0, container_W, 30);
     uib_traffic1.backgroundColor = [UIColor clearColor];
     [uib_traffic1 setTitle:@"Highway (No Improvements)" forState:UIControlStateNormal];
     uib_traffic1.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_traffic1.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    uib_traffic1.contentEdgeInsets = UIEdgeInsetsMake(0, 50, 0, 0);
+    uib_traffic1.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
+    uib_traffic1.tag = 2;
+    [uib_traffic1 addTarget:self action:@selector(tapOlymTrafficBtns:) forControlEvents:UIControlEventTouchUpInside];
     
-    uib_traffic2.frame = CGRectMake(0.0, 30.0, container_W, 30);
+    uib_traffic2.frame = CGRectMake(0.0, 60.0, container_W, 30);
     uib_traffic2.backgroundColor = [UIColor clearColor];
-    [uib_traffic2 setTitle:@"Highway (Improve. Olympics)" forState:UIControlStateNormal];
+    [uib_traffic2 setTitle:@"Highway (Improvements)" forState:UIControlStateNormal];
     uib_traffic2.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_traffic2.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    uib_traffic2.contentEdgeInsets = UIEdgeInsetsMake(0, 50, 0, 0);
+    uib_traffic2.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
+    uib_traffic2.tag = 3;
+    [uib_traffic2 addTarget:self action:@selector(tapOlymTrafficBtns:) forControlEvents:UIControlEventTouchUpInside];
     
-    uib_traffic3.frame = CGRectMake(0.0, 60.0, container_W, 30);
+    uib_traffic3.frame = CGRectMake(0.0, 90.0, container_W, 30);
     uib_traffic3.backgroundColor = [UIColor clearColor];
-    [uib_traffic3 setTitle:@"Transit Policy" forState:UIControlStateNormal];
+    [uib_traffic3 setTitle:@"Transit (Policy)" forState:UIControlStateNormal];
     uib_traffic3.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_traffic3.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    uib_traffic3.contentEdgeInsets = UIEdgeInsetsMake(0, 50, 0, 0);
+    uib_traffic3.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
+    uib_traffic3.tag = 4;
+    [uib_traffic3 addTarget:self action:@selector(tapOlymTrafficBtns:) forControlEvents:UIControlEventTouchUpInside];
     
-    uib_traffic4.frame = CGRectMake(0.0, 90.0, container_W, 30);
+    uib_traffic4.frame = CGRectMake(0.0, 120.0, container_W, 30);
     uib_traffic4.backgroundColor = [UIColor clearColor];
-    [uib_traffic4 setTitle:@"Transit Crush" forState:UIControlStateNormal];
+    [uib_traffic4 setTitle:@"Transit (Crush)" forState:UIControlStateNormal];
     uib_traffic4.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_traffic4.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    uib_traffic4.contentEdgeInsets = UIEdgeInsetsMake(0, 50, 0, 0);
+    uib_traffic4.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
+    uib_traffic4.tag = 5;
+    [uib_traffic4 addTarget:self action:@selector(tapOlymTrafficBtns:) forControlEvents:UIControlEventTouchUpInside];
     
+    uib_trafficTime.frame = CGRectMake(0.0, 150.0, container_W, 30);
+    uib_trafficTime.backgroundColor = [UIColor clearColor];
+    [uib_trafficTime setTitle:@"Drive Times" forState:UIControlStateNormal];
+    uib_trafficTime.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
+    uib_trafficTime.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    uib_trafficTime.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
+    uib_trafficTime.tag = 6;
+    [uib_trafficTime addTarget:self action:@selector(tapOlymTrafficBtns:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [uiv_traffic3 addSubview: uib_trafficLane];
     [uiv_traffic3 addSubview: uib_traffic1];
     [uiv_traffic3 addSubview: uib_traffic2];
     [uiv_traffic3 addSubview: uib_traffic3];
     [uiv_traffic3 addSubview: uib_traffic4];
+    [uiv_traffic3 addSubview: uib_trafficTime];
     UIView *uiv_sideBar = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 5.0, uiv_traffic3.frame.size.height)];
     [uiv_sideBar setBackgroundColor:[UIColor colorWithRed:31.0/255.0 green:162.0/255.0 blue:197.0/255.0 alpha:1.0]];
     [uiv_traffic3 addSubview: uiv_sideBar];
     return uiv_traffic3;
 }
 
+-(void)tapOlymTrafficBtns:(id)sender
+{
+    UIButton *tappedBtn = sender;
+    int index = (int)tappedBtn.tag;
+    
+    switch (index) {
+        case 1:
+        {
+            [self setInfoText:@"Regional Intercept Strategy and Dedicated Olympic Lanes"];
+            [self updateRightTextBox:@""];
+            break;
+        }
+        case 2:
+        {
+            [self setInfoText:@"Highway Transit Demand without Olympic Improvements"];
+            [self updateRightTextBox:@""];
+            break;
+        }
+        case 3:
+        {
+            [self setInfoText:@"Highway Transit Demand with Olympic Improvements"];
+            [self updateRightTextBox:@""];
+            break;
+        }
+        case 4:
+        {
+            [self setInfoText:@"Transit System Policy Demand with Olympic Improvements"];
+            [self updateRightTextBox:@""];
+            break;
+        }
+        case 5:
+        {
+            [self setInfoText:@"Transit System Crush Demand with Olympic Improvements"];
+            [self updateRightTextBox:@""];
+            break;
+        }
+        case 6:
+        {
+            [self setInfoText:@"Drive Times"];
+            [self updateRightTextBox:@""];
+            break;
+        }
+        default:
+            break;
+    }
+    _uiv_textBoxContainer.hidden = NO;
+}
+
 #pragma mark - Create People view
 -(UIView *)createPeopleView
 {
-    UIView *_uiv_people = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, container_W, 120)];
-    _uiv_people.backgroundColor = [UIColor colorWithRed:38.0/255.0 green:36.0/255.0 blue:33.0/255.0 alpha:1.0];
+    UIView *_uiv_people;
+    if (sectionIndex == 1) {
+        _uiv_people = [self create2014People];
+    }
+    if (sectionIndex == 2) {
+        _uiv_people = [self create2024People];
+    }
+    return _uiv_people;
+}
+
+-(UIView *)create2014People
+{
+    UIView *uiv_people1 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, container_W, 120)];
+    uiv_people1.backgroundColor = [UIColor colorWithRed:38.0/255.0 green:36.0/255.0 blue:33.0/255.0 alpha:1.0];
     
     UIButton *uib_people1 = [UIButton buttonWithType:UIButtonTypeCustom];
     UIButton *uib_people2 = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -784,37 +1022,138 @@ static float kClosedMenu_W = 40.0;
     [uib_people1 setTitle:@"Metro Daily" forState:UIControlStateNormal];
     uib_people1.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_people1.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    uib_people1.contentEdgeInsets = UIEdgeInsetsMake(0, 50, 0, 0);
+    uib_people1.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
+    uib_people1.tag = 1;
+    [uib_people1 addTarget:self action:@selector(tap2014PeopleBtns:) forControlEvents:UIControlEventTouchUpInside];
     
     uib_people2.frame = CGRectMake(0.0, 30.0, container_W, 30);
     uib_people2.backgroundColor = [UIColor clearColor];
     [uib_people2 setTitle:@"Metro Residential" forState:UIControlStateNormal];
     uib_people2.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_people2.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    uib_people2.contentEdgeInsets = UIEdgeInsetsMake(0, 50, 0, 0);
+    uib_people2.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
+    uib_people2.tag = 2;
+    [uib_people2 addTarget:self action:@selector(tap2014PeopleBtns:) forControlEvents:UIControlEventTouchUpInside];
     
     uib_people3.frame = CGRectMake(0.0, 60.0, container_W, 30);
     uib_people3.backgroundColor = [UIColor clearColor];
     [uib_people3 setTitle:@"City Daily" forState:UIControlStateNormal];
     uib_people3.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_people3.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    uib_people3.contentEdgeInsets = UIEdgeInsetsMake(0, 50, 0, 0);
+    uib_people3.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
+    uib_people3.tag = 3;
+    [uib_people3 addTarget:self action:@selector(tap2014PeopleBtns:) forControlEvents:UIControlEventTouchUpInside];
     
     uib_people4.frame = CGRectMake(0.0, 90.0, container_W, 30);
     uib_people4.backgroundColor = [UIColor clearColor];
     [uib_people4 setTitle:@"City Residential" forState:UIControlStateNormal];
     uib_people4.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_people4.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    uib_people4.contentEdgeInsets = UIEdgeInsetsMake(0, 50, 0, 0);
+    uib_people4.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
+    uib_people4.tag = 4;
+    [uib_people4 addTarget:self action:@selector(tap2014PeopleBtns:) forControlEvents:UIControlEventTouchUpInside];
     
-    [_uiv_people addSubview: uib_people1];
-    [_uiv_people addSubview: uib_people2];
-    [_uiv_people addSubview: uib_people3];
-    [_uiv_people addSubview: uib_people4];
-    UIView *uiv_sideBar = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 5.0, _uiv_people.frame.size.height)];
+    [uiv_people1 addSubview: uib_people1];
+    [uiv_people1 addSubview: uib_people2];
+    [uiv_people1 addSubview: uib_people3];
+    [uiv_people1 addSubview: uib_people4];
+    UIView *uiv_sideBar = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 5.0, uiv_people1.frame.size.height)];
     [uiv_sideBar setBackgroundColor:[UIColor colorWithRed:31.0/255.0 green:162.0/255.0 blue:197.0/255.0 alpha:1.0]];
-    [_uiv_people addSubview: uiv_sideBar];
-    return _uiv_people;
+    [uiv_people1 addSubview: uiv_sideBar];
+    return uiv_people1;
+}
+
+-(void)tap2014PeopleBtns:(id)sender
+{
+    UIButton *tappedBtn = sender;
+    int index = (int)tappedBtn.tag;
+    
+    switch (index) {
+        case 1:
+        {
+            [self setInfoText:@"Existing Metro Daily Population"];
+            [self updateRightTextBox:@"map_apple-OFF"];
+            break;
+        }
+        case 2:
+        {
+            [self setInfoText:@"Existing Metro Residential Population"];
+            [self updateRightTextBox:@"map_apple-OFF"];
+            break;
+        }
+        case 3:
+        {
+            [self setInfoText:@"Existing City Daily Population"];
+            [self updateRightTextBox:@"map_apple-OFF"];
+            break;
+        }
+        case 4:
+        {
+            [self setInfoText:@"Existing City Residential Population"];
+            [self updateRightTextBox:@"map_apple-OFF"];
+            break;
+        }
+        default:
+            break;
+    }
+    _uiv_textBoxContainer.hidden = NO;
+}
+
+-(UIView *)create2024People
+{
+    UIView *uiv_people2 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, container_W, 60)];
+    uiv_people2.backgroundColor = [UIColor colorWithRed:38.0/255.0 green:36.0/255.0 blue:33.0/255.0 alpha:1.0];
+    
+    UIButton *uib_people1 = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton *uib_people2 = [UIButton buttonWithType:UIButtonTypeCustom];
+    uib_people1.frame = CGRectMake(0.0, 0.0, container_W, 30);
+    uib_people1.backgroundColor = [UIColor clearColor];
+    [uib_people1 setTitle:@"Metro Daily" forState:UIControlStateNormal];
+    uib_people1.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
+    uib_people1.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    uib_people1.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
+    uib_people1.tag = 1;
+    [uib_people1 addTarget:self action:@selector(tap2024PeopleBtns:) forControlEvents:UIControlEventTouchUpInside];
+    
+    uib_people2.frame = CGRectMake(0.0, 30.0, container_W, 30);
+    uib_people2.backgroundColor = [UIColor clearColor];
+    [uib_people2 setTitle:@"Metro Residential" forState:UIControlStateNormal];
+    uib_people2.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
+    uib_people2.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    uib_people2.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
+    uib_people2.tag = 2;
+    [uib_people2 addTarget:self action:@selector(tap2024PeopleBtns:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [uiv_people2 addSubview: uib_people1];
+    [uiv_people2 addSubview: uib_people2];
+    UIView *uiv_sideBar = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 5.0, uiv_people2.frame.size.height)];
+    [uiv_sideBar setBackgroundColor:[UIColor colorWithRed:31.0/255.0 green:162.0/255.0 blue:197.0/255.0 alpha:1.0]];
+    [uiv_people2 addSubview: uiv_sideBar];
+    return uiv_people2;
+}
+
+-(void)tap2024PeopleBtns:(id)sender
+{
+    UIButton *tappedBtn = sender;
+    int index = (int)tappedBtn.tag;
+    
+    switch (index) {
+        case 1:
+        {
+            [self setInfoText:@"Existing Metro Residential Population"];
+            [self updateRightTextBox:@""];
+            break;
+        }
+        case 2:
+        {
+            [self setInfoText:@"Existing Metro Daily Population"];
+            [self updateRightTextBox:@""];
+            break;
+        }
+        default:
+            break;
+    }
+    _uiv_textBoxContainer.hidden = NO;
 }
 
 -(void)initTrackContentView {
@@ -1156,10 +1495,10 @@ static float kClosedMenu_W = 40.0;
 -(void)openMenu
 {
     [UIView animateWithDuration:0.33 animations:^{
-        _uiv_closedMenuContainer.transform = CGAffineTransformMakeTranslation(0, 0);
+        _uiv_closedMenuContainer.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished){
         [UIView animateWithDuration:0.33 animations:^{
-            _uiv_collapseContainer.transform = CGAffineTransformMakeTranslation(0, 0);
+            _uiv_collapseContainer.transform = CGAffineTransformIdentity;
         }];
     }];
 }
@@ -1193,13 +1532,18 @@ static float kClosedMenu_W = 40.0;
 -(UIImage *)iconForTitle:(int)index {
     switch (index) {
 
-        case 6:{
-            UIImage *icon5 = [UIImage imageNamed:@"grfx_culture_icon.png"];
+        case 0:{
+            UIImage *icon5 = [UIImage imageNamed:@"icon_traffic.png"];
             return icon5;
             break;
         }
-        case 7:{
-            UIImage *icon6 = [UIImage imageNamed:@"grfx_wetland_icon.png"];
+        case 1:{
+            UIImage *icon6 = [UIImage imageNamed:@"icon_people.png"];
+            return icon6;
+            break;
+        }
+        case 2:{
+            UIImage *icon6 = [UIImage imageNamed:@"icon_statistics.png"];
             return icon6;
             break;
         }
@@ -1294,7 +1638,7 @@ static float kClosedMenu_W = 40.0;
 -(void)didClickCollapseClickCellAtIndex:(int)index isNowOpen:(BOOL)open;
 {
 
-    _uis_zoomingMap.blurView.image = [UIImage imageNamed:@"mapBG.jpg"];
+//    _uis_zoomingMap.blurView.image = [UIImage imageNamed:@"mapBG.jpg"];
     for (UIView *tmp in _arr_hotsopts) {
         [tmp removeFromSuperview];
     }
@@ -1310,6 +1654,9 @@ static float kClosedMenu_W = 40.0;
 	[self directionViewCleanUp];
     [_uis_zoomingMap.overView setImage:nil];
     _uiv_toggleContainer.hidden = YES;
+    _uiv_textBoxContainer.hidden = YES;
+    _uiiv_rightTextBox.hidden = YES;
+    _uiiv_topRightBox.hidden = YES;
     
     for (UIView *tmp in _arr_tapHotspots) {
         [tmp removeFromSuperview];
@@ -1339,148 +1686,58 @@ static float kClosedMenu_W = 40.0;
         _uil_cellName.textColor = [self colorForTitleSideBarAtIndex:index];
         
             switch (index) {
-                case 0: // STATIONS
+                case 0: // Traffic
                 {
-                    if (sectionIndex == 1) {
-                        overlayName = @"2014_Overlay";
-                    } else {
-                        overlayName = @"2024_Overlay";
-                    }
-                    _uib_normalTime.userInteractionEnabled = NO;
-                    _uib_normalTime.selected = YES;
-                    _uib_summerTime.userInteractionEnabled = YES;
-                    _uib_summerTime.selected = NO;
-                    [self updateOverlay];
+                    [self setSectionText: test];
+//                    [self updateOverlay];
                     break;
                 }
-                case 1: // STATIONS
+                case 1: // People / Statistics(Olympic)
                 {
-                    if (_uis_zoomingMap.scrollView.zoomScale > 1.0) {
-                        [_uis_zoomingMap zoomToRect:self.view.bounds animated:YES duration:1.0];
-                    }
-                    //                    _arr_hotspotsData = [NSMutableArray arrayWithArray:[_dict_hotspots objectForKey:@"11NewStations"] ];
-                    //                    [self initHotspots];
-                    //                    [_uis_zoomingMap resetPinSize];
+                    [self setSectionText: test];
                     NSLog(@"The tapped index is %i", index);
                     break;
                 }
-                case 2: // BRIDGES
+                case 2: // Statistics (2014 & 2024)
                 {
-                    if (_uis_zoomingMap.scrollView.zoomScale > 1.0) {
-                        [_uis_zoomingMap zoomToRect:self.view.bounds animated:YES duration:1.0];
-                    }
-                    //                    _arr_hotspotsData = [NSMutableArray arrayWithArray:[_dict_hotspots objectForKey:@"6NewBridges"] ];
-                    //                    [self initHotspots];
-                    [_uis_zoomingMap resetPinSize];
+                    [self setSectionText: test];
+                    [self loadHelp];
                     NSLog(@"The tapped index is %i", index);
                     break;
                 }
-                case 3: // TRACKS
-                {
-                    if (_uis_zoomingMap.scrollView.zoomScale > 1.0) {
-                        [_uis_zoomingMap zoomToRect:self.view.bounds animated:YES duration:1.0];
-                    }
-                    //                    _arr_hotspotsData = [NSMutableArray arrayWithArray:[_dict_hotspots objectForKey:@"6NewBridges"] ];
-                    //                    [self initHotspots];
-                    [_uis_zoomingMap resetPinSize];
-                    NSLog(@"The tapped index is %i", index);
-                    break;
-                }
-                case 4:  // 38
-                {
-                    if (_uis_zoomingMap.scrollView.zoomScale > 1.0) {
-                        [_uis_zoomingMap zoomToRect:self.view.bounds animated:YES duration:1.0];
-                    }
-                    _uis_zoomingMap.blurView.image = [UIImage imageNamed:@"grfx_38Overlay.png"];
-                    NSLog(@"The Tapped Cell is %i", index);
-                    break;
-                }
-                case 5: // PARKING
-                {
-                    _arr_hotspotsData = [NSMutableArray arrayWithArray:[_dict_hotspots objectForKey:@"retail"] ];
-					// [self initHotspots];
-                    [_uis_zoomingMap resetPinSize];
-                    [_uis_zoomingMap resetPinSize];
-                    CGRect theRect = CGRectMake(213, 452, 421, 316);
-                    NSValue * value = [NSValue valueWithCGRect:theRect];
-                    
-                    if (_uis_zoomingMap.scrollView.zoomScale > 1.0) {
-                        [_uis_zoomingMap zoomToRect:self.view.bounds animated:YES duration:2.5];
-                        
-                        [self performSelector:@selector(zoomInRect:) withObject:value afterDelay:2.6];
-                    }
-                    else {
-                        [self performSelector:@selector(zoomInRect:) withObject:value afterDelay:0.0];
-                    }
-                    
-                    NSLog(@"The tapped index is %i", index);
-                    break;
-                }
-                case 6:
-                {
-                    _arr_hotspotsData = [NSMutableArray arrayWithArray:[_dict_hotspots objectForKey:@"culture_rescource"] ];
-                    [self initHotspots];
-                    
-                    [_uis_zoomingMap resetPinSize];
-                    CGRect theRect = CGRectMake(79, 229, 640, 480);
-                    NSValue * value = [NSValue valueWithCGRect:theRect];
-                    if (_uis_zoomingMap.scrollView.zoomScale > 1.0) {
-                        [_uis_zoomingMap zoomToRect:self.view.bounds animated:YES duration:2.5];
-                        [self performSelector:@selector(zoomInRect:) withObject:value afterDelay:2.6];
-                    }
-                    else {
-                        [self performSelector:@selector(zoomInRect:) withObject:value afterDelay:0.0];
-                    }
-                    
-                    break;
-                }
-                case 7:
-                {
-                    _arr_hotspotsData = [NSMutableArray arrayWithArray:[_dict_hotspots objectForKey:@"wetland_fill"] ];
-                    [self initHotspots];
-                    
-                    [_uis_zoomingMap resetPinSize];
-                    CGRect theRect = CGRectMake(281, 307, 287, 215);
-                    NSValue * value = [NSValue valueWithCGRect:theRect];
-                    
-                    if (_uis_zoomingMap.scrollView.zoomScale > 1.0) {
-                        [_uis_zoomingMap zoomToRect:self.view.bounds animated:YES duration:2.5];
-                        
-                        [self performSelector:@selector(zoomInRect:) withObject:value afterDelay:2.6];
-                    }
-                    else {
-                        [self performSelector:@selector(zoomInRect:) withObject:value afterDelay:0.0];
-                    }
-                    
-                    
-                    break;
-                    
-                }
-                case 8:  // GALLERY
-                {
-                    if (_uis_zoomingMap.scrollView.zoomScale > 1.0) {
-                        [_uis_zoomingMap zoomToRect:self.view.bounds animated:YES duration:1.0];
-                    }
-                    NSLog(@"The Tapped Cell is %i", index);
-//                    [self initGalleryButtons];
-                    [self playMovie];
-                    
-                    break;
-                }
-                    
                 default:
                     break;
             }
-//        }
     }
-    
-//    [self removeAllHelpViews];
 }
 
 -(void)zoomInRect:(NSValue *)rect {
     CGRect theRect = [rect CGRectValue];
     [_uis_zoomingMap zoomToRect:theRect animated:YES duration:2.5];
     [_uis_zoomingMap resetPinSize];
+}
+
+#pragma mark - Load Help view
+- (void)loadHelp
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"hideLogo" object:self];
+    UIImage *helpImage = [UIImage imageNamed:@"grfx_38Overlay.png"];
+    UIImage *helpImage1 = [UIImage imageNamed:@"grfx_active&inactive.png"];
+    UIImage *helpImage2 = [UIImage imageNamed:@"grfx_alignmentOverlay.png"];
+    NSArray *helpArray = [[NSArray alloc] initWithObjects:helpImage, helpImage1, helpImage2, nil];
+    
+    _helpVC = [[xhHelpViewController alloc] initWithImageArray:helpArray andFrame:CGRectMake(0.0, 0.0, 1024, 768)];
+    [self.view addSubview: _helpVC.view];
+    
+    UITapGestureRecognizer *oneTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnHelp)];
+    oneTap.numberOfTapsRequired = 1;
+    [self.view addGestureRecognizer: oneTap];
+}
+
+- (void)tapOnHelp
+{
+    [_helpVC.view removeFromSuperview];
+    _helpVC.view = nil;
 }
 
 #pragma mark - Tappable Hotspots Setting

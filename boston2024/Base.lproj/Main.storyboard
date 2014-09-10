@@ -38,6 +38,26 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="izn-IK-jJP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
+        <!--Xh Web View Controller-->
+        <scene sceneID="lZf-fW-Fku">
+            <objects>
+                <viewController restorationIdentifier="xhWebViewController" storyboardIdentifier="xhWebViewController" id="6Sf-xJ-o2Z" customClass="xhWebViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MuX-Zf-PVq"/>
+                        <viewControllerLayoutGuide type="bottom" id="hfC-9y-YOa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Q6H-6U-gEg">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mre-Z7-4Gj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="157" y="968"/>
+        </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

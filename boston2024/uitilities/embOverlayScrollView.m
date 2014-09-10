@@ -52,7 +52,7 @@
 			[_scrollView addSubview:_uiv_windowComparisonContainer];
 			
 			//[self addSubview:_scrollView];
-			[self zoomableScrollview:self withImage:_blurView];
+			[self zoomableScrollview:self withImage:_overView];
 			
 			
 //			_scrollView = [[UIScrollView alloc] initWithFrame:frame];
