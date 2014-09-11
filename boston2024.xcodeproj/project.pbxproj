@@ -118,10 +118,14 @@
 		8251107F19B8DDAB00106984 /* boston_zoomed@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8251107D19B8DDAB00106984 /* boston_zoomed@2x.jpg */; };
 		827F433919C1D86800532FF7 /* grfx_indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = 827F433719C1D86800532FF7 /* grfx_indicator.png */; };
 		827F433A19C1D86800532FF7 /* grfx_indicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 827F433819C1D86800532FF7 /* grfx_indicator@2x.png */; };
-		827F433F19C1DFEC00532FF7 /* 03-06-travel-time-village.png in Resources */ = {isa = PBXBuildFile; fileRef = 827F433B19C1DFEC00532FF7 /* 03-06-travel-time-village.png */; };
-		827F434019C1DFEC00532FF7 /* 03-06-travel-time-village@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 827F433C19C1DFEC00532FF7 /* 03-06-travel-time-village@2x.png */; };
-		827F434119C1DFEC00532FF7 /* 03-07-travel-time-mpc-ipc.png in Resources */ = {isa = PBXBuildFile; fileRef = 827F433D19C1DFEC00532FF7 /* 03-07-travel-time-mpc-ipc.png */; };
-		827F434219C1DFEC00532FF7 /* 03-07-travel-time-mpc-ipc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 827F433E19C1DFEC00532FF7 /* 03-07-travel-time-mpc-ipc@2x.png */; };
+		827F434519C21C4F00532FF7 /* 03C-panel-capacity-vs-demand.png in Resources */ = {isa = PBXBuildFile; fileRef = 827F434319C21C4F00532FF7 /* 03C-panel-capacity-vs-demand.png */; };
+		827F434619C21C4F00532FF7 /* 03C-panel-capacity-vs-demand@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 827F434419C21C4F00532FF7 /* 03C-panel-capacity-vs-demand@2x.png */; };
+		827F434D19C2204400532FF7 /* 03-06-bg-drive-times-map.png in Resources */ = {isa = PBXBuildFile; fileRef = 827F434719C2204400532FF7 /* 03-06-bg-drive-times-map.png */; };
+		827F434E19C2204400532FF7 /* 03-06-bg-drive-times-map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 827F434819C2204400532FF7 /* 03-06-bg-drive-times-map@2x.png */; };
+		827F434F19C2204400532FF7 /* 03-07-athletes-village-overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 827F434919C2204400532FF7 /* 03-07-athletes-village-overlay.png */; };
+		827F435019C2204400532FF7 /* 03-07-athletes-village-overlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 827F434A19C2204400532FF7 /* 03-07-athletes-village-overlay@2x.png */; };
+		827F435119C2204400532FF7 /* 03-08-mpc-overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 827F434B19C2204400532FF7 /* 03-08-mpc-overlay.png */; };
+		827F435219C2204400532FF7 /* 03-08-mpc-overlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 827F434C19C2204400532FF7 /* 03-08-mpc-overlay@2x.png */; };
 		82CB000019B6430D00B20EB8 /* grfx_NewBridge2.png in Resources */ = {isa = PBXBuildFile; fileRef = 82CBFE0C19B6430D00B20EB8 /* grfx_NewBridge2.png */; };
 		82CB000119B6430D00B20EB8 /* grfx_NewBridge2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82CBFE0D19B6430D00B20EB8 /* grfx_NewBridge2@2x.png */; };
 		82CB000219B6430D00B20EB8 /* grfx_NewBridge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82CBFE0E19B6430D00B20EB8 /* grfx_NewBridge@2x.png */; };
@@ -403,10 +407,14 @@
 		8251107D19B8DDAB00106984 /* boston_zoomed@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "boston_zoomed@2x.jpg"; sourceTree = "<group>"; };
 		827F433719C1D86800532FF7 /* grfx_indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grfx_indicator.png; sourceTree = "<group>"; };
 		827F433819C1D86800532FF7 /* grfx_indicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grfx_indicator@2x.png"; sourceTree = "<group>"; };
-		827F433B19C1DFEC00532FF7 /* 03-06-travel-time-village.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-06-travel-time-village.png"; sourceTree = "<group>"; };
-		827F433C19C1DFEC00532FF7 /* 03-06-travel-time-village@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-06-travel-time-village@2x.png"; sourceTree = "<group>"; };
-		827F433D19C1DFEC00532FF7 /* 03-07-travel-time-mpc-ipc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-07-travel-time-mpc-ipc.png"; sourceTree = "<group>"; };
-		827F433E19C1DFEC00532FF7 /* 03-07-travel-time-mpc-ipc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-07-travel-time-mpc-ipc@2x.png"; sourceTree = "<group>"; };
+		827F434319C21C4F00532FF7 /* 03C-panel-capacity-vs-demand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03C-panel-capacity-vs-demand.png"; sourceTree = "<group>"; };
+		827F434419C21C4F00532FF7 /* 03C-panel-capacity-vs-demand@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03C-panel-capacity-vs-demand@2x.png"; sourceTree = "<group>"; };
+		827F434719C2204400532FF7 /* 03-06-bg-drive-times-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-06-bg-drive-times-map.png"; sourceTree = "<group>"; };
+		827F434819C2204400532FF7 /* 03-06-bg-drive-times-map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-06-bg-drive-times-map@2x.png"; sourceTree = "<group>"; };
+		827F434919C2204400532FF7 /* 03-07-athletes-village-overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-07-athletes-village-overlay.png"; sourceTree = "<group>"; };
+		827F434A19C2204400532FF7 /* 03-07-athletes-village-overlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-07-athletes-village-overlay@2x.png"; sourceTree = "<group>"; };
+		827F434B19C2204400532FF7 /* 03-08-mpc-overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-08-mpc-overlay.png"; sourceTree = "<group>"; };
+		827F434C19C2204400532FF7 /* 03-08-mpc-overlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-08-mpc-overlay@2x.png"; sourceTree = "<group>"; };
 		82CBFB9219B638CE00B20EB8 /* boston2024.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = boston2024.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82CBFB9519B638CE00B20EB8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		82CBFB9719B638CE00B20EB8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -752,10 +760,12 @@
 				8243AB9F19C0F75300FE9B58 /* overlay_transit_C@2x.png */,
 				8243ABA019C0F75300FE9B58 /* overlay_transit_P.png */,
 				8243ABA119C0F75300FE9B58 /* overlay_transit_P@2x.png */,
-				827F433B19C1DFEC00532FF7 /* 03-06-travel-time-village.png */,
-				827F433C19C1DFEC00532FF7 /* 03-06-travel-time-village@2x.png */,
-				827F433D19C1DFEC00532FF7 /* 03-07-travel-time-mpc-ipc.png */,
-				827F433E19C1DFEC00532FF7 /* 03-07-travel-time-mpc-ipc@2x.png */,
+				827F434719C2204400532FF7 /* 03-06-bg-drive-times-map.png */,
+				827F434819C2204400532FF7 /* 03-06-bg-drive-times-map@2x.png */,
+				827F434919C2204400532FF7 /* 03-07-athletes-village-overlay.png */,
+				827F434A19C2204400532FF7 /* 03-07-athletes-village-overlay@2x.png */,
+				827F434B19C2204400532FF7 /* 03-08-mpc-overlay.png */,
+				827F434C19C2204400532FF7 /* 03-08-mpc-overlay@2x.png */,
 				8243AB8F19C0F04500FE9B58 /* statistic */,
 				8243AB5E19C0EA8200FE9B58 /* RightBox */,
 			);
@@ -810,6 +820,8 @@
 				8243AB9119C0F04500FE9B58 /* 03A-panel-highway-transit-growth@2x.png */,
 				8243AB9219C0F04500FE9B58 /* 03B-panel-capacity.png */,
 				8243AB9319C0F04500FE9B58 /* 03B-panel-capacity@2x.png */,
+				827F434319C21C4F00532FF7 /* 03C-panel-capacity-vs-demand.png */,
+				827F434419C21C4F00532FF7 /* 03C-panel-capacity-vs-demand@2x.png */,
 			);
 			path = statistic;
 			sourceTree = "<group>";
@@ -1266,7 +1278,6 @@
 				8243ABA819C0F75300FE9B58 /* overlay_transit_C.png in Resources */,
 				82CBFEF019B6430D00B20EB8 /* map_neo-ON@2x.png in Resources */,
 				8243AB8019C0F02C00FE9B58 /* 01B-panel-transit.png in Resources */,
-				827F434019C1DFEC00532FF7 /* 03-06-travel-time-village@2x.png in Resources */,
 				8243AB1F19C0DBC100FE9B58 /* 01-06-right-panel@2x.png in Resources */,
 				8243AB3319C0E35A00FE9B58 /* map-key-population-density.png in Resources */,
 				82CBFFE619B6430D00B20EB8 /* crossfade@2x.png in Resources */,
@@ -1288,6 +1299,7 @@
 				82CBFEEA19B6430D00B20EB8 /* map_google-OFF@2x.png in Resources */,
 				82CBFF8019B6430D00B20EB8 /* SabonLTStd-Roman.otf in Resources */,
 				8243AAD419C08DD100FE9B58 /* icon_statistics.png in Resources */,
+				827F434D19C2204400532FF7 /* 03-06-bg-drive-times-map.png in Resources */,
 				82CB002719B6430D00B20EB8 /* open_btn@2x.jpg in Resources */,
 				8243AB7519C0EA8200FE9B58 /* 03-04-right-panel.png in Resources */,
 				82E1239519BDF37600EEB8D1 /* 2014_Overlay@2x.png in Resources */,
@@ -1364,6 +1376,7 @@
 				8243AAE619C0DB8500FE9B58 /* DINEngschriftStd.otf in Resources */,
 				82CB000219B6430D00B20EB8 /* grfx_NewBridge@2x.png in Resources */,
 				8243ABAA19C0F75300FE9B58 /* overlay_transit_P.png in Resources */,
+				827F435119C2204400532FF7 /* 03-08-mpc-overlay.png in Resources */,
 				8243ABAF19C0F77300FE9B58 /* 03-01-right-panel@2x.png in Resources */,
 				8243AB5019C0E65600FE9B58 /* 02-01-right-panel@2x.png in Resources */,
 				8243AB1919C0DBC100FE9B58 /* 01-03-right-panel@2x.png in Resources */,
@@ -1378,12 +1391,14 @@
 				82CBFF7D19B6430D00B20EB8 /* DINEngschriftStd.otf in Resources */,
 				8243AB7619C0EA8200FE9B58 /* 03-04-right-panel@2x.png in Resources */,
 				8243AB3819C0E35A00FE9B58 /* map-key-vehicular-traffic@2x.png in Resources */,
+				827F434F19C2204400532FF7 /* 03-07-athletes-village-overlay.png in Resources */,
 				8243AB8C19C0F03800FE9B58 /* 02B-panel-summer-transit@2x.png in Resources */,
 				82CB001119B6430D00B20EB8 /* grfx_trestleOverlay.png in Resources */,
 				8243AB4C19C0E65600FE9B58 /* overlay_highway_N@2x.png in Resources */,
 				82CBFFFF19B6430D00B20EB8 /* grfx_NewBridge.png in Resources */,
 				82CB001519B6430D00B20EB8 /* grfx_WetlandFill.png in Resources */,
 				8243AB0919C0DBC100FE9B58 /* 01-06-bg-2014_RegionalResidentialPopulation@2x.png in Resources */,
+				827F434619C21C4F00532FF7 /* 03C-panel-capacity-vs-demand@2x.png in Resources */,
 				8243AB1219C0DBC100FE9B58 /* overlay_trasit_S.png in Resources */,
 				8243AB0B19C0DBC100FE9B58 /* 01-07-bg-2014_RegionalDailyPopulation@2x.png in Resources */,
 				8243ABAB19C0F75300FE9B58 /* overlay_transit_P@2x.png in Resources */,
@@ -1407,6 +1422,7 @@
 				82CBFFFD19B6430D00B20EB8 /* grfx_mapThumb.png in Resources */,
 				8243AB1519C0DBC100FE9B58 /* 01-01-right-panel@2x.png in Resources */,
 				82CB002519B6430D00B20EB8 /* menuBtn_cap_Sel@2x.png in Resources */,
+				827F435019C2204400532FF7 /* 03-07-athletes-village-overlay@2x.png in Resources */,
 				82CBFEE919B6430D00B20EB8 /* map_google-OFF.png in Resources */,
 				82CBFC1319B640F400B20EB8 /* contentTableCell.xib in Resources */,
 				8243ABA519C0F75300FE9B58 /* overlay_Olyhighway_W@2x.png in Resources */,
@@ -1429,6 +1445,7 @@
 				82CBFF7F19B6430D00B20EB8 /* SabonLTStd-Bold.otf in Resources */,
 				82CBFF7919B6430D00B20EB8 /* images.plist in Resources */,
 				82CBFFEC19B6430D00B20EB8 /* grfx_active&inactive@2x.png in Resources */,
+				827F434E19C2204400532FF7 /* 03-06-bg-drive-times-map@2x.png in Resources */,
 				8243ABA719C0F75300FE9B58 /* overlay_OlymLane@2x.png in Resources */,
 				8243AB1D19C0DBC100FE9B58 /* 01-05-right-panel@2x.png in Resources */,
 				82CB002819B6430D00B20EB8 /* playButton.png in Resources */,
@@ -1438,7 +1455,6 @@
 				82CB001B19B6430D00B20EB8 /* logo@2x.png in Resources */,
 				8243AB7119C0EA8200FE9B58 /* 03-02-right-panel.png in Resources */,
 				8243AB5219C0E65600FE9B58 /* 02-02-right-panel@2x.png in Resources */,
-				827F434119C1DFEC00532FF7 /* 03-07-travel-time-mpc-ipc.png in Resources */,
 				82EC836319B8EC0C00A76DE8 /* Overlay_summer@2x.png in Resources */,
 				8243AB1319C0DBC100FE9B58 /* overlay_trasit_S@2x.png in Resources */,
 				82CBFC0119B63E5100B20EB8 /* photo-gallery-edit-caption.png in Resources */,
@@ -1447,10 +1463,10 @@
 				82CBFBF619B63E5100B20EB8 /* CollapseClickCell.xib in Resources */,
 				82CBFFFE19B6430D00B20EB8 /* grfx_mapThumb@2x.png in Resources */,
 				82CB001919B6430D00B20EB8 /* info.png in Resources */,
+				827F434519C21C4F00532FF7 /* 03C-panel-capacity-vs-demand.png in Resources */,
 				8243AB4F19C0E65600FE9B58 /* 02-01-right-panel.png in Resources */,
 				8243AB7719C0EA8200FE9B58 /* 03-05-right-panel.png in Resources */,
 				8243AB4A19C0E65600FE9B58 /* 02-04-2014_RegionalDailyPopulation@2x.png in Resources */,
-				827F433F19C1DFEC00532FF7 /* 03-06-travel-time-village.png in Resources */,
 				82CB000319B6430D00B20EB8 /* grfx_newBridge_icon.png in Resources */,
 				82CBFC0219B63E5100B20EB8 /* photo-gallery-left.png in Resources */,
 				8243AB1E19C0DBC100FE9B58 /* 01-06-right-panel.png in Resources */,
@@ -1460,6 +1476,7 @@
 				8243AB3219C0E35A00FE9B58 /* map-key-population-density 2@2x.png in Resources */,
 				82CB000719B6430D00B20EB8 /* grfx_play_btn.png in Resources */,
 				82CBFFF619B6430D00B20EB8 /* grfx_culture_icon@2x.png in Resources */,
+				827F435219C2204400532FF7 /* 03-08-mpc-overlay@2x.png in Resources */,
 				8243AB1A19C0DBC100FE9B58 /* 01-04-right-panel.png in Resources */,
 				82CBFFEB19B6430D00B20EB8 /* grfx_active&inactive.png in Resources */,
 				82CB001019B6430D00B20EB8 /* grfx_titleText@2x.png in Resources */,
@@ -1467,7 +1484,6 @@
 				82CB002A19B6430D00B20EB8 /* playButton_Hi.png in Resources */,
 				82CBFFF819B6430D00B20EB8 /* grfx_CultureResource@2x.png in Resources */,
 				8243AB9419C0F04500FE9B58 /* 03A-panel-highway-transit-growth.png in Resources */,
-				827F434219C1DFEC00532FF7 /* 03-07-travel-time-mpc-ipc@2x.png in Resources */,
 				8243AB3419C0E35A00FE9B58 /* map-key-population-density@2x.png in Resources */,
 				8243AB0F19C0DBC100FE9B58 /* overlay_highway_S@2x.png in Resources */,
 				8243AB3119C0E35A00FE9B58 /* map-key-population-density 2.png in Resources */,
