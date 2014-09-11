@@ -24,6 +24,9 @@
 static int numOfCells = 4;
 static float container_W = 198.0;  // origial 186
 static float kClosedMenu_W = 40.0;
+static float kIndicatorX = 4.0;
+static float kIndicatorY = 6.0;
+
 @interface mapViewController ()<embSimpleScrollViewDelegate, embDrawBezierPathDelegate, embOverlayScrollViewDelegate>
 {
     NSString            *overlayName;
@@ -59,12 +62,14 @@ static float kClosedMenu_W = 40.0;
 
 @property (nonatomic, strong) UIImageView                   *uiiv_rightTextBox;
 @property (nonatomic, strong) UIImageView                   *uiiv_topRightBox;
+@property (nonatomic, strong) UIImageView                   *uiiv_indicator;
+
+@property (nonatomic, strong) UIButton                      *uib_village;
+@property (nonatomic, strong) UIButton                      *uib_mpc;
 
 @property (nonatomic, strong) xhHelpViewController          *helpVC;
 
 @property (nonatomic, strong) UILabel                       *uil_cellName;
-
-@property (nonatomic, strong) UIView                        *uiv_leftBar;
 
 @property (nonatomic, strong) NSMutableArray                *arr_cellName;
 
@@ -235,6 +240,8 @@ static float kClosedMenu_W = 40.0;
         [self initToggle];
         [self initRightImageView];
         [self initTopRightBox];
+        [self initIndicator];
+        [self initVillageBtns];
         _contentTableView = [[contentTableViewController alloc] init];
         
     }
@@ -252,6 +259,35 @@ static float kClosedMenu_W = 40.0;
     _uis_zoomingMap.imageToggle = NO;
 //    [_uis_zoomingMap.overView setImage:[UIImage imageNamed:@"grfx_alignmentOverlay.png"]];
     [self.view addSubview: _uis_zoomingMap];
+}
+
+#pragma mark - init Indicator
+-(void)initIndicator
+{
+    _uiiv_indicator = [UIImageView new];
+    UIImage *indicator = [UIImage imageNamed:@"grfx_indicator.png"];
+    _uiiv_indicator.image = indicator;
+    _uiiv_indicator.frame = CGRectMake(0.0, 0.0, indicator.size.width, indicator.size.height);
+    _uiiv_indicator.hidden = YES;
+}
+
+-(void)updateIndicatorPosition:(CGRect)frameRect
+{
+    if (_uiiv_indicator.hidden) {
+        _uiiv_indicator.frame = frameRect;
+        _uiiv_indicator.hidden = NO;
+    }
+    else {
+        [UIView animateWithDuration:0.2 animations:^{
+            _uiiv_indicator.frame = frameRect;
+        }];
+    }
+}
+
+#pragma mark - init village & mpc/ipc buttons
+-(void)initVillageBtns
+{
+    
 }
 
 #pragma mark - init top right box
@@ -548,7 +584,7 @@ static float kClosedMenu_W = 40.0;
     [_uil_textYear setText:year];
     [_uil_textYear setBackgroundColor:[UIColor clearColor]];
     [_uil_textYear setTextColor:[UIColor whiteColor]];
-    [_uil_textYear setFont: [UIFont boldSystemFontOfSize:33]];
+    [_uil_textYear setFont: [UIFont fontWithName:@"DINPro-CondBlack" size:35]];
     [_uil_textYear setTextAlignment:NSTextAlignmentRight];
     [_uiv_textBoxContainer addSubview: _uil_textYear];
 }
@@ -559,15 +595,15 @@ static float kClosedMenu_W = 40.0;
         [_uil_textInfo removeFromSuperview];
         _uil_textInfo = nil;
     }
-    UIFont *font = [UIFont fontWithName:@"Helvetica" size:21];
+    UIFont *font = [UIFont fontWithName:@"DINEngschriftStd" size:21];
     NSDictionary *attributes1 = [NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName, nil];
     CGFloat str_width = [[[NSAttributedString alloc] initWithString:string attributes:attributes1] size].width;
     NSLog(@"The string width is %f", str_width);
     CGSize constraint;
-    if (str_width < 300) {
+    if (str_width < 350) {
         constraint = CGSizeMake(str_width,85);
     }else {
-        constraint = CGSizeMake(300,85);
+        constraint = CGSizeMake(350,85);
     }
     
     NSDictionary *attributes = @{NSFontAttributeName: font};
@@ -580,11 +616,12 @@ static float kClosedMenu_W = 40.0;
     [_uil_textInfo setText:string];
     [_uil_textInfo setTextColor:[UIColor whiteColor]];
     [_uil_textInfo setLineBreakMode:NSLineBreakByWordWrapping];
+    [_uil_textInfo setFont:font];
     _uil_textInfo.numberOfLines = 2;
     _uil_textInfo.frame = CGRectMake(100.0, (85 - rect.size.height)/2, rect.size.width, rect.size.height);
     _uil_textInfo.backgroundColor = [UIColor clearColor];
     [_uiv_textBoxContainer addSubview: _uil_textInfo];
-    CGRect frame = CGRectMake(0.0, 0.0, _uil_textInfo.frame.size.width + _uil_textYear.frame.size.width, 85);
+    CGRect frame = CGRectMake(0.0, 0.0, _uil_textInfo.frame.size.width + _uil_textYear.frame.size.width+50, 85);
     _uiv_textBoxContainer.frame = frame;
     _uiv_textBoxContainer.backgroundColor = [UIColor colorWithRed:6.0/255.0 green:154.0/255.0 blue:216.0/255.0 alpha:1.0];
 }
@@ -595,10 +632,10 @@ static float kClosedMenu_W = 40.0;
         [_uil_textSection removeFromSuperview];
         _uil_textSection = nil;
     }
-    _uil_textSection = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 45.0, 80.0, 30.0)];
+    _uil_textSection = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 50.0, 80.0, 30.0)];
     [_uil_textSection setText:string];
     [_uil_textSection setTextColor:[UIColor whiteColor]];
-    [_uil_textSection setFont:[UIFont boldSystemFontOfSize:20]];
+    [_uil_textSection setFont:[UIFont fontWithName:@"DINEngschriftStd" size:20]];
     [_uil_textSection setTextAlignment:NSTextAlignmentRight];
     [_uiv_textBoxContainer addSubview: _uil_textSection];
 }
@@ -786,7 +823,7 @@ static float kClosedMenu_W = 40.0;
     
     UIButton *tappedBtn = sender;
     int index = (int)tappedBtn.tag;
-    
+    [tappedBtn.superview addSubview: _uiiv_indicator];
     switch (index) {
         case 1:
         {
@@ -795,6 +832,7 @@ static float kClosedMenu_W = 40.0;
             overlayName = @"overlay_highway_A";
             [self updateOverlay];
             [self updateTopRightBox:@"map-key-vehicular-traffic"];
+            [self updateIndicatorPosition:CGRectMake(kIndicatorX, tappedBtn.frame.origin.y + kIndicatorY, _uiiv_indicator.frame.size.width, _uiiv_indicator.frame.size.height)];
             break;
         }
         case 2:
@@ -804,6 +842,7 @@ static float kClosedMenu_W = 40.0;
             overlayName = @"overlay_highway_S";
             [self updateTopRightBox:@"map-key-vehicular-traffic"];
             [self updateOverlay];
+            [self updateIndicatorPosition:CGRectMake(kIndicatorX, tappedBtn.frame.origin.y + kIndicatorY, _uiiv_indicator.frame.size.width, _uiiv_indicator.frame.size.height)];
             break;
         }
         case 3:
@@ -813,6 +852,7 @@ static float kClosedMenu_W = 40.0;
             overlayName = @"overlay_trasit_A";
             [self updateTopRightBox:@"map-key-transit-traffic"];
             [self updateOverlay];
+            [self updateIndicatorPosition:CGRectMake(kIndicatorX, tappedBtn.frame.origin.y + kIndicatorY, _uiiv_indicator.frame.size.width, _uiiv_indicator.frame.size.height)];
             break;
         }
         case 4:
@@ -822,6 +862,7 @@ static float kClosedMenu_W = 40.0;
             overlayName = @"overlay_trasit_S";
             [self updateTopRightBox:@"map-key-transit-traffic"];
             [self updateOverlay];
+            [self updateIndicatorPosition:CGRectMake(kIndicatorX, tappedBtn.frame.origin.y + kIndicatorY, _uiiv_indicator.frame.size.width, _uiiv_indicator.frame.size.height)];
             break;
         }
         default:
@@ -868,7 +909,7 @@ static float kClosedMenu_W = 40.0;
 {
     UIButton *tappedBtn = sender;
     int index = (int)tappedBtn.tag;
-    
+    [tappedBtn.superview addSubview: _uiiv_indicator];
     switch (index) {
         case 1:
         {
@@ -877,6 +918,7 @@ static float kClosedMenu_W = 40.0;
             overlayName = @"overlay_highway_N";
             [self updateOverlay];
             _uiiv_topRightBox.hidden = YES;
+            [self updateIndicatorPosition:CGRectMake(kIndicatorX, tappedBtn.frame.origin.y + kIndicatorY, _uiiv_indicator.frame.size.width, _uiiv_indicator.frame.size.height)];
             break;
         }
         case 2:
@@ -886,6 +928,7 @@ static float kClosedMenu_W = 40.0;
             overlayName = @"overlay_highway_W";
             [self updateTopRightBox:@"map-key-vehicular-traffic"];
             [self updateOverlay];
+            [self updateIndicatorPosition:CGRectMake(kIndicatorX, tappedBtn.frame.origin.y + kIndicatorY, _uiiv_indicator.frame.size.width, _uiiv_indicator.frame.size.height)];
             break;
         }
         default:
@@ -976,7 +1019,8 @@ static float kClosedMenu_W = 40.0;
 {
     UIButton *tappedBtn = sender;
     int index = (int)tappedBtn.tag;
-    
+    [tappedBtn.superview addSubview: _uiiv_indicator];
+    [self updateIndicatorPosition:CGRectMake(kIndicatorX, tappedBtn.frame.origin.y + kIndicatorY, _uiiv_indicator.frame.size.width, _uiiv_indicator.frame.size.height)];
     switch (index) {
         case 1:
         {
@@ -1053,17 +1097,17 @@ static float kClosedMenu_W = 40.0;
 
 -(UIView *)create2014People
 {
-    UIView *uiv_people1 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, container_W, 120)];
+    UIView *uiv_people1 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, container_W, 60)];
     uiv_people1.backgroundColor = [UIColor colorWithRed:38.0/255.0 green:36.0/255.0 blue:33.0/255.0 alpha:1.0];
     
     UIButton *uib_people1 = [UIButton buttonWithType:UIButtonTypeCustom];
     UIButton *uib_people2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIButton *uib_people3 = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIButton *uib_people4 = [UIButton buttonWithType:UIButtonTypeCustom];
+//    UIButton *uib_people3 = [UIButton buttonWithType:UIButtonTypeCustom];
+//    UIButton *uib_people4 = [UIButton buttonWithType:UIButtonTypeCustom];
     
     uib_people1.frame = CGRectMake(0.0, 0.0, container_W, 30);
     uib_people1.backgroundColor = [UIColor clearColor];
-    [uib_people1 setTitle:@"Metro Daily" forState:UIControlStateNormal];
+    [uib_people1 setTitle:@"Metro Residential" forState:UIControlStateNormal];
     uib_people1.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_people1.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     uib_people1.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
@@ -1072,35 +1116,35 @@ static float kClosedMenu_W = 40.0;
     
     uib_people2.frame = CGRectMake(0.0, 30.0, container_W, 30);
     uib_people2.backgroundColor = [UIColor clearColor];
-    [uib_people2 setTitle:@"Metro Residential" forState:UIControlStateNormal];
+    [uib_people2 setTitle:@"Metro Daily" forState:UIControlStateNormal];
     uib_people2.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_people2.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     uib_people2.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
     uib_people2.tag = 2;
     [uib_people2 addTarget:self action:@selector(tap2014PeopleBtns:) forControlEvents:UIControlEventTouchUpInside];
     
-    uib_people3.frame = CGRectMake(0.0, 60.0, container_W, 30);
-    uib_people3.backgroundColor = [UIColor clearColor];
-    [uib_people3 setTitle:@"City Daily" forState:UIControlStateNormal];
-    uib_people3.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
-    uib_people3.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    uib_people3.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
-    uib_people3.tag = 3;
-    [uib_people3 addTarget:self action:@selector(tap2014PeopleBtns:) forControlEvents:UIControlEventTouchUpInside];
-    
-    uib_people4.frame = CGRectMake(0.0, 90.0, container_W, 30);
-    uib_people4.backgroundColor = [UIColor clearColor];
-    [uib_people4 setTitle:@"City Residential" forState:UIControlStateNormal];
-    uib_people4.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
-    uib_people4.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    uib_people4.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
-    uib_people4.tag = 4;
-    [uib_people4 addTarget:self action:@selector(tap2014PeopleBtns:) forControlEvents:UIControlEventTouchUpInside];
+//    uib_people3.frame = CGRectMake(0.0, 60.0, container_W, 30);
+//    uib_people3.backgroundColor = [UIColor clearColor];
+//    [uib_people3 setTitle:@"City Daily" forState:UIControlStateNormal];
+//    uib_people3.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
+//    uib_people3.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+//    uib_people3.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
+//    uib_people3.tag = 3;
+//    [uib_people3 addTarget:self action:@selector(tap2014PeopleBtns:) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    uib_people4.frame = CGRectMake(0.0, 90.0, container_W, 30);
+//    uib_people4.backgroundColor = [UIColor clearColor];
+//    [uib_people4 setTitle:@"City Residential" forState:UIControlStateNormal];
+//    uib_people4.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
+//    uib_people4.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+//    uib_people4.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
+//    uib_people4.tag = 4;
+//    [uib_people4 addTarget:self action:@selector(tap2014PeopleBtns:) forControlEvents:UIControlEventTouchUpInside];
     
     [uiv_people1 addSubview: uib_people1];
     [uiv_people1 addSubview: uib_people2];
-    [uiv_people1 addSubview: uib_people3];
-    [uiv_people1 addSubview: uib_people4];
+//    [uiv_people1 addSubview: uib_people3];
+//    [uiv_people1 addSubview: uib_people4];
     UIView *uiv_sideBar = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 5.0, uiv_people1.frame.size.height)];
     [uiv_sideBar setBackgroundColor:[UIColor colorWithRed:31.0/255.0 green:162.0/255.0 blue:197.0/255.0 alpha:1.0]];
     [uiv_people1 addSubview: uiv_sideBar];
@@ -1111,11 +1155,12 @@ static float kClosedMenu_W = 40.0;
 {
     UIButton *tappedBtn = sender;
     int index = (int)tappedBtn.tag;
-    
+    [tappedBtn.superview addSubview: _uiiv_indicator];
+    [self updateIndicatorPosition:CGRectMake(kIndicatorX, tappedBtn.frame.origin.y + kIndicatorY, _uiiv_indicator.frame.size.width, _uiiv_indicator.frame.size.height)];
     switch (index) {
         case 1:
         {
-            [self setInfoText:@"Existing Metro Daily Population"];
+            [self setInfoText:@"Existing Metro Residential Population"];
             [self updateRightTextBox:@"01-05-right-panel"];
             overlayName = @"01-06-bg-2014_RegionalResidentialPopulation";
             [self updateOverlay];
@@ -1124,31 +1169,33 @@ static float kClosedMenu_W = 40.0;
         }
         case 2:
         {
-            [self setInfoText:@"Existing Metro Residential Population"];
+            [self setInfoText:@"Existing Metro Daily Population"];
             [self updateRightTextBox:@"01-06-right-panel"];
             overlayName = @"01-07-bg-2014_RegionalDailyPopulation";
             [self updateOverlay];
             [self updateTopRightBox:@"map-key-population-density 2"];
             break;
         }
-        case 3:
-        {
-            [self setInfoText:@"Existing City Daily Population"];
-            [self updateRightTextBox:@"01-06-right-panel"];
-            overlayName = @"01-07-bg-2014_RegionalDailyPopulation";
-            [self updateOverlay];
-            [self updateTopRightBox:@"map-key-population-density 2"];
-            break;
-        }
-        case 4:
-        {
-            [self setInfoText:@"Existing City Residential Population"];
-            [self updateRightTextBox:@"01-05-right-panel"];
-            overlayName = @"01-06-bg-2014_RegionalResidentialPopulation";
-            [self updateOverlay];
-            [self updateTopRightBox:@"map-key-population-density 2"];
-            break;
-        }
+//        case 3:
+//        {
+//            [self setInfoText:@"Existing City Daily Population"];
+//            [self updateRightTextBox:@"01-06-right-panel"];
+//            overlayName = @"01-07-bg-2014_RegionalDailyPopulation";
+//            [self updateOverlay];
+//            [self updateTopRightBox:@"map-key-population-density 2"];
+//            [self updateIndicatorPosition:CGRectMake(kIndicatorX, tappedBtn.frame.origin.y + kIndicatorY, _uiiv_indicator.frame.size.width, _uiiv_indicator.frame.size.height)];
+//            break;
+//        }
+//        case 4:
+//        {
+//            [self setInfoText:@"Existing City Residential Population"];
+//            [self updateRightTextBox:@"01-05-right-panel"];
+//            overlayName = @"01-06-bg-2014_RegionalResidentialPopulation";
+//            [self updateOverlay];
+//            [self updateTopRightBox:@"map-key-population-density 2"];
+//            [self updateIndicatorPosition:CGRectMake(kIndicatorX, tappedBtn.frame.origin.y + kIndicatorY, _uiiv_indicator.frame.size.width, _uiiv_indicator.frame.size.height)];
+//            break;
+//        }
         default:
             break;
     }
@@ -1164,7 +1211,7 @@ static float kClosedMenu_W = 40.0;
     UIButton *uib_people2 = [UIButton buttonWithType:UIButtonTypeCustom];
     uib_people1.frame = CGRectMake(0.0, 0.0, container_W, 30);
     uib_people1.backgroundColor = [UIColor clearColor];
-    [uib_people1 setTitle:@"Metro Daily" forState:UIControlStateNormal];
+    [uib_people1 setTitle:@"Metro Residential" forState:UIControlStateNormal];
     uib_people1.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_people1.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     uib_people1.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
@@ -1173,7 +1220,7 @@ static float kClosedMenu_W = 40.0;
     
     uib_people2.frame = CGRectMake(0.0, 30.0, container_W, 30);
     uib_people2.backgroundColor = [UIColor clearColor];
-    [uib_people2 setTitle:@"Metro Residential" forState:UIControlStateNormal];
+    [uib_people2 setTitle:@"Metro Daily" forState:UIControlStateNormal];
     uib_people2.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_people2.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     uib_people2.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
@@ -1192,13 +1239,13 @@ static float kClosedMenu_W = 40.0;
 {
     UIButton *tappedBtn = sender;
     int index = (int)tappedBtn.tag;
-    
+    [tappedBtn.superview addSubview: _uiiv_indicator];
+    [self updateIndicatorPosition:CGRectMake(kIndicatorX, tappedBtn.frame.origin.y + kIndicatorY, _uiiv_indicator.frame.size.width, _uiiv_indicator.frame.size.height)];
     switch (index) {
         case 1:
-        {
-            [self setInfoText:@"Existing Metro Residential Population"];
-            [self updateRightTextBox:@"02-04-right-panel"];
-            overlayName = @"02-04-2014_RegionalDailyPopulation";
+        {[self setInfoText:@"Existing Metro Residential Population"];
+            [self updateRightTextBox:@"02-03-right-panel"];
+            overlayName = @"02-03-2014_RegionalResidentialPopulation";
             [self updateOverlay];
             [self updateTopRightBox:@"map-key-population-density 2"];
             break;
@@ -1206,8 +1253,8 @@ static float kClosedMenu_W = 40.0;
         case 2:
         {
             [self setInfoText:@"Existing Metro Daily Population"];
-            [self updateRightTextBox:@"02-03-right-panel"];
-            overlayName = @"02-03-2014_RegionalResidentialPopulation";
+            [self updateRightTextBox:@"02-04-right-panel"];
+            overlayName = @"02-04-2014_RegionalDailyPopulation";
             [self updateOverlay];
             [self updateTopRightBox:@"map-key-population-density 2"];
             break;
@@ -1724,6 +1771,9 @@ static float kClosedMenu_W = 40.0;
     _uiv_textBoxContainer.hidden = YES;
     _uiiv_rightTextBox.hidden = YES;
     _uiiv_topRightBox.hidden = YES;
+    _uiiv_indicator.hidden = YES;
+    [_uiiv_indicator removeFromSuperview];
+    
     overlayName = @"00-bg-base-highways";
     [self updateOverlay];
     for (UIView *tmp in _arr_tapHotspots) {
