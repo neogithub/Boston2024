@@ -36,7 +36,7 @@
 -(UILabel*)createWebLabel
 {
 	UILabel *webTitle = [[UILabel alloc] initWithFrame:CGRectMake(354, 4, 512, 46)];
-	[webTitle setFont:[UIFont fontWithName:@"Futura" size:12]];
+	[webTitle setFont:[UIFont fontWithName:@"Futura" size:9]];
 	[webTitle setTextAlignment:NSTextAlignmentCenter];
 	float viewWidth = self.view.frame.size.width;
 	//float viewHeight = self.view.frame.size.height;
@@ -176,6 +176,11 @@
 	NSString *theTitle=[webView stringByEvaluatingJavaScriptFromString:@"document.title"];
 	ebTitle.text = theTitle;
 	NSLog(@"STOP animating");
+    
+    NSString*  jScriptString1 = [NSString stringWithFormat:@"document.getElementById('user_username').value='username_username'"];
+    NSString*  jScriptString2 = [NSString stringWithFormat:@"document.getElementById('user_password').value='12341234'"];
+    [webPage stringByEvaluatingJavaScriptFromString:jScriptString1];
+    [webPage stringByEvaluatingJavaScriptFromString:jScriptString2];
 }
 
 - (void)webPage:(UIWebView *)webPages didFailLoadWithError:(NSError *)error
