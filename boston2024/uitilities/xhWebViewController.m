@@ -10,6 +10,8 @@
 #import "AppDelegate.h"
 @interface xhWebViewController ()
 @property (strong, nonatomic) NSString *urlAddress;
+@property (nonatomic, strong) UIView   *uiv_login;
+
 @end
 
 @implementation xhWebViewController
@@ -31,6 +33,70 @@
 	UILabel* webTitle = [self createWebLabel];
 	[self.view addSubview:webTitle];
 	webTitle.text = self.title;
+    [self initLoginBtn];
+}
+
+-(void)initLoginBtn
+{
+    _uiv_login = [[UIView alloc] initWithFrame:CGRectMake(984, 45, 300, 100)];
+    _uiv_login.backgroundColor = [UIColor clearColor];
+    
+    UIButton *uib_openAndClose = [UIButton buttonWithType: UIButtonTypeCustom];
+    uib_openAndClose.frame = CGRectMake(0.0, 10.0, 40.0, 40.0);
+    [uib_openAndClose setImage:[UIImage imageNamed:@"open_btn.jpg"] forState:UIControlStateNormal];
+    [_uiv_login addSubview: uib_openAndClose];
+    [uib_openAndClose addTarget:self action:@selector(openAndClose:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self initInfo];
+    
+    [self.view insertSubview: _uiv_login aboveSubview: webView];
+}
+
+-(void)openAndClose:(id)sender
+{
+    UIButton *tappedBtn = sender;
+    tappedBtn.selected = !tappedBtn.selected;
+    if (tappedBtn.selected) {
+        [UIView animateWithDuration:0.33 animations:^{
+            _uiv_login.transform = CGAffineTransformMakeTranslation(-260, 0.0);
+        }];
+    }
+    else {
+        [UIView animateWithDuration:0.33 animations:^{
+            _uiv_login.transform = CGAffineTransformIdentity;
+        }];
+    }
+}
+
+-(void)initInfo
+{
+    UIView *uiv_infoContainer = [[UIView alloc] initWithFrame:CGRectMake(40, 10, 250, 85)];
+    uiv_infoContainer.backgroundColor = [UIColor lightGrayColor];
+    [_uiv_login addSubview: uiv_infoContainer];
+    
+    UILabel *uil_name = [[UILabel alloc] initWithFrame:CGRectMake(3.0, 0.0, 80.0, 30.0)];
+    [uil_name setText:@"Username:"];
+    [uil_name setFont:[UIFont systemFontOfSize:13]];
+    [uiv_infoContainer addSubview: uil_name];
+    
+    UILabel *uil_pass = [[UILabel alloc] initWithFrame:CGRectMake(3.0, 50.0, 80.0, 30.0)];
+    [uil_pass setText:@"Password: "];
+    [uil_pass setFont:[UIFont systemFontOfSize:13]];
+    [uiv_infoContainer addSubview: uil_pass];
+    
+    UITextView *uitv_account = [[UITextView alloc] initWithFrame:CGRectMake(88, 5, 120, 30)];
+    [uitv_account setText:@"PCampot_boston"];
+    [uitv_account setFont:[UIFont systemFontOfSize:13]];
+    uitv_account.userInteractionEnabled = YES;
+    uitv_account.editable = NO;
+    [uiv_infoContainer addSubview: uitv_account];
+    
+    UITextView *uitv_pass = [[UITextView alloc] initWithFrame:CGRectMake(88, 45, 120, 30)];
+    [uitv_pass setText:@"suffolk1"];
+    [uitv_pass setFont:[UIFont systemFontOfSize:13]];
+    uitv_pass.userInteractionEnabled = YES;
+    uitv_pass.editable = NO;
+    [uiv_infoContainer addSubview: uitv_pass];
 }
 
 -(UILabel*)createWebLabel
@@ -177,10 +243,10 @@
 	ebTitle.text = theTitle;
 	NSLog(@"STOP animating");
     
-    NSString*  jScriptString1 = [NSString stringWithFormat:@"document.getElementById('user_username').value='username_username'"];
-    NSString*  jScriptString2 = [NSString stringWithFormat:@"document.getElementById('user_password').value='12341234'"];
-    [webPage stringByEvaluatingJavaScriptFromString:jScriptString1];
-    [webPage stringByEvaluatingJavaScriptFromString:jScriptString2];
+//    NSString*  jScriptString1 = [NSString stringWithFormat:@"(document.getElementById('oAuthFrame')).document.getElementById('user_username').value='PCampot_boston'"];
+    //NSString*  jScriptString2 = [NSString stringWithFormat:@"document.getElementById('user_password').value='suffolk1'"];
+//    [webPage stringByEvaluatingJavaScriptFromString:jScriptString1];
+    //[webPage stringByEvaluatingJavaScriptFromString:jScriptString2];
 }
 
 - (void)webPage:(UIWebView *)webPages didFailLoadWithError:(NSError *)error
