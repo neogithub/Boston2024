@@ -36,7 +36,7 @@
 -(UILabel*)createWebLabel
 {
 	UILabel *webTitle = [[UILabel alloc] initWithFrame:CGRectMake(354, 4, 512, 46)];
-	[webTitle setFont:[UIFont fontWithName:@"Futura" size:9]];
+	[webTitle setFont:[UIFont fontWithName:@"Futura" size:12]];
 	[webTitle setTextAlignment:NSTextAlignmentCenter];
 	float viewWidth = self.view.frame.size.width;
 	//float viewHeight = self.view.frame.size.height;
