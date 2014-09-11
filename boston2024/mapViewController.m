@@ -288,30 +288,46 @@ static float kIndicatorY = 6.0;
 -(void)initVillageBtns
 {
     _uib_village = [UIButton buttonWithType: UIButtonTypeCustom];
-    _uib_village.frame = CGRectMake(644, 578, 60, 60);
-    _uib_village.backgroundColor = [UIColor redColor];
+    _uib_village.frame = CGRectMake(644, 555, 90, 90);
+    _uib_village.backgroundColor = [UIColor clearColor];
     _uib_village.tag = 1;
     [_uib_village addTarget:self action:@selector(updateVillageMap) forControlEvents:UIControlEventTouchUpInside];
     [_uis_zoomingMap.overView addSubview: _uib_village];
+    _uib_village.selected = NO;
     
     _uib_mpc = [UIButton buttonWithType: UIButtonTypeCustom];
-    _uib_mpc.frame = CGRectMake(649, 374, 60, 60);
-    _uib_mpc.backgroundColor = [UIColor blueColor];
+    _uib_mpc.frame = CGRectMake(649, 364, 90, 90);
+    _uib_mpc.backgroundColor = [UIColor clearColor];
     _uib_mpc.tag = 2;
     [_uib_mpc addTarget:self action:@selector(updateMpcMap) forControlEvents:UIControlEventTouchUpInside];
     [_uis_zoomingMap.overView addSubview: _uib_mpc];
+    _uib_mpc.selected = NO;
 }
 
 -(void)updateVillageMap
 {
-    overlayName = @"03-06-travel-time-village";
-    [self updateOverlay];
+    _uib_village.selected = !_uib_village.selected;
+    if (_uib_village.selected) {
+        overlayName = @"03-07-athletes-village-overlay";
+        [self updateOverlay];
+    }
+    else {
+        overlayName = @"03-06-bg-drive-times-map";
+        [self updateOverlay];
+    }
 }
 
 -(void)updateMpcMap
 {
-    overlayName = @"03-07-travel-time-mpc-ipc";
-    [self updateOverlay];
+    _uib_mpc.selected = !_uib_mpc.selected;
+    if (_uib_mpc.selected) {
+        overlayName = @"03-08-mpc-overlay";
+        [self updateOverlay];
+    }
+    else {
+        overlayName = @"03-06-bg-drive-times-map";
+        [self updateOverlay];
+    }
 }
 
 -(void)removeVillageBtns
@@ -750,9 +766,12 @@ static float kIndicatorY = 6.0;
 {
     _uib_access = [UIButton buttonWithType:UIButtonTypeCustom];
     _uib_access.frame = CGRectMake(20, 680, 76.0, 37.0);
-    [_uib_access setImage:[UIImage imageNamed:@"grfx_qanda.png"] forState:UIControlStateNormal];
+//    [_uib_access setImage:[UIImage imageNamed:@"grfx_qanda.png"] forState:UIControlStateNormal];
     [_uib_access addTarget:self action:@selector(accessTapped) forControlEvents:UIControlEventTouchDown];
-    _uib_access.backgroundColor= [UIColor redColor];
+    _uib_access.backgroundColor= [UIColor whiteColor];
+    [_uib_access setTitle:@"Arcgis" forState:UIControlStateNormal];
+    [_uib_access setTitleColor:[UIColor colorWithRed:31.0/255.0 green:162.0/255.0 blue:197.0/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [_uib_access.titleLabel setFont:[UIFont fontWithName:@"DINEngschriftStd" size:17]];
     [self.view addSubview:_uib_access];
 }
 
@@ -775,50 +794,12 @@ static float kIndicatorY = 6.0;
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 	xhWebViewController *vc = (xhWebViewController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"xhWebViewController"];
 	[vc socialButton:theUrl];
-//    [self webViewDidFinishLoad:vc.webView];
 	vc.title = theUrl;
     vc.modalPresentationStyle = UIModalPresentationCurrentContext;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"hideNaviBtn" object:self];
 	[self presentViewController:vc animated:YES completion:nil];
     
 }
-//
-//- (void)webViewDidFinishLoad:(UIWebView *)webView
-//{
-//    
-//    if(!isLoggedIn){//just load only onetime.
-//        
-//        //pass the login Credintails into textfield of WebView.
-//        
-//        NSString* userId   =  @"userName"; //here just replace that string to the username
-//        NSString* password =   @"password";//here just replace that string to the password
-//        
-//        
-//        if(userId != nil && password != nil ){
-//            
-//            //NSString*  jScriptString1 = [NSString  stringWithFormat:@"<script>document.getElementById('user_username').value='%@'</script>", @"Sean"];
-//            //NSString*  jScriptString1 = @"<script>document.getElementById('user_username').value='dfhdfghdfhdfghdfhj';</script>";
-//            NSString*  jScriptString1 = @"<script>document.write('dfhdfghdfhdfghdfhj');</script>";
-//            //username is the id for username field in Login form
-//            
-//            NSString*  jScriptString2 = [NSString stringWithFormat:@"document.getElementById('user_password').value='%@'", @"Sean"];
-//            NSString*  jScriptString2 = [NSString stringWithFormat:@"document.getElementById('user_password').focus()"];
-//            //here password is the id for password field in Login Form
-//            //Now Call The Javascript for entring these Credential in login Form
-//            [webView stringByEvaluatingJavaScriptFromString:jScriptString1];
-//            
-//            //[webView stringByEvaluatingJavaScriptFromString:jScriptString2];
-//            //Further if you want to submit login Form Automatically the you may use below line
-//            
-//            //[webView stringByEvaluatingJavaScriptFromString:@"document.forms['login_form'].submit();"];
-//            // here 'login_form' is the id name of LoginForm
-//            
-//        }
-//        
-//        isLoggedIn=TRUE;
-//        
-//    }
-//}
 
 #pragma mark - init collapse view's content views
 
@@ -1027,7 +1008,7 @@ static float kIndicatorY = 6.0;
     
     uib_trafficLane.frame = CGRectMake(0.0, 0.0, container_W, 30);
     uib_trafficLane.backgroundColor = [UIColor clearColor];
-    [uib_trafficLane setTitle:@"Olympic Lane" forState:UIControlStateNormal];
+    [uib_trafficLane setTitle:@"Olympic Lanes" forState:UIControlStateNormal];
     uib_trafficLane.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_trafficLane.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     uib_trafficLane.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
@@ -1072,7 +1053,7 @@ static float kIndicatorY = 6.0;
     
     uib_trafficTime.frame = CGRectMake(0.0, 150.0, container_W, 30);
     uib_trafficTime.backgroundColor = [UIColor clearColor];
-    [uib_trafficTime setTitle:@"Drive Times" forState:UIControlStateNormal];
+    [uib_trafficTime setTitle:@"Travel Times" forState:UIControlStateNormal];
     uib_trafficTime.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_trafficTime.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     uib_trafficTime.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
@@ -1147,8 +1128,8 @@ static float kIndicatorY = 6.0;
         }
         case 6:
         {
-            [self setInfoText:@"Drive Times"];
-            overlayName = @"03-06-travel-time-village";
+            [self setInfoText:@"Travel Times"];
+            overlayName = @"03-06-bg-drive-times-map";
             _uiiv_topRightBox.hidden = YES;
             _uiiv_rightTextBox.hidden = YES;
             [self updateOverlay];
@@ -1322,7 +1303,7 @@ static float kIndicatorY = 6.0;
     [self updateIndicatorPosition:CGRectMake(kIndicatorX, tappedBtn.frame.origin.y + kIndicatorY, _uiiv_indicator.frame.size.width, _uiiv_indicator.frame.size.height)];
     switch (index) {
         case 1:
-        {[self setInfoText:@"Existing Metro Residential Population"];
+        {[self setInfoText:@"Projected Metro Residential Population"];
             [self updateRightTextBox:@"02-03-right-panel"];
             overlayName = @"02-03-2014_RegionalResidentialPopulation";
             [self updateOverlay];
@@ -1331,7 +1312,7 @@ static float kIndicatorY = 6.0;
         }
         case 2:
         {
-            [self setInfoText:@"Existing Metro Daily Population"];
+            [self setInfoText:@"Projected Metro Daily Population"];
             [self updateRightTextBox:@"02-04-right-panel"];
             overlayName = @"02-04-2014_RegionalDailyPopulation";
             [self updateOverlay];
@@ -1926,20 +1907,24 @@ static float kIndicatorY = 6.0;
         case 1: {
             UIImage *helpImage = [UIImage imageNamed:@"01A-panel-population.png"];
             UIImage *helpImage1 = [UIImage imageNamed:@"01B-panel-transit.png"];
-            helpArray = [[NSArray alloc] initWithObjects:helpImage, helpImage1, nil];
+            UIImage *helpImage2 = [UIImage imageNamed:@"02B-panel-summer-transit.png"];
+            UIImage *helpImage3 = [UIImage imageNamed:@"02C-panel-summer-reduction-journeys.png"];
+            helpArray = [[NSArray alloc] initWithObjects:helpImage, helpImage1, helpImage2, helpImage3, nil];
             break;
         }
         case 2: {
             UIImage *helpImage = [UIImage imageNamed:@"02A-panel-massdot-improvements.png"];
-            UIImage *helpImage1 = [UIImage imageNamed:@"02B-panel-summer-transit.png"];
-            UIImage *helpImage2 = [UIImage imageNamed:@"02C-panel-summer-reduction-journeys.png"];
-            helpArray = [[NSArray alloc] initWithObjects:helpImage, helpImage1, helpImage2, nil];
+            UIImage *helpImage1 = [UIImage imageNamed:@"03A-panel-highway-transit-growth.png"];
+//            UIImage *helpImage1 = [UIImage imageNamed:@"02B-panel-summer-transit.png"];
+//            UIImage *helpImage2 = [UIImage imageNamed:@"02C-panel-summer-reduction-journeys.png"];
+            helpArray = [[NSArray alloc] initWithObjects:helpImage, helpImage1, nil];
             break;
         }
         case 3: {
-            UIImage *helpImage1 = [UIImage imageNamed:@"03A-panel-highway-transit-growth.png"];
+//            UIImage *helpImage1 = [UIImage imageNamed:@"03A-panel-highway-transit-growth.png"];
             UIImage *helpImage2 = [UIImage imageNamed:@"03B-panel-capacity.png"];
-            helpArray = [[NSArray alloc] initWithObjects: helpImage1, helpImage2, nil];
+            UIImage *helpImage3 = [UIImage imageNamed:@"03C-panel-capacity-vs-demand.png"];
+            helpArray = [[NSArray alloc] initWithObjects: helpImage2, helpImage3, nil];
             break;
         }
         default:
