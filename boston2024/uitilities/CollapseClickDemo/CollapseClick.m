@@ -265,10 +265,10 @@
             [self repositionCollapseClickCellsBelowIndex:index withOffset:cell.ContentView.frame.size.height + kCCPad];
             
             // Change Cell's BG color
-            cell.TitleView.backgroundColor = [self chosenCellColor];
+            cell.TitleView.backgroundColor = [UIColor colorWithRed:31.0/255.0 green:162.0/255.0 blue:197.0/255.0 alpha:1.0];//[self chosenCellColor];
 //            cell.TitleLabel.alpha = 0.35;
             
-            cell.TitleLabel.textColor = [CollapseClickDelegate colorForTitleLabelAtIndex:index];
+            //cell.TitleLabel.textColor = [CollapseClickDelegate colorForTitleLabelAtIndex:index];
         }];
         
     }
