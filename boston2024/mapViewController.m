@@ -306,6 +306,7 @@ static float kIndicatorY = 6.0;
 
 -(void)updateVillageMap
 {
+    _uib_mpc.selected = NO;
     _uib_village.selected = !_uib_village.selected;
     if (_uib_village.selected) {
         overlayName = @"03-07-athletes-village-overlay";
@@ -319,6 +320,7 @@ static float kIndicatorY = 6.0;
 
 -(void)updateMpcMap
 {
+    _uib_village.selected = NO;
     _uib_mpc.selected = !_uib_mpc.selected;
     if (_uib_mpc.selected) {
         overlayName = @"03-08-mpc-overlay";
