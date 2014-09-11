@@ -540,6 +540,12 @@ static float kIndicatorY = 6.0;
     _uiv_textBoxContainer.hidden = YES;
     _uiiv_rightTextBox.hidden = YES;
     _uiiv_topRightBox.hidden = YES;
+    
+    _uiv_closedMenuContainer.frame = CGRectMake(-41.0, (768-36)/2, 41.0, 38);
+    _uiv_closeMenuSideBar.backgroundColor = [UIColor clearColor];
+    [_uil_cellName removeFromSuperview];
+    [_uil_cellName removeFromSuperview];
+    
     [self updateMap:(int)tappedBtn.tag];
 }
 
@@ -791,12 +797,12 @@ static float kIndicatorY = 6.0;
     [self.view addSubview: _navigationController.view];
  */
     
-    NSString *theUrl = @"https://boston.maps.arcgis.com/sharing/rest/oauth2/authorize?client_id=arcgisonline&redirect_uri=https://boston.maps.arcgis.com/home/postsignin.html&response_type=token&display=iframe&parent=https://boston.maps.arcgis.com&expiration=20160&locale=en";
-//    NSString *theUrl = @"http://neoscapelabs.com/sandbox/logintest/index.html";
+//    NSString *theUrl = @"https://boston.maps.arcgis.com/sharing/rest/oauth2/authorize?client_id=arcgisonline&redirect_uri=https://boston.maps.arcgis.com/home/postsignin.html&response_type=token&display=iframe&parent=https://boston.maps.arcgis.com&expiration=20160&locale=en";
+    NSString *theUrl = @"http://boston.maps.arcgis.com/apps/Viewer/index.html?appid=bbd9f5179822486a854f6197fc7fcd3f";
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 	xhWebViewController *vc = (xhWebViewController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"xhWebViewController"];
 	[vc socialButton:theUrl];
-	vc.title = theUrl;
+	vc.title = @"Username: PCampot_boston   Password: suffolk1";
     vc.modalPresentationStyle = UIModalPresentationCurrentContext;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"hideNaviBtn" object:self];
 	[self presentViewController:vc animated:YES completion:nil];
@@ -851,7 +857,7 @@ static float kIndicatorY = 6.0;
     
     uib_traffic3.frame = CGRectMake(0.0, 60.0, container_W, 30);
     uib_traffic3.backgroundColor = [UIColor clearColor];
-    [uib_traffic3 setTitle:@"Transit Policy Academic" forState:UIControlStateNormal];
+    [uib_traffic3 setTitle:@"Transit Academic" forState:UIControlStateNormal];
     uib_traffic3.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_traffic3.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     uib_traffic3.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
@@ -860,7 +866,7 @@ static float kIndicatorY = 6.0;
     
     uib_traffic4.frame = CGRectMake(0.0, 90.0, container_W, 30);
     uib_traffic4.backgroundColor = [UIColor clearColor];
-    [uib_traffic4 setTitle:@"Transit Policy Summer" forState:UIControlStateNormal];
+    [uib_traffic4 setTitle:@"Transit Summer" forState:UIControlStateNormal];
     uib_traffic4.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_traffic4.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     uib_traffic4.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
@@ -972,17 +978,17 @@ static float kIndicatorY = 6.0;
     switch (index) {
         case 1:
         {
-            [self setInfoText:@"Existing Highway Conditions During the Academic Year"];
+            [self setInfoText:@"Projected Highway Conditions without Improvements"];
             [self updateRightTextBox:@"02-01-right-panel"];
             overlayName = @"overlay_highway_N";
             [self updateOverlay];
-            _uiiv_topRightBox.hidden = YES;
+            [self updateTopRightBox:@"map-key-vehicular-traffic"];
             [self updateIndicatorPosition:CGRectMake(kIndicatorX, tappedBtn.frame.origin.y + kIndicatorY, _uiiv_indicator.frame.size.width, _uiiv_indicator.frame.size.height)];
             break;
         }
         case 2:
         {
-            [self setInfoText:@"Highway Conditions with Improvement"];
+            [self setInfoText:@"Projected Highway Conditions with Improvements"];
             [self updateRightTextBox:@"02-02-right-panel"];
             overlayName = @"overlay_highway_W";
             [self updateTopRightBox:@"map-key-vehicular-traffic"];
@@ -998,7 +1004,7 @@ static float kIndicatorY = 6.0;
 
 -(UIView *)createOlymTraffic
 {
-    UIView *uiv_traffic3 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, container_W, 180)];
+    UIView *uiv_traffic3 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, container_W, 150)];
     uiv_traffic3.backgroundColor = [UIColor colorWithRed:38.0/255.0 green:36.0/255.0 blue:33.0/255.0 alpha:1.0];
     
     UIButton *uib_trafficLane = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -1044,7 +1050,7 @@ static float kIndicatorY = 6.0;
     uib_traffic3.tag = 4;
     [uib_traffic3 addTarget:self action:@selector(tapOlymTrafficBtns:) forControlEvents:UIControlEventTouchUpInside];
     
-    uib_traffic4.frame = CGRectMake(0.0, 120.0, container_W, 30);
+    uib_traffic4.frame = CGRectMake(0.0, 90.0, container_W, 30);
     uib_traffic4.backgroundColor = [UIColor clearColor];
     [uib_traffic4 setTitle:@"Transit (Crush)" forState:UIControlStateNormal];
     uib_traffic4.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
@@ -1053,7 +1059,7 @@ static float kIndicatorY = 6.0;
     uib_traffic4.tag = 5;
     [uib_traffic4 addTarget:self action:@selector(tapOlymTrafficBtns:) forControlEvents:UIControlEventTouchUpInside];
     
-    uib_trafficTime.frame = CGRectMake(0.0, 150.0, container_W, 30);
+    uib_trafficTime.frame = CGRectMake(0.0, 120.0, container_W, 30);
     uib_trafficTime.backgroundColor = [UIColor clearColor];
     [uib_trafficTime setTitle:@"Travel Times" forState:UIControlStateNormal];
     uib_trafficTime.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
@@ -1065,7 +1071,7 @@ static float kIndicatorY = 6.0;
     [uiv_traffic3 addSubview: uib_trafficLane];
     [uiv_traffic3 addSubview: uib_traffic1];
     [uiv_traffic3 addSubview: uib_traffic2];
-    [uiv_traffic3 addSubview: uib_traffic3];
+//    [uiv_traffic3 addSubview: uib_traffic3];
     [uiv_traffic3 addSubview: uib_traffic4];
     [uiv_traffic3 addSubview: uib_trafficTime];
     UIView *uiv_sideBar = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 5.0, uiv_traffic3.frame.size.height)];
