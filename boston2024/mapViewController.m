@@ -31,6 +31,7 @@ static float kIndicatorY = 6.0;
 {
     NSString            *overlayName;
     int                 sectionIndex;
+    BOOL                isLoggedIn;
 }
 
 @property (nonatomic, strong) contentTableViewController    *contentTableView;
@@ -241,7 +242,6 @@ static float kIndicatorY = 6.0;
         [self initRightImageView];
         [self initTopRightBox];
         [self initIndicator];
-        [self initVillageBtns];
         _contentTableView = [[contentTableViewController alloc] init];
         
     }
@@ -287,7 +287,39 @@ static float kIndicatorY = 6.0;
 #pragma mark - init village & mpc/ipc buttons
 -(void)initVillageBtns
 {
+    _uib_village = [UIButton buttonWithType: UIButtonTypeCustom];
+    _uib_village.frame = CGRectMake(644, 578, 60, 60);
+    _uib_village.backgroundColor = [UIColor redColor];
+    _uib_village.tag = 1;
+    [_uib_village addTarget:self action:@selector(updateVillageMap) forControlEvents:UIControlEventTouchUpInside];
+    [_uis_zoomingMap.overView addSubview: _uib_village];
     
+    _uib_mpc = [UIButton buttonWithType: UIButtonTypeCustom];
+    _uib_mpc.frame = CGRectMake(649, 374, 60, 60);
+    _uib_mpc.backgroundColor = [UIColor blueColor];
+    _uib_mpc.tag = 2;
+    [_uib_mpc addTarget:self action:@selector(updateMpcMap) forControlEvents:UIControlEventTouchUpInside];
+    [_uis_zoomingMap.overView addSubview: _uib_mpc];
+}
+
+-(void)updateVillageMap
+{
+    overlayName = @"03-06-travel-time-village";
+    [self updateOverlay];
+}
+
+-(void)updateMpcMap
+{
+    overlayName = @"03-07-travel-time-mpc-ipc";
+    [self updateOverlay];
+}
+
+-(void)removeVillageBtns
+{
+    [_uib_village removeFromSuperview];
+    _uib_village = nil;
+    [_uib_mpc removeFromSuperview];
+    _uib_mpc = nil;
 }
 
 #pragma mark - init top right box
@@ -570,6 +602,11 @@ static float kIndicatorY = 6.0;
     UIView *uiv_whiteBar = [[UIView alloc] initWithFrame:CGRectMake(90.0, 10.0, 1.0, _uiv_textBoxContainer.frame.size.height - 20)];
     uiv_whiteBar.backgroundColor = [UIColor whiteColor];
     uiv_whiteBar.alpha = 0.5;
+    
+    UIView *uiv_btmBar = [[UIView alloc] initWithFrame:CGRectMake(0.0, 80.0, 600, 5)];
+    uiv_btmBar.backgroundColor = [UIColor colorWithRed:162.0/255.0 green:214.0/255.0 blue:237.0/255.0 alpha:1.0];
+    
+    [_uiv_textBoxContainer addSubview: uiv_btmBar];
     [_uiv_textBoxContainer addSubview: uiv_whiteBar];
     _uiv_textBoxContainer.hidden = YES;
 }
@@ -584,7 +621,7 @@ static float kIndicatorY = 6.0;
     [_uil_textYear setText:year];
     [_uil_textYear setBackgroundColor:[UIColor clearColor]];
     [_uil_textYear setTextColor:[UIColor whiteColor]];
-    [_uil_textYear setFont: [UIFont fontWithName:@"DINPro-CondBlack" size:35]];
+    [_uil_textYear setFont: [UIFont fontWithName:@"DINEngschriftStd" size:45]];
     [_uil_textYear setTextAlignment:NSTextAlignmentRight];
     [_uiv_textBoxContainer addSubview: _uil_textYear];
 }
@@ -635,7 +672,7 @@ static float kIndicatorY = 6.0;
     _uil_textSection = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 50.0, 80.0, 30.0)];
     [_uil_textSection setText:string];
     [_uil_textSection setTextColor:[UIColor whiteColor]];
-    [_uil_textSection setFont:[UIFont fontWithName:@"DINEngschriftStd" size:20]];
+    [_uil_textSection setFont:[UIFont fontWithName:@"DINEngschriftStd" size:30]];
     [_uil_textSection setTextAlignment:NSTextAlignmentRight];
     [_uiv_textBoxContainer addSubview: _uil_textSection];
 }
@@ -733,16 +770,55 @@ static float kIndicatorY = 6.0;
     [self.view addSubview: _navigationController.view];
  */
     
-    NSString *theUrl = @"http://www.neoscape.com";
+    NSString *theUrl = @"https://boston.maps.arcgis.com/sharing/rest/oauth2/authorize?client_id=arcgisonline&redirect_uri=https://boston.maps.arcgis.com/home/postsignin.html&response_type=token&display=iframe&parent=https://boston.maps.arcgis.com&expiration=20160&locale=en";
+//    NSString *theUrl = @"http://neoscapelabs.com/sandbox/logintest/index.html";
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 	xhWebViewController *vc = (xhWebViewController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"xhWebViewController"];
 	[vc socialButton:theUrl];
+//    [self webViewDidFinishLoad:vc.webView];
 	vc.title = theUrl;
     vc.modalPresentationStyle = UIModalPresentationCurrentContext;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"hideNaviBtn" object:self];
 	[self presentViewController:vc animated:YES completion:nil];
     
 }
+//
+//- (void)webViewDidFinishLoad:(UIWebView *)webView
+//{
+//    
+//    if(!isLoggedIn){//just load only onetime.
+//        
+//        //pass the login Credintails into textfield of WebView.
+//        
+//        NSString* userId   =  @"userName"; //here just replace that string to the username
+//        NSString* password =   @"password";//here just replace that string to the password
+//        
+//        
+//        if(userId != nil && password != nil ){
+//            
+//            //NSString*  jScriptString1 = [NSString  stringWithFormat:@"<script>document.getElementById('user_username').value='%@'</script>", @"Sean"];
+//            //NSString*  jScriptString1 = @"<script>document.getElementById('user_username').value='dfhdfghdfhdfghdfhj';</script>";
+//            NSString*  jScriptString1 = @"<script>document.write('dfhdfghdfhdfghdfhj');</script>";
+//            //username is the id for username field in Login form
+//            
+//            NSString*  jScriptString2 = [NSString stringWithFormat:@"document.getElementById('user_password').value='%@'", @"Sean"];
+//            NSString*  jScriptString2 = [NSString stringWithFormat:@"document.getElementById('user_password').focus()"];
+//            //here password is the id for password field in Login Form
+//            //Now Call The Javascript for entring these Credential in login Form
+//            [webView stringByEvaluatingJavaScriptFromString:jScriptString1];
+//            
+//            //[webView stringByEvaluatingJavaScriptFromString:jScriptString2];
+//            //Further if you want to submit login Form Automatically the you may use below line
+//            
+//            //[webView stringByEvaluatingJavaScriptFromString:@"document.forms['login_form'].submit();"];
+//            // here 'login_form' is the id name of LoginForm
+//            
+//        }
+//        
+//        isLoggedIn=TRUE;
+//        
+//    }
+//}
 
 #pragma mark - init collapse view's content views
 
@@ -1017,6 +1093,8 @@ static float kIndicatorY = 6.0;
 
 -(void)tapOlymTrafficBtns:(id)sender
 {
+    [self removeVillageBtns];
+    
     UIButton *tappedBtn = sender;
     int index = (int)tappedBtn.tag;
     [tappedBtn.superview addSubview: _uiiv_indicator];
@@ -1070,10 +1148,11 @@ static float kIndicatorY = 6.0;
         case 6:
         {
             [self setInfoText:@"Drive Times"];
-            overlayName = @"00-bg-base-highways";
+            overlayName = @"03-06-travel-time-village";
             _uiiv_topRightBox.hidden = YES;
             _uiiv_rightTextBox.hidden = YES;
             [self updateOverlay];
+            [self initVillageBtns];
             break;
         }
         default:
@@ -1772,6 +1851,7 @@ static float kIndicatorY = 6.0;
     _uiiv_rightTextBox.hidden = YES;
     _uiiv_topRightBox.hidden = YES;
     _uiiv_indicator.hidden = YES;
+    [self removeVillageBtns];
     [_uiiv_indicator removeFromSuperview];
     
     overlayName = @"00-bg-base-highways";
