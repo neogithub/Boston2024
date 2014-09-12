@@ -1950,6 +1950,7 @@ static float kIndicatorY = 6.0;
 
 - (void)tapOnHelp
 {
+    [theCollapseClick closeCollapseClickCellAtIndex:_arr_cellName.count-1 animated:YES];
     [_helpVC.view removeFromSuperview];
     _helpVC.view = nil;
 }

@@ -295,6 +295,7 @@
         if (animated) {
             duration = 0.25;
         }
+        NSLog(@"\n\nReset the cell!!");
         [UIView animateWithDuration:duration animations:^{
             // Resize Cell
             CollapseClickCell *cell = [self.dataArray objectAtIndex:index];
