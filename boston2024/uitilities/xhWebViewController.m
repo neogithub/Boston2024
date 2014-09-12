@@ -243,7 +243,7 @@
 	ebTitle.text = theTitle;
 	NSLog(@"STOP animating");
     
-//    NSString*  jScriptString1 = [NSString stringWithFormat:@"(document.getElementById('oAuthFrame')).document.getElementById('user_username').value='PCampot_boston'"];
+//    NSString*  jScriptString1 = [NSString stringWithFormat:@"(document.getElementById('oAuthFrame').contentWindow).document.forms[0].elements['user_username'].value = 'dfghdfghdfgh';"];
     //NSString*  jScriptString2 = [NSString stringWithFormat:@"document.getElementById('user_password').value='suffolk1'"];
 //    [webPage stringByEvaluatingJavaScriptFromString:jScriptString1];
     //[webPage stringByEvaluatingJavaScriptFromString:jScriptString2];
