@@ -1917,7 +1917,8 @@ static float kIndicatorY = 6.0;
             UIImage *helpImage1 = [UIImage imageNamed:@"01B-panel-transit.png"];
             UIImage *helpImage2 = [UIImage imageNamed:@"02B-panel-summer-transit.png"];
             UIImage *helpImage3 = [UIImage imageNamed:@"02C-panel-summer-reduction-journeys.png"];
-            helpArray = [[NSArray alloc] initWithObjects:helpImage, helpImage1, helpImage2, helpImage3, nil];
+            UIImage *helpImage4 = [UIImage imageNamed:@"00-transit-map.png"];
+            helpArray = [[NSArray alloc] initWithObjects:helpImage, helpImage1, helpImage2, helpImage3, helpImage4, nil];
             break;
         }
         case 2: {

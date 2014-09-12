@@ -15,6 +15,7 @@ static float pageGap = 35.0;
 @interface xhHelpViewController () <UIGestureRecognizerDelegate, UIScrollViewDelegate>
 @property (nonatomic, strong)   NSArray         *arr_images;
 @property (nonatomic, strong)   UIScrollView    *uis_helps;
+@property (nonatomic, strong)   UILabel         *uil_pageNum;
 @end
 
 @implementation xhHelpViewController
@@ -54,6 +55,8 @@ static float pageGap = 35.0;
     }
     [self.view insertSubview: _uis_helps aboveSubview:uiv_blurry];
     _uis_helps.transform = CGAffineTransformMakeScale(scaleRatio, scaleRatio);
+    
+    [self addPageNum];
 //    _uis_helps.transform = CGAffineTransformMakeScale(0.75, 0.75);
 //    UITapGestureRecognizer *oneTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnView)];
 //    oneTap.delegate = self;
@@ -61,11 +64,23 @@ static float pageGap = 35.0;
 //    [self.view addGestureRecognizer:oneTap];
 }
 
-//- (void)tapOnView
-//{
-//    [self.view removeFromSuperview];
-//    self.view = nil;
-//}
+-(void)addPageNum
+{
+    _uil_pageNum = [[UILabel alloc] initWithFrame:CGRectMake(780.0, 640.0, 100.0, 30.0)];
+    _uil_pageNum.backgroundColor = [UIColor clearColor];
+    [_uil_pageNum setText:[NSString stringWithFormat:@"1 OF %i", (int)_arr_images.count]];
+    [_uil_pageNum setTextColor:[UIColor whiteColor]];
+    [_uil_pageNum setTextAlignment:NSTextAlignmentCenter];
+    [_uil_pageNum setFont:[UIFont fontWithName:@"DINPro-CondBlack" size:17.0]];
+    [self.view insertSubview:_uil_pageNum aboveSubview:_uis_helps];
+}
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    int page = (int)_uis_helps.contentOffset.x / 1000;//(_uis_helps.contentOffset.x - pageGap)/ (_uis_helps.frame.size.width + pageGap);
+//    NSLog(@"\n offset is %f",_uis_helps.contentOffset.x);
+    [_uil_pageNum setText:[NSString stringWithFormat:@"%i OF %i", page+1, (int)_arr_images.count]];
+}
 
 - (void)viewDidLoad
 {

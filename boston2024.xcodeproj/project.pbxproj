@@ -13,6 +13,8 @@
 		8225436919BA3A1400943EF0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8225436819BA3A1400943EF0 /* AVFoundation.framework */; };
 		8225436B19BA49DB00943EF0 /* Skanska_101Seaport_Final_HD.mov in Resources */ = {isa = PBXBuildFile; fileRef = 8225436A19BA49DB00943EF0 /* Skanska_101Seaport_Final_HD.mov */; };
 		8225B0D519B9008C00A0DA6F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82CBFBA719B638CE00B20EB8 /* Main.storyboard */; };
+		823E858619C32E0D000ABDB7 /* 00-transit-map.png in Resources */ = {isa = PBXBuildFile; fileRef = 823E858419C32E0D000ABDB7 /* 00-transit-map.png */; };
+		823E858719C32E0D000ABDB7 /* 00-transit-map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 823E858519C32E0D000ABDB7 /* 00-transit-map@2x.png */; };
 		8243AAD219C08DD100FE9B58 /* icon_people.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AACC19C08DD100FE9B58 /* icon_people.png */; };
 		8243AAD319C08DD100FE9B58 /* icon_people@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AACD19C08DD100FE9B58 /* icon_people@2x.png */; };
 		8243AAD419C08DD100FE9B58 /* icon_statistics.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243AACE19C08DD100FE9B58 /* icon_statistics.png */; };
@@ -299,6 +301,8 @@
 		8225436619BA3A0E00943EF0 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		8225436819BA3A1400943EF0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		8225436A19BA49DB00943EF0 /* Skanska_101Seaport_Final_HD.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Skanska_101Seaport_Final_HD.mov; sourceTree = "<group>"; };
+		823E858419C32E0D000ABDB7 /* 00-transit-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "00-transit-map.png"; sourceTree = "<group>"; };
+		823E858519C32E0D000ABDB7 /* 00-transit-map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "00-transit-map@2x.png"; sourceTree = "<group>"; };
 		8243AACC19C08DD100FE9B58 /* icon_people.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_people.png; sourceTree = "<group>"; };
 		8243AACD19C08DD100FE9B58 /* icon_people@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_people@2x.png"; sourceTree = "<group>"; };
 		8243AACE19C08DD100FE9B58 /* icon_statistics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_statistics.png; sourceTree = "<group>"; };
@@ -792,6 +796,8 @@
 		8243AB7919C0F02C00FE9B58 /* statistic */ = {
 			isa = PBXGroup;
 			children = (
+				823E858419C32E0D000ABDB7 /* 00-transit-map.png */,
+				823E858519C32E0D000ABDB7 /* 00-transit-map@2x.png */,
 				8243AB7A19C0F02C00FE9B58 /* 01A-panel-population.png */,
 				8243AB7B19C0F02C00FE9B58 /* 01A-panel-population@2x.png */,
 				8243AB7C19C0F02C00FE9B58 /* 01B-panel-transit.png */,
@@ -1353,6 +1359,7 @@
 				82CBFFF719B6430D00B20EB8 /* grfx_CultureResource.png in Resources */,
 				8243ABB519C0FCBD00FE9B58 /* 02-03-right-panel@2x.png in Resources */,
 				8243AAD719C08DD100FE9B58 /* icon_traffic@2x.png in Resources */,
+				823E858719C32E0D000ABDB7 /* 00-transit-map@2x.png in Resources */,
 				8243AB0E19C0DBC100FE9B58 /* overlay_highway_S.png in Resources */,
 				82CBFEF519B6430D00B20EB8 /* old_map_neo-OFF@2x.png in Resources */,
 				82CB000919B6430D00B20EB8 /* grfx_qanda.png in Resources */,
@@ -1428,6 +1435,7 @@
 				8243ABA519C0F75300FE9B58 /* overlay_Olyhighway_W@2x.png in Resources */,
 				82CBFBF819B63E5100B20EB8 /* contentTableViewController.xib in Resources */,
 				8243AB4719C0E65600FE9B58 /* 02-03-2014_RegionalResidentialPopulation.png in Resources */,
+				823E858619C32E0D000ABDB7 /* 00-transit-map.png in Resources */,
 				8243AB0819C0DBC100FE9B58 /* 01-06-bg-2014_RegionalResidentialPopulation.png in Resources */,
 				82CBFC0619B63E5100B20EB8 /* photo-gallery-trashcan.png in Resources */,
 				82CBFFED19B6430D00B20EB8 /* grfx_alignmentOverlay.png in Resources */,
