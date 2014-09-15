@@ -419,6 +419,7 @@ static float kIndicatorY = 6.0;
     _uiv_closedMenuContainer = [[UIView alloc] initWithFrame:CGRectMake(-40.0, (768-38)/2, kClosedMenu_W, kClosedMenu_W)];
     _uiv_closedMenuContainer.clipsToBounds = NO;
     [_uiv_closedMenuContainer setBackgroundColor:[self normalCellColor]];
+//    [_uiv_closedMenuContainer setBackgroundColor:[UIColor clearColor]];
     _uib_openBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [_uib_openBtn setBackgroundColor:[UIColor clearColor]];
     [_uib_openBtn setBackgroundImage:[UIImage imageNamed:@"open_btn.jpg"] forState:UIControlStateNormal];
@@ -450,10 +451,12 @@ static float kIndicatorY = 6.0;
         padding = 12.0;
     
     [_uil_cellName removeFromSuperview];
+    _uil_cellName = nil;
     [_uiv_closeMenuSideBar removeFromSuperview];
     
     _uil_cellName = [[UILabel alloc] initWithFrame:CGRectMake(10, 48.0, 30.0, 20.0)];//_uib_openBtn.frame.size.height = 40, space = 8, 40+8=48
     _uil_cellName.layer.anchorPoint = CGPointMake(0, 1.0);
+//    [_uil_cellName setBackgroundColor:[self normalCellColor]];
     [_uil_cellName setBackgroundColor:[UIColor clearColor]];
     _uil_cellName.autoresizesSubviews = YES;
     [_uil_cellName setText:cellName];
@@ -474,7 +477,7 @@ static float kIndicatorY = 6.0;
     CGRect containerFrame = _uiv_closedMenuContainer.frame;
     containerFrame.size.height = _uib_openBtn.frame.size.height + padding + _uil_cellName.frame.size.height + padding;
     containerFrame.size.width = kClosedMenu_W;
-    containerFrame.origin.y = (768 - containerFrame.size.height)/2;
+    containerFrame.origin.y = (int)(768 - containerFrame.size.height)/2;
     containerFrame.origin.x = _uiv_closedMenuContainer.frame.origin.x;
     _uiv_closedMenuContainer.frame = containerFrame;
     
@@ -802,7 +805,7 @@ static float kIndicatorY = 6.0;
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 	xhWebViewController *vc = (xhWebViewController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"xhWebViewController"];
 	[vc socialButton:theUrl];
-	vc.title = @"Username: PCampot_boston   Password: suffolk1";
+	vc.title = @"ArcGIS";//@"Username: PCampot_boston   Password: suffolk1";
     vc.modalPresentationStyle = UIModalPresentationCurrentContext;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"hideNaviBtn" object:self];
 	[self presentViewController:vc animated:YES completion:nil];
@@ -1664,7 +1667,7 @@ static float kIndicatorY = 6.0;
         _uiv_collapseContainer.transform = CGAffineTransformMakeTranslation(-(1+container_W), 0);
     } completion:^(BOOL finished){
         [UIView animateWithDuration:0.33 animations:^{
-            _uiv_closedMenuContainer.transform = CGAffineTransformMakeTranslation(41, 0);
+            _uiv_closedMenuContainer.transform = CGAffineTransformMakeTranslation(40, 0);
         }];
     }];
 }
