@@ -33,7 +33,7 @@
 	UILabel* webTitle = [self createWebLabel];
 	[self.view addSubview:webTitle];
 	webTitle.text = self.title;
-    [self initLoginBtn];
+//    [self initLoginBtn];
 }
 
 -(void)initLoginBtn
@@ -243,10 +243,11 @@
 	ebTitle.text = theTitle;
 	NSLog(@"STOP animating");
     
-//    NSString*  jScriptString1 = [NSString stringWithFormat:@"(document.getElementById('oAuthFrame').contentWindow).document.forms[0].elements['user_username'].value = 'dfghdfghdfgh';"];
+    NSString*  jScriptString1 = [NSString stringWithFormat:@"(document.getElementById('oAuthFrame').contentWindow).document.forms[0].elements['user_username'].value = 'PCampot_boston';"];
+    NSString*  jScriptString2 = [NSString stringWithFormat:@"(document.getElementById('oAuthFrame').contentWindow).document.forms[0].elements['user_password'].value = 'suffolk1';"];
     //NSString*  jScriptString2 = [NSString stringWithFormat:@"document.getElementById('user_password').value='suffolk1'"];
-//    [webPage stringByEvaluatingJavaScriptFromString:jScriptString1];
-    //[webPage stringByEvaluatingJavaScriptFromString:jScriptString2];
+    [webPage stringByEvaluatingJavaScriptFromString:jScriptString1];
+    [webPage stringByEvaluatingJavaScriptFromString:jScriptString2];
 }
 
 - (void)webPage:(UIWebView *)webPages didFailLoadWithError:(NSError *)error
