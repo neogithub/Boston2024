@@ -124,6 +124,8 @@
 		827F435019C2204400532FF7 /* 03-07-athletes-village-overlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 827F434A19C2204400532FF7 /* 03-07-athletes-village-overlay@2x.png */; };
 		827F435119C2204400532FF7 /* 03-08-mpc-overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 827F434B19C2204400532FF7 /* 03-08-mpc-overlay.png */; };
 		827F435219C2204400532FF7 /* 03-08-mpc-overlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 827F434C19C2204400532FF7 /* 03-08-mpc-overlay@2x.png */; };
+		828B95D119C781A100A15ACF /* 00-start-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 828B95CF19C781A100A15ACF /* 00-start-logo.png */; };
+		828B95D219C781A100A15ACF /* 00-start-logo@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 828B95D019C781A100A15ACF /* 00-start-logo@2X.png */; };
 		82CB000719B6430D00B20EB8 /* grfx_play_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 82CBFE1319B6430D00B20EB8 /* grfx_play_btn.png */; };
 		82CB000819B6430D00B20EB8 /* grfx_play_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82CBFE1419B6430D00B20EB8 /* grfx_play_btn@2x.png */; };
 		82CB001E19B6430D00B20EB8 /* map_menu_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 82CBFE2A19B6430D00B20EB8 /* map_menu_close.png */; };
@@ -349,6 +351,8 @@
 		827F434A19C2204400532FF7 /* 03-07-athletes-village-overlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-07-athletes-village-overlay@2x.png"; sourceTree = "<group>"; };
 		827F434B19C2204400532FF7 /* 03-08-mpc-overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-08-mpc-overlay.png"; sourceTree = "<group>"; };
 		827F434C19C2204400532FF7 /* 03-08-mpc-overlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-08-mpc-overlay@2x.png"; sourceTree = "<group>"; };
+		828B95CF19C781A100A15ACF /* 00-start-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "00-start-logo.png"; sourceTree = "<group>"; };
+		828B95D019C781A100A15ACF /* 00-start-logo@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "00-start-logo@2X.png"; sourceTree = "<group>"; };
 		82CBFB9219B638CE00B20EB8 /* boston2024.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = boston2024.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82CBFB9519B638CE00B20EB8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		82CBFB9719B638CE00B20EB8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -872,6 +876,8 @@
 				8243AAEB19C0DB9000FE9B58 /* 00-base-regional-map@2x.png */,
 				8243AB2019C0DD0600FE9B58 /* 00-bg-base-highways.png */,
 				8243AB2119C0DD0600FE9B58 /* 00-bg-base-highways@2x.png */,
+				828B95CF19C781A100A15ACF /* 00-start-logo.png */,
+				828B95D019C781A100A15ACF /* 00-start-logo@2X.png */,
 				8243AAEE19C0DBC100FE9B58 /* 2014 */,
 				8243AB3919C0E65600FE9B58 /* 2024 */,
 				8243AB5319C0EA8200FE9B58 /* Olympic */,
@@ -1064,6 +1070,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				828B95D119C781A100A15ACF /* 00-start-logo.png in Resources */,
 				8225B0D519B9008C00A0DA6F /* Main.storyboard in Resources */,
 				82CBFEF619B6430D00B20EB8 /* old_map_neo-ON@2x.png in Resources */,
 				82CBFF7A19B6430D00B20EB8 /* location_hotspots.plist in Resources */,
@@ -1115,6 +1122,7 @@
 				8243AB0A19C0DBC100FE9B58 /* 01-07-bg-2014_RegionalDailyPopulation.png in Resources */,
 				82CBFC0419B63E5100B20EB8 /* photo-gallery-right.png in Resources */,
 				82CBFEE619B6430D00B20EB8 /* map_apple-ON@2x.png in Resources */,
+				828B95D219C781A100A15ACF /* 00-start-logo@2X.png in Resources */,
 				82CBFEF319B6430D00B20EB8 /* old_map_google-OFF@2x.png in Resources */,
 				8243AB3019C0E35A00FE9B58 /* map-key-olympic-lanes@2x.png in Resources */,
 				8243AB1B19C0DBC100FE9B58 /* 01-04-right-panel@2x.png in Resources */,

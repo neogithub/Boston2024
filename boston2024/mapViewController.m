@@ -114,6 +114,7 @@ static float kIndicatorY = 6.0;
 @property (nonatomic, strong) NSArray                       *arr_galleryImageData;
 
 @property (nonatomic, readwrite) int                        preBtnTag;
+@property (nonatomic, strong) UIButton                      *uib_home;
 //navigation controller
 @property (strong, nonatomic) UINavigationController        *navigationController;
 
@@ -190,6 +191,7 @@ static float kIndicatorY = 6.0;
     //    [self initBlockBtns];
     
 	[self initAccessBtn];
+    [self initHomeBtn];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doneButtonClick:) name:MPMoviePlayerPlaybackDidFinishNotification object:_playerViewController];
 }
@@ -544,11 +546,6 @@ static float kIndicatorY = 6.0;
     _uiiv_rightTextBox.hidden = YES;
     _uiiv_topRightBox.hidden = YES;
     
-    _uiv_closedMenuContainer.frame = CGRectMake(-41.0, (768-36)/2, 41.0, 38);
-    _uiv_closeMenuSideBar.backgroundColor = [UIColor clearColor];
-    [_uil_cellName removeFromSuperview];
-    [_uil_cellName removeFromSuperview];
-    
     [self updateMap:(int)tappedBtn.tag];
 }
 
@@ -556,6 +553,11 @@ static float kIndicatorY = 6.0;
 {
     _uiv_closedMenuContainer.transform = CGAffineTransformIdentity;
     _uiv_collapseContainer.transform = CGAffineTransformIdentity;
+    _uiv_closedMenuContainer.frame = CGRectMake(-40.0, (768-36)/2, 40.0, 38);
+    _uiv_closeMenuSideBar.backgroundColor = [UIColor clearColor];
+    [_uil_cellName removeFromSuperview];
+    
+    NSLog(@"\n\n The close menu is %@", [_uiv_closedMenuContainer description]);
     switch (index) {
         case 10:{
             sectionIndex = 1;
@@ -776,13 +778,14 @@ static float kIndicatorY = 6.0;
 -(void)initAccessBtn
 {
     _uib_access = [UIButton buttonWithType:UIButtonTypeCustom];
-    _uib_access.frame = CGRectMake(20, 680, 76.0, 37.0);
+    _uib_access.frame = CGRectMake(20, 680, 76.0, 30.0);
 //    [_uib_access setImage:[UIImage imageNamed:@"grfx_qanda.png"] forState:UIControlStateNormal];
     [_uib_access addTarget:self action:@selector(accessTapped) forControlEvents:UIControlEventTouchDown];
     _uib_access.backgroundColor= [UIColor whiteColor];
-    [_uib_access setTitle:@"Arcgis" forState:UIControlStateNormal];
+    [_uib_access setTitle:@"LIVE" forState:UIControlStateNormal];
     [_uib_access setTitleColor:[UIColor colorWithRed:31.0/255.0 green:162.0/255.0 blue:197.0/255.0 alpha:1.0] forState:UIControlStateNormal];
     [_uib_access.titleLabel setFont:[UIFont fontWithName:@"DINEngschriftStd" size:17]];
+    [_uib_access setTitleEdgeInsets:UIEdgeInsetsMake(6, 0, 0, 0)];
     [self.view addSubview:_uib_access];
 }
 
@@ -805,11 +808,32 @@ static float kIndicatorY = 6.0;
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 	xhWebViewController *vc = (xhWebViewController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"xhWebViewController"];
 	[vc socialButton:theUrl];
-	vc.title = @"ArcGIS";//@"Username: PCampot_boston   Password: suffolk1";
+	vc.title = @"ArcGIS - Live Traffic Data";//@"Username: PCampot_boston   Password: suffolk1";
     vc.modalPresentationStyle = UIModalPresentationCurrentContext;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"hideNaviBtn" object:self];
 	[self presentViewController:vc animated:YES completion:nil];
     
+}
+
+#pragma mark - init Home button
+-(void)initHomeBtn
+{
+    _uib_home = [UIButton buttonWithType:UIButtonTypeCustom];
+    _uib_home.frame = CGRectMake(1024.0 - 70,768.0-30.0, 70.0, 30.0);
+    [_uib_home setTitle:@"HOME" forState:UIControlStateNormal];
+    [_uib_home setTitleColor:[UIColor colorWithRed:0.0/255.0 green:174.0/255.0 blue:255.0/255.0 alpha:1.0] forState:UIControlStateNormal];
+    _uib_home.backgroundColor = [UIColor whiteColor];
+    [_uib_home setTitleEdgeInsets:UIEdgeInsetsMake(6, 0, 0, 0)];
+    [_uib_home.titleLabel setFont:[UIFont fontWithName:@"DINEngschriftStd" size:17]];
+    [_uib_home addTarget:self action:@selector(homeTapped) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview: _uib_home];
+}
+
+-(void)homeTapped
+{
+    [self tapOnBottomMenu:_uib_bos2014];
+    [self updateMap:10];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"resetApp" object:nil];
 }
 
 #pragma mark - init collapse view's content views
@@ -842,7 +866,7 @@ static float kIndicatorY = 6.0;
     
     uib_traffic1.frame = CGRectMake(0.0, 0.0, container_W, 30);
     uib_traffic1.backgroundColor = [UIColor clearColor];
-    [uib_traffic1 setTitle:@"Highway Academic" forState:UIControlStateNormal];
+    [uib_traffic1 setTitle:@"Highway (Academic)" forState:UIControlStateNormal];
     uib_traffic1.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_traffic1.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     uib_traffic1.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
@@ -851,7 +875,7 @@ static float kIndicatorY = 6.0;
     
     uib_traffic2.frame = CGRectMake(0.0, 30.0, container_W, 30);
     uib_traffic2.backgroundColor = [UIColor clearColor];
-    [uib_traffic2 setTitle:@"Highway Summer" forState:UIControlStateNormal];
+    [uib_traffic2 setTitle:@"Highway (Summer)" forState:UIControlStateNormal];
     uib_traffic2.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_traffic2.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     uib_traffic2.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
@@ -860,7 +884,7 @@ static float kIndicatorY = 6.0;
     
     uib_traffic3.frame = CGRectMake(0.0, 60.0, container_W, 30);
     uib_traffic3.backgroundColor = [UIColor clearColor];
-    [uib_traffic3 setTitle:@"Transit Academic" forState:UIControlStateNormal];
+    [uib_traffic3 setTitle:@"Transit Policy (Academic)" forState:UIControlStateNormal];
     uib_traffic3.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_traffic3.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     uib_traffic3.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
@@ -869,7 +893,7 @@ static float kIndicatorY = 6.0;
     
     uib_traffic4.frame = CGRectMake(0.0, 90.0, container_W, 30);
     uib_traffic4.backgroundColor = [UIColor clearColor];
-    [uib_traffic4 setTitle:@"Transit Summer" forState:UIControlStateNormal];
+    [uib_traffic4 setTitle:@"Transit Policy (Summer)" forState:UIControlStateNormal];
     uib_traffic4.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_traffic4.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     uib_traffic4.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
@@ -941,15 +965,17 @@ static float kIndicatorY = 6.0;
 
 -(UIView *)create2024Traffic
 {
-    UIView *uiv_traffic2 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, container_W, 60)];
+    UIView *uiv_traffic2 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, container_W, 120)];
     uiv_traffic2.backgroundColor = [UIColor colorWithRed:38.0/255.0 green:36.0/255.0 blue:33.0/255.0 alpha:1.0];
     
     UIButton *uib_traffic1 = [UIButton buttonWithType:UIButtonTypeCustom];
     UIButton *uib_traffic2 = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton *uib_traffic3 = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton *uib_traffic4 = [UIButton buttonWithType:UIButtonTypeCustom];
     
     uib_traffic1.frame = CGRectMake(0.0, 0.0, container_W, 30);
     uib_traffic1.backgroundColor = [UIColor clearColor];
-    [uib_traffic1 setTitle:@"Highway No Improvements" forState:UIControlStateNormal];
+    [uib_traffic1 setTitle:@"Highway - w/o Improvements" forState:UIControlStateNormal];
     uib_traffic1.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_traffic1.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     uib_traffic1.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
@@ -958,15 +984,35 @@ static float kIndicatorY = 6.0;
     
     uib_traffic2.frame = CGRectMake(0.0, 30.0, container_W, 30);
     uib_traffic2.backgroundColor = [UIColor clearColor];
-    [uib_traffic2 setTitle:@"Highway w/ Improvements" forState:UIControlStateNormal];
+    [uib_traffic2 setTitle:@"Highway - w/ Improvements" forState:UIControlStateNormal];
     uib_traffic2.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_traffic2.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     uib_traffic2.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
     uib_traffic2.tag = 2;
     [uib_traffic2 addTarget:self action:@selector(tap2024TrafficBtns:) forControlEvents:UIControlEventTouchUpInside];
     
+    uib_traffic3.frame = CGRectMake(0.0, 60.0, container_W, 30);
+    uib_traffic3.backgroundColor = [UIColor clearColor];
+    [uib_traffic3 setTitle:@"Transit Policy - w/o Improvements" forState:UIControlStateNormal];
+    uib_traffic3.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
+    uib_traffic3.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    uib_traffic3.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
+    uib_traffic3.tag = 3;
+    [uib_traffic3 addTarget:self action:@selector(tap2024TrafficBtns:) forControlEvents:UIControlEventTouchUpInside];
+    
+    uib_traffic4.frame = CGRectMake(0.0, 90.0, container_W, 30);
+    uib_traffic4.backgroundColor = [UIColor clearColor];
+    [uib_traffic4 setTitle:@"Transit Policy - w/ Improvements" forState:UIControlStateNormal];
+    uib_traffic4.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
+    uib_traffic4.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    uib_traffic4.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
+    uib_traffic4.tag = 4;
+    [uib_traffic4 addTarget:self action:@selector(tap2024TrafficBtns:) forControlEvents:UIControlEventTouchUpInside];
+    
     [uiv_traffic2 addSubview: uib_traffic1];
     [uiv_traffic2 addSubview: uib_traffic2];
+    [uiv_traffic2 addSubview: uib_traffic3];
+    [uiv_traffic2 addSubview: uib_traffic4];
     UIView *uiv_sideBar = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 5.0, uiv_traffic2.frame.size.height)];
     [uiv_sideBar setBackgroundColor:[UIColor colorWithRed:31.0/255.0 green:162.0/255.0 blue:197.0/255.0 alpha:1.0]];
     [uiv_traffic2 addSubview: uiv_sideBar];
@@ -981,7 +1027,7 @@ static float kIndicatorY = 6.0;
     switch (index) {
         case 1:
         {
-            [self setInfoText:@"Projected Highway Conditions without Improvements"];
+            [self setInfoText:@"Projected Summer Highway Conditions without Improvements"];
             [self updateRightTextBox:@"02-01-right-panel"];
             overlayName = @"overlay_highway_N";
             [self updateOverlay];
@@ -991,8 +1037,30 @@ static float kIndicatorY = 6.0;
         }
         case 2:
         {
-            [self setInfoText:@"Projected Highway Conditions with Improvements"];
+            [self setInfoText:@"Projected Summer Highway Conditions with Improvements"];
             [self updateRightTextBox:@"02-02-right-panel"];
+            overlayName = @"overlay_highway_W";
+            [self updateTopRightBox:@"map-key-vehicular-traffic"];
+            [self updateOverlay];
+            [self updateIndicatorPosition:CGRectMake(kIndicatorX, tappedBtn.frame.origin.y + kIndicatorY, _uiiv_indicator.frame.size.width, _uiiv_indicator.frame.size.height)];
+            break;
+        }
+        case 3:
+        {
+            [self setInfoText:@"Projected Summer Transit Policy Conditions with Improvements"];
+//            [self updateRightTextBox:@"02-02-right-panel"];
+            _uiiv_rightTextBox.hidden = YES;
+            overlayName = @"overlay_highway_W";
+            [self updateTopRightBox:@"map-key-vehicular-traffic"];
+            [self updateOverlay];
+            [self updateIndicatorPosition:CGRectMake(kIndicatorX, tappedBtn.frame.origin.y + kIndicatorY, _uiiv_indicator.frame.size.width, _uiiv_indicator.frame.size.height)];
+            break;
+        }
+        case 4:
+        {
+            [self setInfoText:@"Projected Summer Highway Conditions with Improvements"];
+//            [self updateRightTextBox:@"02-02-right-panel"];
+            _uiiv_rightTextBox.hidden = YES;
             overlayName = @"overlay_highway_W";
             [self updateTopRightBox:@"map-key-vehicular-traffic"];
             [self updateOverlay];
@@ -1007,7 +1075,7 @@ static float kIndicatorY = 6.0;
 
 -(UIView *)createOlymTraffic
 {
-    UIView *uiv_traffic3 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, container_W, 150)];
+    UIView *uiv_traffic3 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, container_W, 210)];
     uiv_traffic3.backgroundColor = [UIColor colorWithRed:38.0/255.0 green:36.0/255.0 blue:33.0/255.0 alpha:1.0];
     
     UIButton *uib_trafficLane = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -1016,6 +1084,7 @@ static float kIndicatorY = 6.0;
     UIButton *uib_traffic3 = [UIButton buttonWithType:UIButtonTypeCustom];
     UIButton *uib_traffic4 = [UIButton buttonWithType:UIButtonTypeCustom];
     UIButton *uib_trafficTime = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton *uib_walk = [UIButton buttonWithType:UIButtonTypeCustom];
     
     uib_trafficLane.frame = CGRectMake(0.0, 0.0, container_W, 30);
     uib_trafficLane.backgroundColor = [UIColor clearColor];
@@ -1028,7 +1097,7 @@ static float kIndicatorY = 6.0;
     
     uib_traffic1.frame = CGRectMake(0.0, 30.0, container_W, 30);
     uib_traffic1.backgroundColor = [UIColor clearColor];
-    [uib_traffic1 setTitle:@"Highway (No Improvements)" forState:UIControlStateNormal];
+    [uib_traffic1 setTitle:@"Highway - w/o Olympics" forState:UIControlStateNormal];
     uib_traffic1.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_traffic1.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     uib_traffic1.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
@@ -1037,7 +1106,7 @@ static float kIndicatorY = 6.0;
     
     uib_traffic2.frame = CGRectMake(0.0, 60.0, container_W, 30);
     uib_traffic2.backgroundColor = [UIColor clearColor];
-    [uib_traffic2 setTitle:@"Highway (Improvements)" forState:UIControlStateNormal];
+    [uib_traffic2 setTitle:@"Highway - w/ Olympics" forState:UIControlStateNormal];
     uib_traffic2.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_traffic2.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     uib_traffic2.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
@@ -1046,23 +1115,23 @@ static float kIndicatorY = 6.0;
     
     uib_traffic3.frame = CGRectMake(0.0, 90.0, container_W, 30);
     uib_traffic3.backgroundColor = [UIColor clearColor];
-    [uib_traffic3 setTitle:@"Transit (Policy)" forState:UIControlStateNormal];
+    [uib_traffic3 setTitle:@"Transit Crush - w/o Olympics" forState:UIControlStateNormal];
     uib_traffic3.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_traffic3.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     uib_traffic3.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
     uib_traffic3.tag = 4;
     [uib_traffic3 addTarget:self action:@selector(tapOlymTrafficBtns:) forControlEvents:UIControlEventTouchUpInside];
     
-    uib_traffic4.frame = CGRectMake(0.0, 90.0, container_W, 30);
+    uib_traffic4.frame = CGRectMake(0.0, 120.0, container_W, 30);
     uib_traffic4.backgroundColor = [UIColor clearColor];
-    [uib_traffic4 setTitle:@"Transit (Crush)" forState:UIControlStateNormal];
+    [uib_traffic4 setTitle:@"Transit Crush - w/ Olympics" forState:UIControlStateNormal];
     uib_traffic4.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_traffic4.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     uib_traffic4.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
     uib_traffic4.tag = 5;
     [uib_traffic4 addTarget:self action:@selector(tapOlymTrafficBtns:) forControlEvents:UIControlEventTouchUpInside];
     
-    uib_trafficTime.frame = CGRectMake(0.0, 120.0, container_W, 30);
+    uib_trafficTime.frame = CGRectMake(0.0, 150.0, container_W, 30);
     uib_trafficTime.backgroundColor = [UIColor clearColor];
     [uib_trafficTime setTitle:@"Travel Times" forState:UIControlStateNormal];
     uib_trafficTime.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
@@ -1071,12 +1140,22 @@ static float kIndicatorY = 6.0;
     uib_trafficTime.tag = 6;
     [uib_trafficTime addTarget:self action:@selector(tapOlymTrafficBtns:) forControlEvents:UIControlEventTouchUpInside];
     
+    uib_walk.frame = CGRectMake(0.0, 180.0, container_W, 30);
+    uib_walk.backgroundColor = [UIColor clearColor];
+    [uib_walk setTitle:@"Walking Distances" forState:UIControlStateNormal];
+    uib_walk.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
+    uib_walk.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    uib_walk.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
+    uib_walk.tag = 7;
+    [uib_walk addTarget:self action:@selector(tapOlymTrafficBtns:) forControlEvents:UIControlEventTouchUpInside];
+    
     [uiv_traffic3 addSubview: uib_trafficLane];
     [uiv_traffic3 addSubview: uib_traffic1];
     [uiv_traffic3 addSubview: uib_traffic2];
-//    [uiv_traffic3 addSubview: uib_traffic3];
+    [uiv_traffic3 addSubview: uib_traffic3];
     [uiv_traffic3 addSubview: uib_traffic4];
     [uiv_traffic3 addSubview: uib_trafficTime];
+    [uiv_traffic3 addSubview: uib_walk];
     UIView *uiv_sideBar = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 5.0, uiv_traffic3.frame.size.height)];
     [uiv_sideBar setBackgroundColor:[UIColor colorWithRed:31.0/255.0 green:162.0/255.0 blue:197.0/255.0 alpha:1.0]];
     [uiv_traffic3 addSubview: uiv_sideBar];
@@ -1103,7 +1182,7 @@ static float kIndicatorY = 6.0;
         }
         case 2:
         {
-            [self setInfoText:@"Highway Transit Demand without Olympic Improvements"];
+            [self setInfoText:@"Summer Highway Conditions after Improvements without Olympics"];
             [self updateRightTextBox:@"03-02-right-panel"];
             overlayName = @"overlay_Olyhighway_N";
             [self updateTopRightBox:@"map-key-vehicular-traffic"];
@@ -1112,7 +1191,7 @@ static float kIndicatorY = 6.0;
         }
         case 3:
         {
-            [self setInfoText:@"Highway Transit Demand with Olympic Improvements"];
+            [self setInfoText:@"Olympic Highway Conditions with Background Demand Reductions"];
             [self updateRightTextBox:@"03-03-right-panel"];
             overlayName = @"overlay_Olyhighway_W";
             [self updateTopRightBox:@"map-key-vehicular-traffic"];
@@ -1121,7 +1200,7 @@ static float kIndicatorY = 6.0;
         }
         case 4:
         {
-            [self setInfoText:@"Transit System Policy Demand with Olympic Improvements"];
+            [self setInfoText:@"Projected Summer Transit Crush Conditions without Olympics"];
             [self updateRightTextBox:@"03-04-right-panel"];
             overlayName = @"overlay_transit_P";
             [self updateTopRightBox:@"map-key-transit-traffic"];
@@ -1130,7 +1209,7 @@ static float kIndicatorY = 6.0;
         }
         case 5:
         {
-            [self setInfoText:@"Transit System Crush Demand with Olympic Improvements"];
+            [self setInfoText:@"Projected Summer Transit Crush Conditions with Olympics"];
             [self updateRightTextBox:@"03-05-right-panel"];
             overlayName = @"overlay_transit_C";
             [self updateTopRightBox:@"map-key-transit-traffic"];
@@ -1139,7 +1218,17 @@ static float kIndicatorY = 6.0;
         }
         case 6:
         {
-            [self setInfoText:@"Travel Times"];
+            [self setInfoText:@"Vehicle Travel Times Using Olympic Roadway Network"];
+            overlayName = @"03-06-bg-drive-times-map";
+            _uiiv_topRightBox.hidden = YES;
+            _uiiv_rightTextBox.hidden = YES;
+            [self updateOverlay];
+            [self initVillageBtns];
+            break;
+        }
+        case 7:
+        {
+            [self setInfoText:@"Walking Distances"];
             overlayName = @"03-06-bg-drive-times-map";
             _uiiv_topRightBox.hidden = YES;
             _uiiv_rightTextBox.hidden = YES;
@@ -1178,7 +1267,7 @@ static float kIndicatorY = 6.0;
     
     uib_people1.frame = CGRectMake(0.0, 0.0, container_W, 30);
     uib_people1.backgroundColor = [UIColor clearColor];
-    [uib_people1 setTitle:@"Metro Residential" forState:UIControlStateNormal];
+    [uib_people1 setTitle:@"Metro - Residential" forState:UIControlStateNormal];
     uib_people1.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_people1.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     uib_people1.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
@@ -1187,7 +1276,7 @@ static float kIndicatorY = 6.0;
     
     uib_people2.frame = CGRectMake(0.0, 30.0, container_W, 30);
     uib_people2.backgroundColor = [UIColor clearColor];
-    [uib_people2 setTitle:@"Metro Daily" forState:UIControlStateNormal];
+    [uib_people2 setTitle:@"Metro - Daily" forState:UIControlStateNormal];
     uib_people2.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_people2.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     uib_people2.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
@@ -1282,7 +1371,7 @@ static float kIndicatorY = 6.0;
     UIButton *uib_people2 = [UIButton buttonWithType:UIButtonTypeCustom];
     uib_people1.frame = CGRectMake(0.0, 0.0, container_W, 30);
     uib_people1.backgroundColor = [UIColor clearColor];
-    [uib_people1 setTitle:@"Metro Residential" forState:UIControlStateNormal];
+    [uib_people1 setTitle:@"Metro - Residential" forState:UIControlStateNormal];
     uib_people1.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_people1.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     uib_people1.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
@@ -1291,7 +1380,7 @@ static float kIndicatorY = 6.0;
     
     uib_people2.frame = CGRectMake(0.0, 30.0, container_W, 30);
     uib_people2.backgroundColor = [UIColor clearColor];
-    [uib_people2 setTitle:@"Metro Daily" forState:UIControlStateNormal];
+    [uib_people2 setTitle:@"Metro - Daily" forState:UIControlStateNormal];
     uib_people2.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
     uib_people2.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     uib_people2.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
@@ -1662,9 +1751,11 @@ static float kIndicatorY = 6.0;
 
 -(void)closeButtonTapped
 {
+    NSLog(@"\n\n The close menu is %@", [_uiv_closedMenuContainer description]);
+    
     NSLog(@"\n\n Should close menu");
     [UIView animateWithDuration:0.33 animations:^{
-        _uiv_collapseContainer.transform = CGAffineTransformMakeTranslation(-(1+container_W), 0);
+        _uiv_collapseContainer.transform = CGAffineTransformMakeTranslation(-(container_W), 0);
     } completion:^(BOOL finished){
         [UIView animateWithDuration:0.33 animations:^{
             _uiv_closedMenuContainer.transform = CGAffineTransformMakeTranslation(40, 0);
@@ -1858,19 +1949,15 @@ static float kIndicatorY = 6.0;
     
     NSString *test = [[NSString alloc] initWithString:[_arr_cellName objectAtIndex:index]];
     if (open == NO) {
-        _uiv_closedMenuContainer.frame = CGRectMake(-41.0, (768-36)/2, 41.0, 38);
+        _uiv_closedMenuContainer.frame = CGRectMake(-40.0, (768-36)/2, 40.0, 38);
         _uiv_closeMenuSideBar.backgroundColor = [UIColor clearColor];
         [_uil_cellName removeFromSuperview];
     }
     else
     {
         
-        //        if ((index == 6) || (index == 7)) {
-        //            CGRect theRect = CGRectMake(0, 0, 1024, 768);
-        //            [_uis_zoomingMap zoomToRect:theRect animated:YES duration:2.5];
-        //        }
-        
-        _uiv_closedMenuContainer.frame = CGRectMake(-41.0, _uiv_collapseContainer.frame.origin.y, 41.0, _uiv_collapseContainer.frame.size.height);
+//        _uiv_closedMenuContainer.frame = CGRectMake(-41.0, _uiv_collapseContainer.frame.origin.y, 41.0, _uiv_collapseContainer.frame.size.height);
+        _uiv_closedMenuContainer.transform = CGAffineTransformIdentity;
         [self initCellNameLabel:test];
         _uiv_closeMenuSideBar.backgroundColor = [self colorForTitleSideBarAtIndex:index];
         _uil_cellName.textColor = [self colorForTitleSideBarAtIndex:index];
