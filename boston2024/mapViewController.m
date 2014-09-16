@@ -820,7 +820,8 @@ static float kIndicatorY = 6.0;
 {
     _uib_home = [UIButton buttonWithType:UIButtonTypeCustom];
     _uib_home.frame = CGRectMake(0.0, 0, 30.0, 85.0);
-    [_uib_home setTitle:@"HOME" forState:UIControlStateNormal];
+//    [_uib_home setTitle:@"HOME" forState:UIControlStateNormal];
+    [_uib_home setImage:[UIImage imageNamed:@"icon-home.png"] forState:UIControlStateNormal];
     [_uib_home setTitleColor:[UIColor colorWithRed:0.0/255.0 green:174.0/255.0 blue:255.0/255.0 alpha:1.0] forState:UIControlStateNormal];
     _uib_home.backgroundColor = [UIColor colorWithRed:162.0/255.0 green:214.0/255.0 blue:237.0/255.0 alpha:1.0];
     [_uib_home setTitleEdgeInsets:UIEdgeInsetsMake(6, 0, 0, 0)];
@@ -965,7 +966,7 @@ static float kIndicatorY = 6.0;
 
 -(UIView *)create2024Traffic
 {
-    UIView *uiv_traffic2 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, container_W, 120)];
+    UIView *uiv_traffic2 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, container_W, 60)];
     uiv_traffic2.backgroundColor = [UIColor colorWithRed:38.0/255.0 green:36.0/255.0 blue:33.0/255.0 alpha:1.0];
     
     UIButton *uib_traffic1 = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -1075,7 +1076,7 @@ static float kIndicatorY = 6.0;
 
 -(UIView *)createOlymTraffic
 {
-    UIView *uiv_traffic3 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, container_W, 210)];
+    UIView *uiv_traffic3 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, container_W, 180)];
     uiv_traffic3.backgroundColor = [UIColor colorWithRed:38.0/255.0 green:36.0/255.0 blue:33.0/255.0 alpha:1.0];
     
     UIButton *uib_trafficLane = [UIButton buttonWithType:UIButtonTypeCustom];
