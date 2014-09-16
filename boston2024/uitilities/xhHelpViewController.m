@@ -77,7 +77,7 @@ static float pageGap = 35.0;
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    int page = (int)_uis_helps.contentOffset.x / 1000;//(_uis_helps.contentOffset.x - pageGap)/ (_uis_helps.frame.size.width + pageGap);
+    int page = (int)_uis_helps.contentOffset.x / (1024 - 35);//(_uis_helps.contentOffset.x - pageGap)/ (_uis_helps.frame.size.width + pageGap);
 //    NSLog(@"\n offset is %f",_uis_helps.contentOffset.x);
     [_uil_pageNum setText:[NSString stringWithFormat:@"%i OF %i", page+1, (int)_arr_images.count]];
 }

@@ -358,7 +358,7 @@ static float kIndicatorY = 6.0;
     float width = textImage.size.width;
     float height = textImage.size.height;
     
-    _uiiv_topRightBox.frame = CGRectMake(1024 - width - 18, 10, width, height);
+    _uiiv_topRightBox.frame = CGRectMake(1024 - width - 18, 18, width, height);
     _uiiv_topRightBox.image = textImage;
     _uiiv_topRightBox.hidden = NO;
 }
@@ -618,7 +618,7 @@ static float kIndicatorY = 6.0;
 #pragma mark - init top left text box
 -(void)initTextBox
 {
-    _uiv_textBoxContainer = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 600, 85)];
+    _uiv_textBoxContainer = [[UIView alloc] initWithFrame:CGRectMake(30.0, 0.0, 600, 85)];
     _uiv_textBoxContainer.clipsToBounds = YES;
     [self.view insertSubview:_uiv_textBoxContainer aboveSubview:_uiv_collapseContainer];
     
@@ -687,7 +687,7 @@ static float kIndicatorY = 6.0;
     _uil_textInfo.frame = CGRectMake(100.0, (85 - rect.size.height)/2, rect.size.width, rect.size.height);
     _uil_textInfo.backgroundColor = [UIColor clearColor];
     [_uiv_textBoxContainer addSubview: _uil_textInfo];
-    CGRect frame = CGRectMake(0.0, 0.0, _uil_textInfo.frame.size.width + _uil_textYear.frame.size.width+50, 85);
+    CGRect frame = CGRectMake(30.0, 0.0, _uil_textInfo.frame.size.width + _uil_textYear.frame.size.width+50, 85);
     _uiv_textBoxContainer.frame = frame;
     _uiv_textBoxContainer.backgroundColor = [UIColor colorWithRed:6.0/255.0 green:154.0/255.0 blue:216.0/255.0 alpha:1.0];
 }
@@ -778,7 +778,7 @@ static float kIndicatorY = 6.0;
 -(void)initAccessBtn
 {
     _uib_access = [UIButton buttonWithType:UIButtonTypeCustom];
-    _uib_access.frame = CGRectMake(20, 680, 76.0, 30.0);
+    _uib_access.frame = CGRectMake(20, 768 - 30 - 20, 76.0, 30.0);
 //    [_uib_access setImage:[UIImage imageNamed:@"grfx_qanda.png"] forState:UIControlStateNormal];
     [_uib_access addTarget:self action:@selector(accessTapped) forControlEvents:UIControlEventTouchDown];
     _uib_access.backgroundColor= [UIColor whiteColor];
@@ -819,10 +819,10 @@ static float kIndicatorY = 6.0;
 -(void)initHomeBtn
 {
     _uib_home = [UIButton buttonWithType:UIButtonTypeCustom];
-    _uib_home.frame = CGRectMake(1024.0 - 70,768.0-30.0, 70.0, 30.0);
+    _uib_home.frame = CGRectMake(0.0, 0, 30.0, 85.0);
     [_uib_home setTitle:@"HOME" forState:UIControlStateNormal];
     [_uib_home setTitleColor:[UIColor colorWithRed:0.0/255.0 green:174.0/255.0 blue:255.0/255.0 alpha:1.0] forState:UIControlStateNormal];
-    _uib_home.backgroundColor = [UIColor whiteColor];
+    _uib_home.backgroundColor = [UIColor colorWithRed:162.0/255.0 green:214.0/255.0 blue:237.0/255.0 alpha:1.0];
     [_uib_home setTitleEdgeInsets:UIEdgeInsetsMake(6, 0, 0, 0)];
     [_uib_home.titleLabel setFont:[UIFont fontWithName:@"DINEngschriftStd" size:17]];
     [_uib_home addTarget:self action:@selector(homeTapped) forControlEvents:UIControlEventTouchUpInside];
@@ -1047,22 +1047,22 @@ static float kIndicatorY = 6.0;
         }
         case 3:
         {
-            [self setInfoText:@"Projected Summer Transit Policy Conditions with Improvements"];
+            [self setInfoText:@"Projected Summer Transit Policy Conditions without Improvements"];
 //            [self updateRightTextBox:@"02-02-right-panel"];
             _uiiv_rightTextBox.hidden = YES;
             overlayName = @"overlay_highway_W";
-            [self updateTopRightBox:@"map-key-vehicular-traffic"];
+            [self updateTopRightBox:@"map-key-transit-traffic"];
             [self updateOverlay];
             [self updateIndicatorPosition:CGRectMake(kIndicatorX, tappedBtn.frame.origin.y + kIndicatorY, _uiiv_indicator.frame.size.width, _uiiv_indicator.frame.size.height)];
             break;
         }
         case 4:
         {
-            [self setInfoText:@"Projected Summer Highway Conditions with Improvements"];
+            [self setInfoText:@"Projected Summer Transit Policy Conditions with Improvements"];
 //            [self updateRightTextBox:@"02-02-right-panel"];
             _uiiv_rightTextBox.hidden = YES;
             overlayName = @"overlay_highway_W";
-            [self updateTopRightBox:@"map-key-vehicular-traffic"];
+            [self updateTopRightBox:@"map-key-transit-traffic"];
             [self updateOverlay];
             [self updateIndicatorPosition:CGRectMake(kIndicatorX, tappedBtn.frame.origin.y + kIndicatorY, _uiiv_indicator.frame.size.width, _uiiv_indicator.frame.size.height)];
             break;
