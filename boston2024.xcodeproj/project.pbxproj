@@ -124,6 +124,8 @@
 		824F14D319CB234400628F01 /* 03E-panel-usoc-map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 824F14CD19CB234400628F01 /* 03E-panel-usoc-map@2x.png */; };
 		824F14D419CB234400628F01 /* 03F-panel-hotel-map.png in Resources */ = {isa = PBXBuildFile; fileRef = 824F14CE19CB234400628F01 /* 03F-panel-hotel-map.png */; };
 		824F14D519CB234400628F01 /* 03F-panel-hotel-map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 824F14CF19CB234400628F01 /* 03F-panel-hotel-map@2x.png */; };
+		824F14F719CB74FD00628F01 /* 03G-panel-walking-radius.png in Resources */ = {isa = PBXBuildFile; fileRef = 824F14F519CB74FD00628F01 /* 03G-panel-walking-radius.png */; };
+		824F14F819CB74FD00628F01 /* 03G-panel-walking-radius@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 824F14F619CB74FD00628F01 /* 03G-panel-walking-radius@2x.png */; };
 		827F433919C1D86800532FF7 /* grfx_indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = 827F433719C1D86800532FF7 /* grfx_indicator.png */; };
 		827F433A19C1D86800532FF7 /* grfx_indicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 827F433819C1D86800532FF7 /* grfx_indicator@2x.png */; };
 		827F434519C21C4F00532FF7 /* 03C-panel-capacity-vs-demand.png in Resources */ = {isa = PBXBuildFile; fileRef = 827F434319C21C4F00532FF7 /* 03C-panel-capacity-vs-demand.png */; };
@@ -365,6 +367,8 @@
 		824F14CD19CB234400628F01 /* 03E-panel-usoc-map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03E-panel-usoc-map@2x.png"; sourceTree = "<group>"; };
 		824F14CE19CB234400628F01 /* 03F-panel-hotel-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03F-panel-hotel-map.png"; sourceTree = "<group>"; };
 		824F14CF19CB234400628F01 /* 03F-panel-hotel-map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03F-panel-hotel-map@2x.png"; sourceTree = "<group>"; };
+		824F14F519CB74FD00628F01 /* 03G-panel-walking-radius.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03G-panel-walking-radius.png"; sourceTree = "<group>"; };
+		824F14F619CB74FD00628F01 /* 03G-panel-walking-radius@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03G-panel-walking-radius@2x.png"; sourceTree = "<group>"; };
 		827F433719C1D86800532FF7 /* grfx_indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grfx_indicator.png; sourceTree = "<group>"; };
 		827F433819C1D86800532FF7 /* grfx_indicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grfx_indicator@2x.png"; sourceTree = "<group>"; };
 		827F434319C21C4F00532FF7 /* 03C-panel-capacity-vs-demand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03C-panel-capacity-vs-demand.png"; sourceTree = "<group>"; };
@@ -741,6 +745,8 @@
 				824F14CD19CB234400628F01 /* 03E-panel-usoc-map@2x.png */,
 				824F14CE19CB234400628F01 /* 03F-panel-hotel-map.png */,
 				824F14CF19CB234400628F01 /* 03F-panel-hotel-map@2x.png */,
+				824F14F519CB74FD00628F01 /* 03G-panel-walking-radius.png */,
+				824F14F619CB74FD00628F01 /* 03G-panel-walking-radius@2x.png */,
 			);
 			path = statistic;
 			sourceTree = "<group>";
@@ -1154,6 +1160,7 @@
 				8243AB7319C0EA8200FE9B58 /* 03-03-right-panel.png in Resources */,
 				82CBFBAE19B638CE00B20EB8 /* Images.xcassets in Resources */,
 				82CBFF7819B6430D00B20EB8 /* buildingHotsopt.plist in Resources */,
+				824F14F819CB74FD00628F01 /* 03G-panel-walking-radius@2x.png in Resources */,
 				82CBFBA019B638CE00B20EB8 /* InfoPlist.strings in Resources */,
 				8243AB4D19C0E65600FE9B58 /* overlay_highway_W.png in Resources */,
 				8243AB1619C0DBC100FE9B58 /* 01-02-right-panel.png in Resources */,
@@ -1165,6 +1172,7 @@
 				8243AB7E19C0F02C00FE9B58 /* 01A-panel-population.png in Resources */,
 				8243AB8B19C0F03800FE9B58 /* 02B-panel-summer-transit.png in Resources */,
 				8243AB1019C0DBC100FE9B58 /* overlay_trasit_A.png in Resources */,
+				824F14F719CB74FD00628F01 /* 03G-panel-walking-radius.png in Resources */,
 				8243AB9619C0F04500FE9B58 /* 03B-panel-capacity.png in Resources */,
 				8243AB0A19C0DBC100FE9B58 /* 01-07-bg-2014_RegionalDailyPopulation.png in Resources */,
 				82CBFC0419B63E5100B20EB8 /* photo-gallery-right.png in Resources */,

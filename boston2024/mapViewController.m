@@ -1203,7 +1203,7 @@ static float kIndicatorY = 6.0;
         {
             [self setInfoText:@"Projected Summer Transit Crush Conditions without Olympics"];
             [self updateRightTextBox:@"03-04-right-panel"];
-            overlayName = @"overlay_transit_P";
+            overlayName = @"overlay_transit_C";
             [self updateTopRightBox:@"map-key-transit-traffic"];
             [self updateOverlay];
             break;
@@ -1212,7 +1212,7 @@ static float kIndicatorY = 6.0;
         {
             [self setInfoText:@"Projected Summer Transit Crush Conditions with Olympics"];
             [self updateRightTextBox:@"03-05-right-panel"];
-            overlayName = @"overlay_transit_C";
+            overlayName = @"overlay_transit_P";
             [self updateTopRightBox:@"map-key-transit-traffic"];
             [self updateOverlay];
             break;
@@ -2027,7 +2027,8 @@ static float kIndicatorY = 6.0;
             UIImage *helpImage4 = [UIImage imageNamed:@"03D-panel-arrivals-departures.png"];
             UIImage *helpImage5 = [UIImage imageNamed:@"03E-panel-usoc-map.png"];
             UIImage *helpImage6 = [UIImage imageNamed:@"03F-panel-hotel-map.png"];
-            helpArray = [[NSArray alloc] initWithObjects: helpImage2, helpImage3, helpImage4, helpImage5, helpImage6, nil];
+            UIImage *helpImage7 = [UIImage imageNamed:@"03G-panel-walking-radius.png"];
+            helpArray = [[NSArray alloc] initWithObjects: helpImage2, helpImage3, helpImage4, helpImage5, helpImage6, helpImage7,nil];
             break;
         }
         default:
