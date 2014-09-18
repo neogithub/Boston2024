@@ -114,6 +114,16 @@
 		8243ABB519C0FCBD00FE9B58 /* 02-03-right-panel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243ABB119C0FCBD00FE9B58 /* 02-03-right-panel@2x.png */; };
 		8243ABB619C0FCBD00FE9B58 /* 02-04-right-panel.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243ABB219C0FCBD00FE9B58 /* 02-04-right-panel.png */; };
 		8243ABB719C0FCBD00FE9B58 /* 02-04-right-panel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8243ABB319C0FCBD00FE9B58 /* 02-04-right-panel@2x.png */; };
+		824F14C619CB207800628F01 /* 02-02B-2024-summer-policy-wo-improvements.png in Resources */ = {isa = PBXBuildFile; fileRef = 824F14C219CB207800628F01 /* 02-02B-2024-summer-policy-wo-improvements.png */; };
+		824F14C719CB207800628F01 /* 02-02B-2024-summer-policy-wo-improvements@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 824F14C319CB207800628F01 /* 02-02B-2024-summer-policy-wo-improvements@2x.png */; };
+		824F14C819CB207800628F01 /* 02-02C-2024-summer-policy-w-improvements.png in Resources */ = {isa = PBXBuildFile; fileRef = 824F14C419CB207800628F01 /* 02-02C-2024-summer-policy-w-improvements.png */; };
+		824F14C919CB207800628F01 /* 02-02C-2024-summer-policy-w-improvements@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 824F14C519CB207800628F01 /* 02-02C-2024-summer-policy-w-improvements@2x.png */; };
+		824F14D019CB234400628F01 /* 03D-panel-arrivals-departures.png in Resources */ = {isa = PBXBuildFile; fileRef = 824F14CA19CB234400628F01 /* 03D-panel-arrivals-departures.png */; };
+		824F14D119CB234400628F01 /* 03D-panel-arrivals-departures@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 824F14CB19CB234400628F01 /* 03D-panel-arrivals-departures@2x.png */; };
+		824F14D219CB234400628F01 /* 03E-panel-usoc-map.png in Resources */ = {isa = PBXBuildFile; fileRef = 824F14CC19CB234400628F01 /* 03E-panel-usoc-map.png */; };
+		824F14D319CB234400628F01 /* 03E-panel-usoc-map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 824F14CD19CB234400628F01 /* 03E-panel-usoc-map@2x.png */; };
+		824F14D419CB234400628F01 /* 03F-panel-hotel-map.png in Resources */ = {isa = PBXBuildFile; fileRef = 824F14CE19CB234400628F01 /* 03F-panel-hotel-map.png */; };
+		824F14D519CB234400628F01 /* 03F-panel-hotel-map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 824F14CF19CB234400628F01 /* 03F-panel-hotel-map@2x.png */; };
 		827F433919C1D86800532FF7 /* grfx_indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = 827F433719C1D86800532FF7 /* grfx_indicator.png */; };
 		827F433A19C1D86800532FF7 /* grfx_indicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 827F433819C1D86800532FF7 /* grfx_indicator@2x.png */; };
 		827F434519C21C4F00532FF7 /* 03C-panel-capacity-vs-demand.png in Resources */ = {isa = PBXBuildFile; fileRef = 827F434319C21C4F00532FF7 /* 03C-panel-capacity-vs-demand.png */; };
@@ -345,6 +355,16 @@
 		8243ABB119C0FCBD00FE9B58 /* 02-03-right-panel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02-03-right-panel@2x.png"; sourceTree = "<group>"; };
 		8243ABB219C0FCBD00FE9B58 /* 02-04-right-panel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02-04-right-panel.png"; sourceTree = "<group>"; };
 		8243ABB319C0FCBD00FE9B58 /* 02-04-right-panel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02-04-right-panel@2x.png"; sourceTree = "<group>"; };
+		824F14C219CB207800628F01 /* 02-02B-2024-summer-policy-wo-improvements.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02-02B-2024-summer-policy-wo-improvements.png"; sourceTree = "<group>"; };
+		824F14C319CB207800628F01 /* 02-02B-2024-summer-policy-wo-improvements@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02-02B-2024-summer-policy-wo-improvements@2x.png"; sourceTree = "<group>"; };
+		824F14C419CB207800628F01 /* 02-02C-2024-summer-policy-w-improvements.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02-02C-2024-summer-policy-w-improvements.png"; sourceTree = "<group>"; };
+		824F14C519CB207800628F01 /* 02-02C-2024-summer-policy-w-improvements@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02-02C-2024-summer-policy-w-improvements@2x.png"; sourceTree = "<group>"; };
+		824F14CA19CB234400628F01 /* 03D-panel-arrivals-departures.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03D-panel-arrivals-departures.png"; sourceTree = "<group>"; };
+		824F14CB19CB234400628F01 /* 03D-panel-arrivals-departures@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03D-panel-arrivals-departures@2x.png"; sourceTree = "<group>"; };
+		824F14CC19CB234400628F01 /* 03E-panel-usoc-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03E-panel-usoc-map.png"; sourceTree = "<group>"; };
+		824F14CD19CB234400628F01 /* 03E-panel-usoc-map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03E-panel-usoc-map@2x.png"; sourceTree = "<group>"; };
+		824F14CE19CB234400628F01 /* 03F-panel-hotel-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03F-panel-hotel-map.png"; sourceTree = "<group>"; };
+		824F14CF19CB234400628F01 /* 03F-panel-hotel-map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03F-panel-hotel-map@2x.png"; sourceTree = "<group>"; };
 		827F433719C1D86800532FF7 /* grfx_indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grfx_indicator.png; sourceTree = "<group>"; };
 		827F433819C1D86800532FF7 /* grfx_indicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grfx_indicator@2x.png"; sourceTree = "<group>"; };
 		827F434319C21C4F00532FF7 /* 03C-panel-capacity-vs-demand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03C-panel-capacity-vs-demand.png"; sourceTree = "<group>"; };
@@ -605,6 +625,10 @@
 		8243AB3919C0E65600FE9B58 /* 2024 */ = {
 			isa = PBXGroup;
 			children = (
+				824F14C219CB207800628F01 /* 02-02B-2024-summer-policy-wo-improvements.png */,
+				824F14C319CB207800628F01 /* 02-02B-2024-summer-policy-wo-improvements@2x.png */,
+				824F14C419CB207800628F01 /* 02-02C-2024-summer-policy-w-improvements.png */,
+				824F14C519CB207800628F01 /* 02-02C-2024-summer-policy-w-improvements@2x.png */,
 				8243AB3A19C0E65600FE9B58 /* 02-03-2014_RegionalResidentialPopulation.png */,
 				8243AB3B19C0E65600FE9B58 /* 02-03-2014_RegionalResidentialPopulation@2x.png */,
 				8243AB3C19C0E65600FE9B58 /* 02-04-2014_RegionalDailyPopulation.png */,
@@ -711,6 +735,12 @@
 				8243AB9319C0F04500FE9B58 /* 03B-panel-capacity@2x.png */,
 				827F434319C21C4F00532FF7 /* 03C-panel-capacity-vs-demand.png */,
 				827F434419C21C4F00532FF7 /* 03C-panel-capacity-vs-demand@2x.png */,
+				824F14CA19CB234400628F01 /* 03D-panel-arrivals-departures.png */,
+				824F14CB19CB234400628F01 /* 03D-panel-arrivals-departures@2x.png */,
+				824F14CC19CB234400628F01 /* 03E-panel-usoc-map.png */,
+				824F14CD19CB234400628F01 /* 03E-panel-usoc-map@2x.png */,
+				824F14CE19CB234400628F01 /* 03F-panel-hotel-map.png */,
+				824F14CF19CB234400628F01 /* 03F-panel-hotel-map@2x.png */,
 			);
 			path = statistic;
 			sourceTree = "<group>";
@@ -1114,6 +1144,8 @@
 				82CBFEEA19B6430D00B20EB8 /* map_google-OFF@2x.png in Resources */,
 				82CBFF8019B6430D00B20EB8 /* SabonLTStd-Roman.otf in Resources */,
 				8243AAD419C08DD100FE9B58 /* icon_statistics.png in Resources */,
+				824F14D219CB234400628F01 /* 03E-panel-usoc-map.png in Resources */,
+				824F14C619CB207800628F01 /* 02-02B-2024-summer-policy-wo-improvements.png in Resources */,
 				827F434D19C2204400532FF7 /* 03-06-bg-drive-times-map.png in Resources */,
 				82CB002719B6430D00B20EB8 /* open_btn@2x.jpg in Resources */,
 				8243AB7519C0EA8200FE9B58 /* 03-04-right-panel.png in Resources */,
@@ -1129,6 +1161,7 @@
 				82CBFFF919B6430D00B20EB8 /* grfx_gradient.png in Resources */,
 				8243AB1119C0DBC100FE9B58 /* overlay_trasit_A@2x.png in Resources */,
 				82CB002919B6430D00B20EB8 /* playButton@2x.png in Resources */,
+				824F14D519CB234400628F01 /* 03F-panel-hotel-map@2x.png in Resources */,
 				8243AB7E19C0F02C00FE9B58 /* 01A-panel-population.png in Resources */,
 				8243AB8B19C0F03800FE9B58 /* 02B-panel-summer-transit.png in Resources */,
 				8243AB1019C0DBC100FE9B58 /* overlay_trasit_A.png in Resources */,
@@ -1182,22 +1215,26 @@
 				827F434F19C2204400532FF7 /* 03-07-athletes-village-overlay.png in Resources */,
 				8243AB8C19C0F03800FE9B58 /* 02B-panel-summer-transit@2x.png in Resources */,
 				8243AB4C19C0E65600FE9B58 /* overlay_highway_N@2x.png in Resources */,
+				824F14D019CB234400628F01 /* 03D-panel-arrivals-departures.png in Resources */,
 				8243AB0919C0DBC100FE9B58 /* 01-06-bg-2014_RegionalResidentialPopulation@2x.png in Resources */,
 				827F434619C21C4F00532FF7 /* 03C-panel-capacity-vs-demand@2x.png in Resources */,
 				8243AB1219C0DBC100FE9B58 /* overlay_trasit_S.png in Resources */,
 				8243AB0B19C0DBC100FE9B58 /* 01-07-bg-2014_RegionalDailyPopulation@2x.png in Resources */,
 				8243ABAB19C0F75300FE9B58 /* overlay_transit_P@2x.png in Resources */,
+				824F14D419CB234400628F01 /* 03F-panel-hotel-map.png in Resources */,
 				82CBFEEF19B6430D00B20EB8 /* map_neo-ON.png in Resources */,
 				82CB002E19B6430D00B20EB8 /* view-icon-sq.png in Resources */,
 				8243AB7819C0EA8200FE9B58 /* 03-05-right-panel@2x.png in Resources */,
 				82CBFEEC19B6430D00B20EB8 /* map_google-ON@2x.png in Resources */,
 				8243AB5119C0E65600FE9B58 /* 02-02-right-panel.png in Resources */,
+				824F14D319CB234400628F01 /* 03E-panel-usoc-map@2x.png in Resources */,
 				8243AB9519C0F04500FE9B58 /* 03A-panel-highway-transit-growth@2x.png in Resources */,
 				82CB002419B6430D00B20EB8 /* menuBtn_cap_Sel.png in Resources */,
 				82CBFEF419B6430D00B20EB8 /* old_map_google-ON@2x.png in Resources */,
 				8243AB4B19C0E65600FE9B58 /* overlay_highway_N.png in Resources */,
 				82CB002B19B6430D00B20EB8 /* playButton_Hi@2x.png in Resources */,
 				8243AB1519C0DBC100FE9B58 /* 01-01-right-panel@2x.png in Resources */,
+				824F14D119CB234400628F01 /* 03D-panel-arrivals-departures@2x.png in Resources */,
 				82CB002519B6430D00B20EB8 /* menuBtn_cap_Sel@2x.png in Resources */,
 				827F435019C2204400532FF7 /* 03-07-athletes-village-overlay@2x.png in Resources */,
 				82CBFEE919B6430D00B20EB8 /* map_google-OFF.png in Resources */,
@@ -1216,6 +1253,7 @@
 				8243AB8D19C0F03800FE9B58 /* 02C-panel-summer-reduction-journeys.png in Resources */,
 				8243AAD219C08DD100FE9B58 /* icon_people.png in Resources */,
 				82CBFF7E19B6430D00B20EB8 /* DINPro-CondBlack.otf in Resources */,
+				824F14C819CB207800628F01 /* 02-02C-2024-summer-policy-w-improvements.png in Resources */,
 				8243ABA419C0F75300FE9B58 /* overlay_Olyhighway_W.png in Resources */,
 				8243ABA319C0F75300FE9B58 /* overlay_Olyhighway_N@2x.png in Resources */,
 				82CBFF7F19B6430D00B20EB8 /* SabonLTStd-Bold.otf in Resources */,
@@ -1226,6 +1264,7 @@
 				82CB002819B6430D00B20EB8 /* playButton.png in Resources */,
 				8243AB1C19C0DBC100FE9B58 /* 01-05-right-panel.png in Resources */,
 				82CBFEE419B6430D00B20EB8 /* map_apple-OFF@2x.png in Resources */,
+				824F14C919CB207800628F01 /* 02-02C-2024-summer-policy-w-improvements@2x.png in Resources */,
 				8243AB7119C0EA8200FE9B58 /* 03-02-right-panel.png in Resources */,
 				8243AB5219C0E65600FE9B58 /* 02-02-right-panel@2x.png in Resources */,
 				8243AB1319C0DBC100FE9B58 /* overlay_trasit_S@2x.png in Resources */,
@@ -1242,6 +1281,7 @@
 				8243AB1E19C0DBC100FE9B58 /* 01-06-right-panel.png in Resources */,
 				82CBFEE819B6430D00B20EB8 /* map_apple-Toggle@2x.png in Resources */,
 				8243AB8119C0F02C00FE9B58 /* 01B-panel-transit@2x.png in Resources */,
+				824F14C719CB207800628F01 /* 02-02B-2024-summer-policy-wo-improvements@2x.png in Resources */,
 				8243AB3219C0E35A00FE9B58 /* map-key-population-density 2@2x.png in Resources */,
 				82CB000719B6430D00B20EB8 /* grfx_play_btn.png in Resources */,
 				827F435219C2204400532FF7 /* 03-08-mpc-overlay@2x.png in Resources */,

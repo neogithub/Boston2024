@@ -966,7 +966,7 @@ static float kIndicatorY = 6.0;
 
 -(UIView *)create2024Traffic
 {
-    UIView *uiv_traffic2 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, container_W, 60)];
+    UIView *uiv_traffic2 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, container_W, 120)];
     uiv_traffic2.backgroundColor = [UIColor colorWithRed:38.0/255.0 green:36.0/255.0 blue:33.0/255.0 alpha:1.0];
     
     UIButton *uib_traffic1 = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -1051,7 +1051,7 @@ static float kIndicatorY = 6.0;
             [self setInfoText:@"Projected Summer Transit Policy Conditions without Improvements"];
 //            [self updateRightTextBox:@"02-02-right-panel"];
             _uiiv_rightTextBox.hidden = YES;
-            overlayName = @"overlay_highway_W";
+            overlayName = @"02-02B-2024-summer-policy-wo-improvements";
             [self updateTopRightBox:@"map-key-transit-traffic"];
             [self updateOverlay];
             [self updateIndicatorPosition:CGRectMake(kIndicatorX, tappedBtn.frame.origin.y + kIndicatorY, _uiiv_indicator.frame.size.width, _uiiv_indicator.frame.size.height)];
@@ -1062,7 +1062,7 @@ static float kIndicatorY = 6.0;
             [self setInfoText:@"Projected Summer Transit Policy Conditions with Improvements"];
 //            [self updateRightTextBox:@"02-02-right-panel"];
             _uiiv_rightTextBox.hidden = YES;
-            overlayName = @"overlay_highway_W";
+            overlayName = @"02-02C-2024-summer-policy-w-improvements";
             [self updateTopRightBox:@"map-key-transit-traffic"];
             [self updateOverlay];
             [self updateIndicatorPosition:CGRectMake(kIndicatorX, tappedBtn.frame.origin.y + kIndicatorY, _uiiv_indicator.frame.size.width, _uiiv_indicator.frame.size.height)];
@@ -2024,7 +2024,10 @@ static float kIndicatorY = 6.0;
 //            UIImage *helpImage1 = [UIImage imageNamed:@"03A-panel-highway-transit-growth.png"];
             UIImage *helpImage2 = [UIImage imageNamed:@"03B-panel-capacity.png"];
             UIImage *helpImage3 = [UIImage imageNamed:@"03C-panel-capacity-vs-demand.png"];
-            helpArray = [[NSArray alloc] initWithObjects: helpImage2, helpImage3, nil];
+            UIImage *helpImage4 = [UIImage imageNamed:@"03D-panel-arrivals-departures.png"];
+            UIImage *helpImage5 = [UIImage imageNamed:@"03E-panel-usoc-map.png"];
+            UIImage *helpImage6 = [UIImage imageNamed:@"03F-panel-hotel-map.png"];
+            helpArray = [[NSArray alloc] initWithObjects: helpImage2, helpImage3, helpImage4, helpImage5, helpImage6, nil];
             break;
         }
         default:
