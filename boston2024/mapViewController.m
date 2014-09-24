@@ -1258,12 +1258,12 @@ static float kIndicatorY = 6.0;
 
 -(UIView *)create2014People
 {
-    UIView *uiv_people1 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, container_W, 60)];
+    UIView *uiv_people1 = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, container_W, 90)];
     uiv_people1.backgroundColor = [UIColor colorWithRed:38.0/255.0 green:36.0/255.0 blue:33.0/255.0 alpha:1.0];
     
     UIButton *uib_people1 = [UIButton buttonWithType:UIButtonTypeCustom];
     UIButton *uib_people2 = [UIButton buttonWithType:UIButtonTypeCustom];
-//    UIButton *uib_people3 = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton *uib_people3 = [UIButton buttonWithType:UIButtonTypeCustom];
 //    UIButton *uib_people4 = [UIButton buttonWithType:UIButtonTypeCustom];
     
     uib_people1.frame = CGRectMake(0.0, 0.0, container_W, 30);
@@ -1284,15 +1284,15 @@ static float kIndicatorY = 6.0;
     uib_people2.tag = 2;
     [uib_people2 addTarget:self action:@selector(tap2014PeopleBtns:) forControlEvents:UIControlEventTouchUpInside];
     
-//    uib_people3.frame = CGRectMake(0.0, 60.0, container_W, 30);
-//    uib_people3.backgroundColor = [UIColor clearColor];
-//    [uib_people3 setTitle:@"City Daily" forState:UIControlStateNormal];
-//    uib_people3.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
-//    uib_people3.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-//    uib_people3.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
-//    uib_people3.tag = 3;
-//    [uib_people3 addTarget:self action:@selector(tap2014PeopleBtns:) forControlEvents:UIControlEventTouchUpInside];
-//    
+    uib_people3.frame = CGRectMake(0.0, 60.0, container_W, 30);
+    uib_people3.backgroundColor = [UIColor clearColor];
+    [uib_people3 setTitle:@"Population - Density" forState:UIControlStateNormal];
+    uib_people3.titleLabel.font = [UIFont fontWithName:@"DINPro-CondBlack" size:14];
+    uib_people3.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    uib_people3.contentEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
+    uib_people3.tag = 3;
+    [uib_people3 addTarget:self action:@selector(tap2014PeopleBtns:) forControlEvents:UIControlEventTouchUpInside];
+//
 //    uib_people4.frame = CGRectMake(0.0, 90.0, container_W, 30);
 //    uib_people4.backgroundColor = [UIColor clearColor];
 //    [uib_people4 setTitle:@"City Residential" forState:UIControlStateNormal];
@@ -1304,7 +1304,7 @@ static float kIndicatorY = 6.0;
     
     [uiv_people1 addSubview: uib_people1];
     [uiv_people1 addSubview: uib_people2];
-//    [uiv_people1 addSubview: uib_people3];
+    [uiv_people1 addSubview: uib_people3];
 //    [uiv_people1 addSubview: uib_people4];
     UIView *uiv_sideBar = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 5.0, uiv_people1.frame.size.height)];
     [uiv_sideBar setBackgroundColor:[UIColor colorWithRed:31.0/255.0 green:162.0/255.0 blue:197.0/255.0 alpha:1.0]];
@@ -1337,16 +1337,17 @@ static float kIndicatorY = 6.0;
             [self updateTopRightBox:@"map-key-population-density 2"];
             break;
         }
-//        case 3:
-//        {
-//            [self setInfoText:@"Existing City Daily Population"];
+        case 3:
+        {
+            [self setInfoText:@"Population Density"];
+            _uiiv_rightTextBox.hidden = YES;
 //            [self updateRightTextBox:@"01-06-right-panel"];
-//            overlayName = @"01-07-bg-2014_RegionalDailyPopulation";
-//            [self updateOverlay];
-//            [self updateTopRightBox:@"map-key-population-density 2"];
-//            [self updateIndicatorPosition:CGRectMake(kIndicatorX, tappedBtn.frame.origin.y + kIndicatorY, _uiiv_indicator.frame.size.width, _uiiv_indicator.frame.size.height)];
-//            break;
-//        }
+            overlayName = @"01-07-population-density";
+            [self updateOverlay];
+            [self updateTopRightBox:@"map-key-population-density 2"];
+            [self updateIndicatorPosition:CGRectMake(kIndicatorX, tappedBtn.frame.origin.y + kIndicatorY, _uiiv_indicator.frame.size.width, _uiiv_indicator.frame.size.height)];
+            break;
+        }
 //        case 4:
 //        {
 //            [self setInfoText:@"Existing City Residential Population"];
